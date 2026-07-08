@@ -72,3 +72,5 @@
 - [`example/`](example/)：一份**填好的示範**——填好的迷你助教（可用 `/ta`）＋一份生成的投影片，讓你看「做出來長什麼樣」。
 
 > 想做**助教**（不是教材）？用 `teach-agent` skill，見 GETTING-STARTED 的 Part 3。
+>
+> **其他 skill**（同樣「打一句就生成」）：`teach-context`（從 .tex/PDF/Word 蒸餾講義）、`teach-prereq`（盤點課前先備知識）、`teach-animation`（用 **manim** 做動畫影片，需選裝 manim/ffmpeg，見 [SETUP.md](SETUP.md)）。八個 skill 一覽見 [USER-MANUAL.md](USER-MANUAL.md)。

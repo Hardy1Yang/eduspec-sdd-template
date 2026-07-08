@@ -63,7 +63,7 @@
 
 ## 怎麼開始（四步）
 
-1. **裝好工具**：見 [SETUP.md](SETUP.md)。
+1. **裝好工具**：**必裝**＝Claude Code 或 Codex（終端機 AI）＋ git ＋ Spectra CLI；**選裝**＝pandoc（讀 .docx 講義）、manim＋ffmpeg（做動畫）。逐項安裝/驗證見 [SETUP.md](SETUP.md)，或跑 `bash scripts/setup-check.sh` 一鍵檢查。
 2. **放講義**：丟進 `course-context/`（或用 `teach-context` 從 .tex/PDF/Word 自動蒸餾）。
 3. **生教材**：`用「teach-slides」這個 skill，單元：__，對象：__。`（其他 skill 同型）。
 4. **做助教**：用 `teach-agent`（或照 `agent/HOW-TO-FILL.md` 手動填），再用 `agent/ACCEPTANCE-CHECKLIST.md` 驗收。

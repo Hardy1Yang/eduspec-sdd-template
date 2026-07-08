@@ -32,7 +32,7 @@ metadata:
 
 ## 4. Render（渲染出影片）
 
-用 `render.sh`（或直接指令）：`python3 -m manim -qm scenes/<檔>.py <SceneClass>`（-qm 中畫質；快速預覽用 -ql）。manim 產出 mp4；可再用 ffmpeg 加 `+faststart`（適合網頁串流）並抽一張封面。
+直接下指令：`python3 -m manim -qm scenes/<檔>.py <SceneClass>`（-qm 中畫質；快速預覽用 -ql）。manim 產出 mp4；可再用 ffmpeg 加 `+faststart`（適合網頁串流）並抽一張封面。**順手也產出一個 `render.sh`**（把上面那行包起來、加一段「確認 manim/ffmpeg 有裝」的檢查），讓老師之後一鍵重跑——這個 `render.sh` 是你這次要**生出來**的檔，不是套件內建。
 
 ## 5. 開影片驗（能跑 ≠ 正確）
 

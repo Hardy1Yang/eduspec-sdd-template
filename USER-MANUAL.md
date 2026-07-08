@@ -12,7 +12,7 @@
 | 目錄／檔 | 是什麼 |
 |----------|--------|
 | `constitution.md` | 教材開發憲法（所有 skill 共用的底線規則） |
-| `skills/` | 5 個生成 skill（見第三節） |
+| `skills/` | 8 個 skill（見第三節） |
 | `course-context/` | 放你的講義（AI 據此作答，降低幻覺） |
 | `templates/` | 迷你規格、驗收清單、rubric 空白範本 |
 | `agent/` | 空白助教骨架（= `prototype/`），含 `.claude/` 指令模板 |
