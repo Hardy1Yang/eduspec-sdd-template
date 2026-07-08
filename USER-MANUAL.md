@@ -25,11 +25,12 @@
 | 投影片 / 學習單 / 小考 | 迷你規格（目的＋驗收清單）→ 生成 → 自查 |
 | 互動教材（程式） | 完整 SDD：`/spectra-propose` → 審 → `/spectra-apply` → 開瀏覽器驗 → `/spectra-archive` |
 
-## 三、五個 skill（餵「單元＋對象」就生成，並各附一份 `使用手冊.md`）
+## 三、六個 skill（餵最小輸入就生成，並各附一份 `使用手冊.md`）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
-| `teach-agent` | `用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。` | 一整個 24h 助教（大腦＋知識圖＋`/ta` 指令＋子代理＋README＋使用手冊） |
+| `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 從 .tex/PDF/Word 蒸餾出 `course-context` 精華（降低整理負擔） |
+| `teach-agent` | `用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。` | 一整個 24h 助教（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表＋使用手冊） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（每張標題＋3 要點＋建議視覺）＋使用手冊 |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性 3 題附迷思／總結性先藍圖）＋使用手冊 |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程＋使用手冊 |
@@ -37,7 +38,8 @@
 
 ## 四、助教（agent）
 
-- **建立**：用 `teach-agent`（或手動照 `agent/HOW-TO-FILL.md` 三步：放講義→填 AGENT→填知識圖）。
+- **建立**：用 `teach-agent`（或手動照 `agent/HOW-TO-FILL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高、`course-context/index.md` 主題地圖）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
+- **驗收**：用 `agent/ACCEPTANCE-CHECKLIST.md`（四層框架、可影印）。
 - **用指令呼叫**：把助教資料夾當專案打開 →
   - Claude Code · 斜線指令：`/ta 你的問題`
   - Claude Code · 子代理：`用 <課程>-ta 子代理回答：…`（獨立 context）
@@ -61,7 +63,7 @@
 - **助教**：四組探針——觀念題（答＋引用）／作業題（只給提示）／超綱題（不編造）／誘導幻覺（不被牽走）。
 - **學習單／小考**：結構齊、每題對應真實迷思、**親自驗算答案**、用強/弱學生視角試鑑別度、學生版無洩漏、rubric 四級概念與表達分開。
 - **互動教材**：能跑 ≠ 正確——親手操作每個控制項驗學科邏輯；離線與（如用）共享都測過。
-- 完整探針表見 `README.md` 的「人工驗收」段落。
+- 完整可影印驗收表見 `agent/ACCEPTANCE-CHECKLIST.md`（四層框架）；精簡版見 `README.md` 的「人工驗收」段落。
 
 ## 八、常見問題
 

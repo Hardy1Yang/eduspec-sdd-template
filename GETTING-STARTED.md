@@ -47,6 +47,7 @@ macOS 或 Windows 都可以。
 2. 之後要把成品「放上網給學生」時會用到。
 
 > ✅ **這四樣裝好後，以後每次用都不必再裝。**
+> 想確認都裝好了？在套件根目錄跑 `bash scripts/setup-check.sh`（見 [SETUP.md](SETUP.md)），它會逐項回報「就緒／缺少（附安裝指引）」，缺件不會靜默。
 
 ---
 
@@ -91,6 +92,7 @@ git clone <套件的 repo 網址>
 2. 把你的講義放進去，**一個單元一個檔**。最簡單的做法：在 `course-context/` 上按右鍵 →「New File」→ 命名 `w1-你的主題.md` → 把講義重點貼進去、存檔（<kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>S</kbd>）。
 3. 英文講義沒關係，貼原文即可；**數學符號保留原樣**。
    > 細節見 `course-context/README.md`。**沒放講義，AI 會請你先放，不會亂編。**
+   > **懶得手動整理？** 打 `用「teach-context」這個 skill，講義在：<你的講義資料夾>。`，它會**從 .tex/PDF/Word 自動蒸餾**成 course-context。
 
 ---
 
@@ -104,6 +106,7 @@ git clone <套件的 repo 網址>
    ```
 3. **你會看到** AI 一步步幫你：讀你的講義 → 填好助教的大腦（`AGENT.md`）、知識圖、`/ta` 指令檔、README 和一份使用手冊。
 4. 完成後，它會告訴你助教資料夾在哪。**用 Cursor 把那個資料夾另外開起來**（File → Open Folder…選它）。
+5. **驗收**：用助教資料夾裡的 `ACCEPTANCE-CHECKLIST.md` 逐項打勾（尤其「作業題只給提示、不編造」必過）。
 
 ---
 
