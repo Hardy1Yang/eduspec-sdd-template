@@ -1,0 +1,17 @@
+# Spectra application config — EduSpec 教學素材套件
+# See: https://github.com/spectra-app/spectra
+
+# AI 產出語言：繁體中文（台灣）
+locale: tw
+
+# 平行任務標記（互動模擬 tasks 可標 [P]）
+# parallel_tasks: true
+
+# 產生 /spectra:X slash 指令
+# claude_slash_commands: true
+
+# 要生成指引檔的 AI 工具
+# tools:
+#   - claude
+#   - cursor
+#   - codex
