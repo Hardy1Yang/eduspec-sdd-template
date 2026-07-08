@@ -28,9 +28,13 @@
 預期行為：**觀念題**完整答並引用講義小節；**作業題只給提示不給答案**；**超綱題**說超出範圍、不編造。
 （指令檔在 `.claude/commands/ta.md` 與 `.claude/agents/course-ta.md`，路徑相對於本資料夾，開成專案即生效。）
 
+## 驗收助教表現
+
+填好後，用 **[`ACCEPTANCE-CHECKLIST.md`](ACCEPTANCE-CHECKLIST.md)** 逐項打勾——它用四層框架（誠信＞正確＞會教＞據本課）判「這是不是你這門課的好助教」，含驗證說明與可影印表格。**誠信類必 100% 過**（不代寫、不編造）。
+
 ## 想看填好的樣子？
 
-參考完整範例：`../example/agent/`（一門計量課的助教）。
+參考完整範例：`../example/agent/`（一門計量課的助教，含填好的 `ACCEPTANCE-CHECKLIST.md`）。
 
 ---
 
