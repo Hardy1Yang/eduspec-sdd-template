@@ -1,6 +1,6 @@
 ---
 name: teach-agent
-description: 給定「課名＋授課教師＋對象」，從空白骨架（prototype）一步步生成一個完整的學生端 24h 助教——填 AGENT／知識圖、產 Claude Code 指令與子代理、產 README 與使用手冊。要做課程助教時使用。
+description: 給定「課名＋授課教師＋對象」，從空白骨架（agent/）一步步生成一個完整的學生端 24h 助教——填 AGENT／知識圖、產 Claude Code 指令與子代理、產 README 與使用手冊。要做課程助教時使用。
 license: MIT
 metadata:
   author: EduSpec
@@ -17,7 +17,7 @@ metadata:
 
 ## 2. 複製空白骨架
 
-把 `prototype/` 複製成一個新資料夾（例如 `<課程代碼>-ta-agent/`）。它已含：`AGENT.md`、`knowledge-graph.md`、`.claude/commands/ta.md`、`.claude/agents/course-ta.md`、`README.md`、`deploy/`。
+把套件內的空白骨架 `agent/` 複製成一個新資料夾（例如 `<課程代碼>-ta-agent/`）。它已含：`AGENT.md`、`knowledge-graph.md`、`references/`、`course-context/index.md`、`.claude/commands/ta.md`、`.claude/agents/course-ta.md`、`.codex/`、`ACCEPTANCE-CHECKLIST.md`、`README.md`、`deploy/`。
 
 ## 3. 填 AGENT.md（大腦）
 

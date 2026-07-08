@@ -38,6 +38,8 @@
 | `teach-sim` | `用「teach-sim」我想做一個 __ 的互動教材給 __。` | 互動教材（**網路版＋共享紀錄為主**、離線備選）＋使用手冊 |
 | `teach-animation` | `用「teach-animation」我想做一個 __ 的動畫。` | 用 **manim** 做動畫影片（mp4）＋使用手冊（選用依賴 manim/ffmpeg，見 SETUP） |
 
+> **四個材料 skill（slides／worksheet／quiz／sim）都套用教學 DNA**（見 `skills/teaching-dna.md`）：問題先行、點出常見迷思、收一句金句——讓產出不只是「結構完整卻平庸」。投影片走「鉤子→直覺→機制→誤解→金句」弧線；小考誘答項編碼真實迷思；互動要有「發現時刻」。
+
 ## 四、助教（agent）
 
 - **建立**：用 `teach-agent`（或手動照 `agent/HOW-TO-FILL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高、`course-context/index.md` 主題地圖）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
