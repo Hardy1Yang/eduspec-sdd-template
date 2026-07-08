@@ -24,6 +24,8 @@
 ├── skills/                      ← 8 個 skill（見下）
 ├── course-context/              ← 放你的講義（AI 據此作答，降低幻覺）
 ├── templates/                   ← 迷你規格、驗收清單、rubric 範本
+├── scripts/                     ← setup-check.sh（依賴一鍵檢查）
+├── openspec/                    ← Spectra／SDD 設定（互動教材走完整 SDD 時用）
 └── agent/                       ← 空白「24h 助教」骨架（含教學框架與雙工具轉接頭）
     ├── AGENT.md / knowledge-graph.md / HOW-TO-FILL.md
     ├── references/              ← 教學風格 DNA ＋ 老師校準（優先級最高）
