@@ -25,11 +25,12 @@
 | 投影片 / 學習單 / 小考 | 迷你規格（目的＋驗收清單）→ 生成 → 自查 |
 | 互動教材（程式） | 完整 SDD：`/spectra-propose` → 審 → `/spectra-apply` → 開瀏覽器驗 → `/spectra-archive` |
 
-## 三、六個 skill（餵最小輸入就生成，並各附一份 `使用手冊.md`）
+## 三、七個 skill（餵最小輸入就生成，並各附一份 `使用手冊.md`）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
 | `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 從 .tex/PDF/Word 蒸餾出 `course-context` 精華（降低整理負擔） |
+| `teach-prereq` | `用「teach-prereq」這個 skill，課名：__，對象：__。` | 課前先備知識清單（外部/假設先備）＋學生課前自我檢測；寫回知識圖供助教診斷 |
 | `teach-agent` | `用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。` | 一整個 24h 助教（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表＋使用手冊） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（每張標題＋3 要點＋建議視覺）＋使用手冊 |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性 3 題附迷思／總結性先藍圖）＋使用手冊 |

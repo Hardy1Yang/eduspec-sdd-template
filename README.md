@@ -21,7 +21,7 @@
 ├── PUBLISH-GITHUB-IO.md         ← 發布到 github.io、看全班結果
 ├── SETUP.md                     ← 依賴清單（＋ scripts/setup-check.sh 一鍵檢查）
 ├── constitution.md              ← 教材開發憲法（所有 skill 共用規則）
-├── skills/                      ← 6 個 skill（見下）
+├── skills/                      ← 7 個 skill（見下）
 ├── course-context/              ← 放你的講義（AI 據此作答，降低幻覺）
 ├── templates/                   ← 迷你規格、驗收清單、rubric 範本
 └── agent/                       ← 空白「24h 助教」骨架（含教學框架與雙工具轉接頭）
@@ -33,11 +33,12 @@
     └── .codex/                  ← Codex 轉接頭（skill）
 ```
 
-### 6 個 skill（餵最小輸入就生成，各附一份 `使用手冊.md`）
+### 7 個 skill（餵最小輸入就生成，各附一份 `使用手冊.md`）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
 | `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 從 .tex/PDF/Word 蒸餾 `course-context`（降低整理負擔） |
+| `teach-prereq` | `用「teach-prereq」這個 skill，課名：__，對象：__。` | 課前先備知識清單（課裡常提到、卻假設你以前就會的）＋學生自我檢測 |
 | `teach-agent` | `用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。` | 一整個 24h 助教（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（標題＋3 要點＋建議視覺） |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性／總結性） |
@@ -68,7 +69,7 @@
 
 ## 三個工具怎麼對應（不綁單一工具）
 
-6 個 skill 都是**純 `SKILL.md`**，Spectra、Spec Kit、Cursor、Claude Code、Codex 都讀得懂。互動網頁的完整 SDD 流程對照：
+7 個 skill 都是**純 `SKILL.md`**，Spectra、Spec Kit、Cursor、Claude Code、Codex 都讀得懂。互動網頁的完整 SDD 流程對照：
 
 | 心法四步 | Spectra（主推·中文·免裝 Node·有 GUI） | GitHub Spec Kit（官方標準） |
 |---------|------------------------------------------|------------------------------|
