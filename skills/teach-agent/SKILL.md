@@ -27,13 +27,18 @@ metadata:
 
 依講義列出概念先備依賴（`A ← B`）並標主幹（沒打好會連環崩盤的節點）。
 
-## 5. 產 Claude Code 指令與子代理
+## 5. 產工具轉接頭（Claude 與 Codex 各一套，皆委派 AGENT.md）
 
-把 `.claude/commands/ta.md` 與 `.claude/agents/course-ta.md` 的 `{{ }}` 佔位符填好（課名、代碼、主題）。**路徑保持相對於助教資料夾**（`AGENT.md`、`course-context/`），這樣老師把該資料夾當 Claude Code 專案打開時，`/課名` 指令與子代理就能直接用。
+**原則：一個大腦、多個薄轉接頭**——真正的規則在 `AGENT.md`，轉接頭只把各工具導向它（不要把規則複製進轉接頭）。**同時產這兩套並填好 `{{ }}`（課名、代碼、主題）**：
+
+- **Claude Code**：`.claude/commands/ta.md`（`/ta` 指令）＋`.claude/agents/course-ta.md`（子代理）。
+- **Codex**：把 `.codex/skills/course-ta-agent/` 資料夾**改名為 `<課程代碼>-ta-agent`**，填好 `SKILL.md`（frontmatter `name`／`description`、workflow 委派 AGENT.md）與 `agents/openai.yaml`（display_name／default_prompt）。
+
+**路徑一律相對於助教資料夾**（`AGENT.md`、`course-context/`、`references/`），老師把資料夾當專案打開時，Claude 的 `/ta`／子代理與 Codex 的 `$<name>` 就都能直接用。
 
 ## 6. 產 README（含指令使用說明）
 
-README 要有「**怎麼用**」段落：如何在 Claude Code／Cursor 開資料夾、如何打 `/ta <問題>` 指令、如何叫子代理、預期行為（觀念題答、作業題只給提示、超綱題不編造）。
+README 要有「**怎麼用**」段落，並列**兩種工具的呼叫法**：Claude Code 打 `/ta <問題>` 或叫子代理；Codex 用 `Use $<課程代碼>-ta-agent to answer …`。附預期行為（觀念題答、作業題只給提示、超綱題不編造），並註明「一個大腦 `AGENT.md`、多個轉接頭」。
 
 ## 7. 產 `使用手冊.md`（老師端＋學生端）
 

@@ -7,6 +7,7 @@
 - `/ta 什麼是市場均衡？` — 觀念題會答並引用 `w1 §1.3`
 - `/ta 需求 Qd=100−2P、供給 Qs=20+P，幫我算均衡` — **只給提示、不給最終數字**
 - 子代理：`用 econ-101-ta 子代理回答：…`
+- **Codex**：`Use $econ-101-ta-agent to answer: 什麼是市場均衡？`（`.codex/` 轉接頭，一樣委派 `AGENT.md`）
 
 ## 檔案
 `AGENT.md`（大腦）、`knowledge-graph.md`、`course-context/w1-supply-demand.md`、`.claude/`（指令＋子代理）。

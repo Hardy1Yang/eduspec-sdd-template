@@ -38,9 +38,11 @@
 ## 四、助教（agent）
 
 - **建立**：用 `teach-agent`（或手動照 `agent/HOW-TO-FILL.md` 三步：放講義→填 AGENT→填知識圖）。
-- **用指令呼叫**：把助教資料夾當 Claude Code 專案打開 →
-  - 斜線指令：`/ta 你的問題`
-  - 子代理：`用 <課程>-ta 子代理回答：…`（獨立 context）
+- **用指令呼叫**：把助教資料夾當專案打開 →
+  - Claude Code · 斜線指令：`/ta 你的問題`
+  - Claude Code · 子代理：`用 <課程>-ta 子代理回答：…`（獨立 context）
+  - Codex · skill：`Use $<課程>-ta-agent to answer: 你的問題`
+  - **一個大腦、多轉接頭**：規則都在 `AGENT.md`；`.claude/` 與 `.codex/` 只是把不同工具導向它。
 - **預期行為**：觀念題答並引用講義小節；**作業題只給提示不給答案**；超綱題說超出範圍、不編造。
 - **發布**：見 `agent/deploy/README.md`（GitHub clone 給學生）。
 

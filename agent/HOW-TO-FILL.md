@@ -31,6 +31,15 @@ course-context/
 
 依 `knowledge-graph.md` 內的格式，列出你這門課的**概念先備依賴**（A ← B 表示「A 要先懂 B」），並標出**主幹概念**（沒打好會連環崩盤的）。
 
+## 第四步：填工具轉接頭（Claude 與 Codex 各一個薄轉接頭）
+
+> **一個大腦、多個轉接頭**：真正的規則在 `AGENT.md`；下面兩個資料夾只是把不同工具導向它。改行為改 `AGENT.md` 就好。
+
+- **Claude Code**：`.claude/commands/ta.md`（`/ta` 指令）、`.claude/agents/course-ta.md`（子代理）——把 `{{}}` 填掉。
+- **Codex**：`.codex/skills/course-ta-agent/`——把資料夾**改名為 `<課程代碼>-ta-agent`**，並把 `SKILL.md` 與 `agents/openai.yaml` 的 `{{}}` 填掉。
+
+（用 `teach-agent` skill 生成時，這兩套會**自動幫你產好、填好**；手動填時才需要照上面做。）
+
 ---
 
 ## 填完怎麼用 / 怎麼發布

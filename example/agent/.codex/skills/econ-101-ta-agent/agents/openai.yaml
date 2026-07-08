@@ -1,0 +1,4 @@
+interface:
+  display_name: "個體經濟學（初級） TA"
+  short_description: "Answer 個經初級 questions from course notes"
+  default_prompt: "Use $econ-101-ta-agent to answer a student question from the course notes in Traditional Chinese."

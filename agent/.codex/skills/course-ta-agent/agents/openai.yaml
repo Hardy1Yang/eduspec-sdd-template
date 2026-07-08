@@ -1,0 +1,4 @@
+interface:
+  display_name: "{{課程名稱}} TA"
+  short_description: "Answer {{課程名稱}} questions from course notes"
+  default_prompt: "Use ${{課程代碼}}-ta-agent to answer a student question from the course notes in {{回覆語言}}."
