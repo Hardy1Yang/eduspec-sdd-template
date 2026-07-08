@@ -16,6 +16,8 @@
 | 依賴 | 為何需要 | 怎麼裝 | 怎麼驗 |
 |------|----------|--------|--------|
 | **pandoc** | `teach-context` 讀 **.docx** 講義（.tex/.pdf 不需要） | `brew install pandoc`（Mac）/ `apt install pandoc`（Linux） | `pandoc --version` |
+| **manim** | `teach-animation` 做**動畫影片**（互動網頁不需要） | `pip install manim`（見 <https://docs.manim.community>） | `python3 -c "import manim"` |
+| **ffmpeg** | `teach-animation` render 動畫成 mp4（配 manim） | `brew install ffmpeg`（Mac）/ `apt install ffmpeg`（Linux） | `ffmpeg -version` |
 | **PDF 讀取** | `teach-context` 讀 **PDF** 講義 | Claude Code **內建**，無需另裝 | — |
 | **MCP 外掛** | 本套件**預設不需第三方 MCP** 即可運作；此欄保留給你日後擴充（如接文獻庫、瀏覽器） | 依各 MCP 官方 | 在 coding agent 設定確認已連上 |
 

@@ -1,0 +1,68 @@
+---
+name: teach-animation
+description: 用 manim（3Blue1Brown 的數學動畫引擎）製作數學/經濟教學動畫——走 SDD（規格→manim scene→render 出影片）。要做「動畫影片」（如中央極限定理、曲線位移、幾何證明）時使用。互動網頁請改用 teach-sim。
+license: MIT
+metadata:
+  author: EduSpec
+  version: "1.0"
+---
+
+# teach-animation — 用 manim 做教學動畫
+
+**觸發**：`用「teach-animation」這個 skill，我想做一個 ____ 的動畫。`
+
+動畫是「**跑出來的影片**」（mp4），和 `teach-sim` 的「互動網頁」不同：動畫適合**線性講解一個過程**（如樣本平均如何趨近常態），互動網頁適合**讓學生自己拉**。動畫**是程式**，走完整 SDD。
+
+> **依賴（選用）**：需要 `manim` 與 `ffmpeg`（見 `../../SETUP.md`）。沒裝也能先寫規格與 scene，之後再 render。
+
+## 1. 確認要教什麼
+
+到 `course-context/` 確認概念。想清楚這動畫**要讓學生看到什麼過程**（不是塞一堆東西）。
+
+## 2. 寫規格（Spec）
+
+只寫「要什麼、成功長什麼樣」：這動畫分幾幕（act）、每幕呈現什麼、時間長度、**可打勾驗收清單**（如「n 越大，樣本平均分布越集中且趨常態」方向要對）。規格裡不寫程式碼。
+
+## 3. 寫 manim scene（Python）
+
+一個 `Scene` 類別，`construct()` 裡用動畫語言描述：
+- 常用物件：`Axes`（座標軸）、`Text`/`MathTex`（中文/LaTeX 文字）、`Rectangle`（長條）、`Dot`、`Line`。
+- 常用動畫：`Write`、`Create`、`FadeIn/Out`、`Transform`、`GrowFromEdge`、`LaggedStart`（依序）。
+- **中文標籤**、字夠大；一幕一幕 `self.play(...)` + `self.wait(...)`。
+
+## 4. Render（渲染出影片）
+
+用 `render.sh`（或直接指令）：`python3 -m manim -qm scenes/<檔>.py <SceneClass>`（-qm 中畫質；快速預覽用 -ql）。manim 產出 mp4；可再用 ffmpeg 加 `+faststart`（適合網頁串流）並抽一張封面。
+
+## 5. 開影片驗（能跑 ≠ 正確）
+
+播放產出的 mp4，**對照規格驗收清單**：過程對不對、方向對不對、標籤清不清楚。不對就回規格改該幕，重 render。
+
+## 6. 用進課堂 / 產使用手冊
+
+- 課堂投影 mp4，或貼進投影片。
+- 產一份 `使用手冊.md`：老師如何 render/播放/發布；（若給學生）如何取得。
+
+---
+
+## manim 速查
+
+| 想做 | 用什麼 |
+|------|--------|
+| 座標軸＋函數圖 | `Axes(...)`、`axes.plot(lambda x: ...)` |
+| 中文/公式 | `Text("中文", font_size=...)`、`MathTex(r"\\bar X")` |
+| 長條/直方圖 | `Rectangle(...)` 放到 `axes.c2p(x, y)` |
+| 依序出現 | `LaggedStart(*anims, lag_ratio=0.1)` |
+| 變形 | `Transform(a, b)` |
+| 渲染 | `python3 -m manim -qm scene.py ClassName`（-ql 預覽、-qh 高畫質） |
+
+官方文件（以官方為準）：<https://docs.manim.community>
+
+---
+
+規則：
+- 繁體中文、台灣用語；數學符號用 LaTeX（`MathTex`）保留原文。
+- **manim / ffmpeg 是選用依賴**；沒裝先寫規格與 scene，裝好再 render。
+- 「能跑 ≠ 正確」；render 出來要**親手看過**動畫方向與過程對不對。
+- 若公開分享，揭露「本動畫由 AI 協助生成，經授課教師審核」。
+- 一個概念一個 scene，別塞太多；先寫規格再寫 scene。

@@ -25,7 +25,7 @@
 | 投影片 / 學習單 / 小考 | 迷你規格（目的＋驗收清單）→ 生成 → 自查 |
 | 互動教材（程式） | 完整 SDD：`/spectra-propose` → 審 → `/spectra-apply` → 開瀏覽器驗 → `/spectra-archive` |
 
-## 三、七個 skill（餵最小輸入就生成，並各附一份 `使用手冊.md`）
+## 三、八個 skill（餵最小輸入就生成，並各附一份 `使用手冊.md`）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
@@ -36,6 +36,7 @@
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性 3 題附迷思／總結性先藍圖）＋使用手冊 |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程＋使用手冊 |
 | `teach-sim` | `用「teach-sim」我想做一個 __ 的互動教材給 __。` | 互動教材（**網路版＋共享紀錄為主**、離線備選）＋使用手冊 |
+| `teach-animation` | `用「teach-animation」我想做一個 __ 的動畫。` | 用 **manim** 做動畫影片（mp4）＋使用手冊（選用依賴 manim/ffmpeg，見 SETUP） |
 
 ## 四、助教（agent）
 
