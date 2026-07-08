@@ -52,7 +52,12 @@
 
 ## 助教：一個大腦、多個轉接頭
 
-`agent/AGENT.md` 是**唯一大腦**（人格、規則、教學風格、範圍）；`.claude/`（Claude Code `/ta`＋子代理）與 `.codex/`（Codex skill）只是**薄轉接頭**委派給它。改行為改 `AGENT.md` 就好，兩邊自動一致。教學風格與「老師校準」在 `agent/references/`（校準優先級最高）。
+`agent/AGENT.md` 是**唯一大腦**（人格、規則、教學風格、範圍）；`.claude/`（Claude Code）與 `.codex/`（Codex）只是**薄轉接頭**委派給它。呼叫法：
+
+- **Claude Code**：`/ta 你的問題`，或叫子代理。
+- **Codex**：`Use $<課程代碼>-ta-agent to answer: 你的問題`。
+
+改行為改 `AGENT.md` 就好，兩邊自動一致。教學風格與「老師校準」在 `agent/references/`（校準優先級最高）。
 
 ## 怎麼開始（四步）
 
