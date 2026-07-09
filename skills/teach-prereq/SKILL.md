@@ -17,6 +17,8 @@ metadata:
 
 到 `course-context/` 讀講義。**查無內容時，請老師先把講義放進來，不要臆造先備知識。**
 
+> **選用·課綱明列先備**：若有 `supplementary/syllabus.md`（與 `course-context/` 同層），課綱常**明白寫出先備**（例：calculus-based statistics、R/Python/Stata 操作經驗）——把這些**明列先備一併納入清單**，並與下面「掃講義用到但沒定義」的推斷先備並用（明列的可標為「課綱要求」）。
+
 ## 2. 掃「用到但沒定義」
 
 逐份講義找**被使用、卻沒被定義**的概念/工具/定理——語感上的線索：「recall／假設你已知／回想一下／by the … theorem／用 XX（沒說 XX 是什麼）」，以及順口出現的符號/工具（如 $\arg\min$、矩陣轉置、特徵向量、期望值）。

@@ -39,6 +39,8 @@
 | `teach-animation` | `用「teach-animation」我想做一個 __ 的動畫。` | 用 **manim** 做動畫影片（mp4）＋使用手冊（選用依賴 manim/ffmpeg，見 SETUP） |
 
 > **四個材料 skill（slides／worksheet／quiz／sim）都套用教學 DNA**（見 `skills/teaching-dna.md`）：問題先行、點出常見迷思、收一句金句——讓產出不只是「結構完整卻平庸」。投影片走「鉤子→直覺→機制→誤解→金句」弧線；小考誘答項編碼真實迷思；互動要有「發現時刻」。
+>
+> **材料 skill 也會選用 `supplementary/` 對齊課程實況**（若有）：quiz 對齊歷年考題風格、worksheet 銜接作業重點、slides/animation 依課程定位、sim 取材 case、`teach-prereq` 納入課綱明列先備——但**一律不把作業/考試/專案的解答抄進教材、不重現現行考題**（supplementary 本就不含解答）。
 
 ## 四、助教（agent）
 
