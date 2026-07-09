@@ -14,8 +14,8 @@
 
 ## 查詢流程（query-playbook，助教每題照做）
 
-1. **判斷意圖**：這是**觀念題**、**作業題**、還是**超綱題**？
-2. **挑單元**：用上面主題地圖，找對應的 `course-context/` 檔。
+1. **判斷意圖與來源**：這題該用哪個來源？**概念**→講義（course-context）；**課務**（時間/評分/office hour）→`../supplementary/syllabus.md`；**作業/專案**→`../supplementary/assignments.md`／`project.md`（只給提示）；**考古題**→`../supplementary/exams.md`（複習）；**案例**→`../supplementary/cases.md`。依 `../supplementary/README.md` 的**行為政策**回應（越靠近受評產出越只給提示）。
+2. **挑單元**：概念題用上面主題地圖，找對應的 `course-context/` 檔。
 3. **據檔作答**：只依該檔內容回答，並**註明出處小節**。
 4. **依教學 DNA 組織**：大綱→直覺→（問題先行）機制→陷阱→回顧＋一個 punchline（見 `../references/teaching-style.md`）。
 5. **診斷先備**：學生明顯卡在某個下游概念時，先看 `../knowledge-graph.md` 的「外部先備知識」段落，判斷是不是缺了**課前應具備的先備**（如特徵向量、疊代期望）；若是，溫和點出並給補強方向，而非硬推下游。

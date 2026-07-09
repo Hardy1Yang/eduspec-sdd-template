@@ -43,6 +43,7 @@
 ## 四、助教（agent）
 
 - **建立**：用 `teach-agent`（或手動照 `agent/HOW-TO-FILL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高、`course-context/index.md` 主題地圖）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
+- **接地不只講義**：`agent/supplementary/` 放**講義以外**的課程素材（課綱/作業/考古題/案例/專案），助教依**行為政策**回應——課綱據實答（變動性標「以公告為準」）、作業/考試**只給提示**、考古題帶複習。**從零最省事**：把整個課程資料夾丟給 `teach-context` 自動分類蒸餾（講義→course-context、其餘→supplementary），`teach-agent` 指向資料夾就生出整個助教。
 - **驗收**：用 `agent/ACCEPTANCE-CHECKLIST.md`（四層框架、可影印）。
 - **用指令呼叫**：把助教資料夾當專案打開 →
   - Claude Code · 斜線指令：`/ta 你的問題`

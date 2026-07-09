@@ -30,6 +30,7 @@
     ├── AGENT.md / knowledge-graph.md / HOW-TO-FILL.md
     ├── references/              ← 教學風格 DNA ＋ 老師校準（優先級最高）
     ├── course-context/index.md  ← 主題地圖 ＋ 查詢流程
+    ├── supplementary/           ← 講義以外素材（課綱/作業/考古題/案例/專案）＋行為政策
     ├── ACCEPTANCE-CHECKLIST.md   ← 助教驗收表（四層框架）
     ├── .claude/                 ← Claude Code 轉接頭（/ta 指令＋子代理）
     └── .codex/                  ← Codex 轉接頭（skill）
@@ -39,7 +40,7 @@
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
-| `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 從 .tex/PDF/Word 蒸餾 `course-context`（降低整理負擔） |
+| `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 把整個課程資料夾**分類蒸餾**：講義→`course-context`、課綱/作業/考古題/案例/專案→`supplementary`（降低整理負擔） |
 | `teach-prereq` | `用「teach-prereq」這個 skill，課名：__，對象：__。` | 課前先備知識清單（課裡常提到、卻假設你以前就會的）＋學生自我檢測 |
 | `teach-agent` | `用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。` | 一整個 24h 助教（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（標題＋3 要點＋建議視覺） |
@@ -62,6 +63,8 @@
 - **Codex**：`Use $<課程代碼>-ta-agent to answer: 你的問題`。
 
 改行為改 `AGENT.md` 就好，兩邊自動一致。教學風格與「老師校準」在 `agent/references/`（校準優先級最高）。
+
+> **接地不只講義**：`agent/supplementary/` 放課綱/作業/考古題/案例/專案，助教依**行為政策**回應（課綱據實答＋標「以公告為準」、作業/考試只給提示、考古題帶複習）。**最省事**：把整個課程資料夾丟給 `teach-context` 自動分類蒸餾，`teach-agent` 就能**從零、指向一個資料夾**生出整個助教。
 
 ## 怎麼開始（四步）
 

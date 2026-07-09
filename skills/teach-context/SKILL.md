@@ -1,6 +1,6 @@
 ---
 name: teach-context
-description: 從講義文件（.tex／PDF／Word）逐檔蒸餾生成 course-context 精華，降低老師手動整理負擔。並順帶擷取教師慣用語餵給 references/teaching-style.md。要把一堆講義變成助教/教材可用的知識庫時使用。
+description: 把一整個課程資料夾（.tex／PDF／Word）分類蒸餾——講義→course-context、講義以外的課程素材（課綱/作業/考古題/案例/專案）→supplementary，降低老師手動整理負擔。並順帶擷取教師慣用語餵給 references/teaching-style.md。要把一堆課程檔案變成助教/教材可用的知識庫時使用。
 license: MIT
 metadata:
   author: EduSpec
@@ -13,12 +13,24 @@ metadata:
 
 老師常卡在「要先手動把講義整理成 course-context」。這個 skill 直接讀你的講義文件，**逐檔蒸餾**成精華，放進 `course-context/`。
 
-## 1. 盤點來源文件
+## 1. 盤點並**分類**來源文件（講義 vs 講義以外）
 
-看使用者給的資料夾／檔案，列出要處理的講義，判斷格式：
-- **`.tex`**：直接讀（LaTeX 原始碼）。
-- **`.pdf`**：用內建讀取（Claude Code 的 Read 支援 PDF）。
-- **`.docx`／`.doc`**：**建議先用 pandoc 轉 md**（`pandoc in.docx -o out.md`）；若沒有 pandoc，**請老師安裝或改貼純文字**——不要靜默失敗。
+看使用者給的資料夾，列出所有檔，先判**格式**，再判**類型**：
+
+**格式**：`.tex` 直接讀；`.pdf` 用內建讀取；`.docx/.doc` 建議先 `pandoc in.docx -o out.md`（沒 pandoc 就請老師裝或貼純文字，**不要靜默失敗**）。
+
+**類型 → 去哪**（看檔名/資料夾/內容判斷）：
+
+| 類型 | 線索 | 蒸餾到 |
+|------|------|--------|
+| **講義** | lecture、week、投影片、章節內容 | `course-context/<週次-主題>.md`（走第 2 步）|
+| **課綱** | syllabus、課程大綱 | `supplementary/syllabus.md` |
+| **作業** | homework、hw、problem set | `supplementary/assignments.md` |
+| **考古題／考試** | exam、midterm、final、quiz | `supplementary/exams.md` |
+| **案例** | case、task description | `supplementary/cases.md` |
+| **專案** | project、專案規範、範本 repo | `supplementary/project.md` |
+
+分不出來的先列給老師確認，不要硬塞。
 
 ## 2. 逐檔蒸餾（檔多時平行處理）
 
@@ -31,6 +43,15 @@ metadata:
 - **footer**：助教據此檔作答、註明小節、查無不編造。
 
 > 檔案很多時，一檔一個處理單位平行進行，最後彙整清單給老師確認。
+
+## 2.5 蒸餾「講義以外」的素材到 supplementary/（守誠信）
+
+依第 1 步的分類，把非講義素材蒸餾到 `supplementary/` 對應檔（格式見 `agent/supplementary/README.md`）：
+- **課綱**：課務摘要（時間、教師/TA、先備、格式、評量組成）；**日期、評分比重等變動性資訊標「以最新公告為準」**。
+- **作業 / 考古題 / 考試**：**只蒸餾「在問什麼」（主題、題型、交付格式），絕不蒸餾解答、計算或程式碼答案**——助教靠行為政策只給提示。
+- **案例 / 專案**：任務目標、交付規範、範本結構；不含受評產出的解答。
+
+每個 supplementary 檔開頭標「教學脈絡摘要（AI 蒸餾、老師審），**不含作業/考試解答**」。
 
 ## 3. 順帶擷取教師慣用語（餵教學風格）
 
@@ -53,5 +74,6 @@ metadata:
 - 繁體中文、台灣用語；數學符號、變數名保留原文。
 - AI 產草稿，你審學科正確性；蒸餾內容需人工審核才算完成。
 - **忠於來源、不編造**；查無內容標「請老師確認」。
+- **受評素材（作業/考試/專案交付）只蒸餾「題目與結構」，絕不蒸餾解答**——誠信由行為政策把關。
 - 擷取的教師慣用語一律標「推測、待老師校準」。
 - 注意講義著作權：蒸餾自有/授權講義，來源標清楚。
