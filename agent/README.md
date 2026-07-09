@@ -10,12 +10,16 @@
 
 ```
 （你的課）-ta-agent/
-├── HOW-TO-FILL.md        # ← 先看這個：三步填空指南
-├── AGENT.md              # 助教的大腦：角色口吻 + 據講義作答 + 只給提示不給答案
-├── knowledge-graph.md    # 課程概念先備依賴圖
-├── course-context/       # 放你的講義精華（助教據此作答）
-├── deploy/               # 發布給學生的說明
-└── README.md             # 你正在看的這份
+├── HOW-TO-FILL.md          # ← 先看這個：填空指南
+├── AGENT.md                # 大腦：口吻 + 據講義作答 + 只給提示 + 資料來源行為政策
+├── knowledge-graph.md      # 概念先備依賴圖（含外部先備知識）
+├── references/             # 教學風格 DNA ＋ 老師校準（優先級最高）
+├── course-context/         # 放講義精華（助教據此作答）＋ index.md 主題地圖
+├── supplementary/          # 講義以外素材（課綱/作業/考古題/案例/專案）＋ 行為政策
+├── ACCEPTANCE-CHECKLIST.md # 助教驗收表（四層框架、可影印）
+├── .claude/  .codex/       # Claude Code／Codex 兩個薄轉接頭（皆委派 AGENT.md）
+├── deploy/                 # 發布給學生的說明
+└── README.md               # 你正在看的這份
 ```
 
 ## 怎麼用（指令互動）

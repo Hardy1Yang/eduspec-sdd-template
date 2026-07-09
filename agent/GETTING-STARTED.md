@@ -13,8 +13,8 @@
 
 ## 路線 B：手動三步（照 `HOW-TO-FILL.md`）
 
-1. **放講義** → `course-context/`（一單元一檔）。
-2. **填 `AGENT.md`** → 換掉 `{{ }}`（課名、口吻、例子、週次）；保留三條規則。
+1. **放講義** → `course-context/`（一單元一檔）；**講義以外**（課綱/作業/考古題/案例/專案）→ `supplementary/`（助教依 `supplementary/README.md` 的行為政策使用）。
+2. **填 `AGENT.md`** → 換掉 `{{ }}`（課名、口吻、例子、週次）；保留三條規則與「資料來源行為政策」段。
 3. **填 `knowledge-graph.md`** → 概念先備依賴＋標主幹。
    並把 `.claude/commands/ta.md`、`.claude/agents/course-ta.md` 的 `{{ }}` 填好。
 
