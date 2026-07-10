@@ -6,7 +6,7 @@ description: Econ 5166 "Data Science and Social Inquiry" student-facing 24-hour 
 # Econ 5166「Data Science and Social Inquiry」 TA (Codex adapter)
 
 > 這是 **Codex 的薄轉接頭**。真正的人格、規則、範圍在 `AGENT.md`——本檔只負責把 Codex 導向它。
-> 對應的 Claude Code 轉接頭在 `.claude/`。**改行為請改 `AGENT.md`,不要改這裡。**
+> 對應的 Claude Code 轉接頭在 `.claude/`。**改行為請改 `AGENT.md`，不要改這裡。**
 
 ## Overview
 

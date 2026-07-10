@@ -20,6 +20,7 @@
 | `scripts/` | `setup-check.sh` 依賴一鍵檢查 |
 | `openspec/` | Spectra／SDD 設定（互動教材走完整 SDD 時用） |
 | `GETTING-STARTED.md` / `USER-MANUAL.md` | 從零上手 / 完整手冊 |
+| `example/`（發布版） | 迷你格式示範（填好的迷你助教＋一份投影片） |
 | `example-full/`（發布版） | 真實課程實測全套範例：助教＋w2 教材＋SDD 歸檔＋操作走查（見其 README 對照表） |
 
 ## 二、心法：先寫規格再生成（隨複雜度分級）
@@ -61,9 +62,9 @@
 
 ## 五、互動教材與「看全班結果」
 
-- **預設網路版**：部署到 GitHub Pages（見 `PUBLISH-GITHUB-IO.md`），給學生連結。
-- **共享紀錄**：學生貼自己的 GitHub token（存本機），互動 append 到班級 repo，老師端**彙整看全班結果**（適合賽局遊戲）。用**代號、不放個資**。
-- **離線備選**：沒 token 時自動退回，仍記 localStorage、可**匯出 CSV**，不報錯。
+- **網路版部署**：部署到 GitHub Pages（見 `PUBLISH-GITHUB-IO.md`），給學生連結。
+- **紀錄預設離線**：互動紀錄存學生**自己瀏覽器**（localStorage）、可**匯出 CSV**——不連網、不含個資，一般課堂這樣就夠。
+- **共享紀錄（選用・進階）**：學生貼自己的 GitHub token（存本機），互動 append 到班級 repo，老師端**彙整看全班結果**（適合賽局遊戲）。用**代號、不放個資**；沒 token 時自動退回離線、不報錯。
 
 ## 六、發布到 github.io
 
