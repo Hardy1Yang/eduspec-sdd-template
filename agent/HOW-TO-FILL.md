@@ -51,4 +51,4 @@ course-context/
 - 本機測試：用 Claude Code／Codex／Cursor 開這個資料夾，叫它「讀 AGENT.md 當角色設定，依 course-context 回答」。
 - 發布給學生：見 `deploy/README.md`（透過 GitHub，含著作權與個資檢查）。
 
-> 想看一個**填好的完整範例**？參考 `../example/agent/`（一門計量課的助教）。
+> 想看一個**填好的助教範例**？參考 `../example/agent/`。

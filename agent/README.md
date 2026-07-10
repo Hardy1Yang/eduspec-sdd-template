@@ -11,6 +11,7 @@
 ```
 （你的課）-ta-agent/
 ├── HOW-TO-FILL.md          # ← 先看這個：填空指南
+├── GETTING-STARTED.md      # 快速上手（兩條路線：teach-agent 自動／手動填）
 ├── AGENT.md                # 大腦：口吻 + 據講義作答 + 只給提示 + 資料來源行為政策
 ├── knowledge-graph.md      # 概念先備依賴圖（含外部先備知識）
 ├── references/             # 教學風格 DNA ＋ 老師校準（優先級最高）
@@ -40,7 +41,7 @@
 
 ## 想看填好的樣子？
 
-參考完整範例：`../example/agent/`（一門計量課的助教，含填好的 `ACCEPTANCE-CHECKLIST.md`）。
+參考一個**填好的助教範例**：`../example/agent/`（含填好的 `ACCEPTANCE-CHECKLIST.md`）。
 
 ---
 

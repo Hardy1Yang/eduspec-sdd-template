@@ -1,4 +1,4 @@
-# 手把手：用 SDD-template 從零生成教材與互動網頁
+# 手把手：用 EduSpec 從零生成教材與互動網頁
 
 > 這份把「開套件 → 生投影片／學習單／小考 → 生**互動網頁** → 發布到 github.io → 看全班結果」串成一條龍。
 > **完全沒寫過程式？** 先看 [`GETTING-STARTED.md`](GETTING-STARTED.md) 把工具裝好，再回來這裡。
@@ -9,7 +9,7 @@
 ## 0. 準備
 
 - 已裝好 Cursor／Claude Code、有 GitHub 帳號（見 GETTING-STARTED 的 Part 0）。
-- 用 Cursor 開**本套件**資料夾（`prototype/`）。
+- 用 Cursor 開**你 clone 下來的套件根目錄**。
 - 把你的講義放進 `course-context/`（一單元一檔）。
 
 > 下面每一步都是「在 Claude Code 對話裡貼一句話」。把粗體換成你的課。每個 skill 都會**先給你一份迷你規格請你確認、再生成、並附一份 `使用手冊.md`**。
