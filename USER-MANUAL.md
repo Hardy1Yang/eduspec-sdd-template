@@ -16,6 +16,9 @@
 | `course-context/` | 放你的講義（AI 據此作答，降低幻覺） |
 | `templates/` | 迷你規格、驗收清單、rubric 空白範本 |
 | `agent/` | 空白助教骨架（在套件根的 `agent/`），含 `.claude/`＋`.codex/` 轉接頭、`references/`、`supplementary/` |
+| `example/` | 迷你格式示範（個經一單元） |
+| `scripts/` | `setup-check.sh` 依賴一鍵檢查 |
+| `openspec/` | Spectra／SDD 設定（互動教材走完整 SDD 時用） |
 | `GETTING-STARTED.md` / `USER-MANUAL.md` | 從零上手 / 完整手冊 |
 | `example-full/`（發布版） | 真實課程實測全套範例：助教＋w2 教材＋SDD 歸檔＋操作走查（見其 README 對照表） |
 
@@ -36,7 +39,7 @@
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（每張標題＋3 要點＋建議視覺）＋使用手冊 |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性 3 題附迷思／總結性先藍圖）＋使用手冊 |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程＋使用手冊 |
-| `teach-sim` | `用「teach-sim」我想做一個 __ 的互動教材給 __。` | 互動教材（**網路版＋共享紀錄為主**、離線備選）＋使用手冊 |
+| `teach-sim` | `用「teach-sim」我想做一個 __ 的互動教材給 __。` | 互動教材（**網路版部署**；紀錄預設離線、可開共享看全班結果）＋使用手冊 |
 | `teach-animation` | `用「teach-animation」我想做一個 __ 的動畫。` | 用 **manim** 做動畫影片（mp4）＋使用手冊（選用依賴 manim/ffmpeg，見 SETUP） |
 
 > **四個材料 skill（slides／worksheet／quiz／sim）都套用教學 DNA**（見 `skills/teaching-dna.md`）：問題先行、點出常見迷思、收一句金句——讓產出不只是「結構完整卻平庸」。投影片走「鉤子→直覺→機制→誤解→金句」弧線；小考誘答項編碼真實迷思；互動要有「發現時刻」。

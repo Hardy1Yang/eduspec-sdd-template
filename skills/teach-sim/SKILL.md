@@ -48,7 +48,7 @@ metadata:
 `/spectra-apply` 依任務做出互動教材。**預設網路版**：
 
 - 單一 HTML（HTML＋CSS＋JS 內嵌），**預期部署到 GitHub Pages**（見 `../../PUBLISH-GITHUB-IO.md`）。
-- **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到班級 repo 的 `logs/` 檔（token 存學生本機、仿 hokkaido），老師端可彙整**看全班結果**。
+- **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到班級 repo 的 `logs/` 檔（token 存學生本機），老師端可彙整**看全班結果**。
 - **無 token 時自動退回離線**：仍記 localStorage、可匯出 CSV，不報錯。
 - 全繁中標籤、字大適合投影、用**代號不放個資**。
 
@@ -72,6 +72,6 @@ metadata:
 - **依教學 DNA（[`../teaching-dna.md`](../teaching-dna.md)）**：互動要圍繞一個目標直覺／迷思，含一個發現時刻與一句螢幕上的收束，不只是「能拉的玩具」。
 - 繁體中文、台灣用語；例子用台灣脈絡。
 - 「能跑 ≠ 正確」；接受變更前先看 diff、親手驗過每個互動邏輯。
-- **預設網路版＋共享紀錄，離線單機為備選**；無 token 時離線可用不報錯。
+- **部署預設網路版（GitHub Pages）；互動紀錄預設離線（localStorage、可匯出 CSV），共享看全班結果為選用**（需 token；無 token 一律自動離線、不報錯）。
 - **不含學生個資**，共享紀錄一律用代號；批改/彙整前確認去識別化。
 - 公開分享揭露「本互動由 AI 協助生成，經授課教師審核」；提醒學生 token 保管與刪除。

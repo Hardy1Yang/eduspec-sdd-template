@@ -8,8 +8,8 @@
 | 檔案／資料夾 | 放什麼 | 例 |
 |--------------|--------|-----|
 | `*.md` / `*.pdf` | 你的講義、投影片、講稿 | `w2-prediction.md`、`第2章-需求.pdf` |
-| `syllabus.md` | 課綱（週次、主題、評分方式） | 整學期概覽 |
-| `problem-sets/` | 題庫、作業、考古題 | 讓助教出題有依據 |
+| 課綱（syllabus） | **改放 `agent/supplementary/syllabus.md`**（講義以外素材，見其 README 行為政策） | 課務據實答＋標「以公告為準」 |
+| 作業／考古題 | **改放 `agent/supplementary/`**（assignments/exams；只放題目主題與題型、不放解答） | 出題對齊、作業只給提示 |
 | `glossary.md` | 你慣用的中文譯名／符號約定 | 「OLS＝最小平方法」 |
 
 ## 怎麼放（建議）

@@ -47,7 +47,7 @@
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（標題＋3 要點＋建議視覺） |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性／總結性） |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程 |
-| `teach-sim` | `用「teach-sim」我想做一個 __ 的互動教材給 __。` | 互動網頁（網路版＋看全班結果為主、離線備選），走完整 SDD |
+| `teach-sim` | `用「teach-sim」我想做一個 __ 的互動教材給 __。` | 互動網頁（**網路版部署**；紀錄預設離線、可開共享看全班結果），走完整 SDD |
 | `teach-animation` | `用「teach-animation」我想做一個 __ 的動畫。` | 用 **manim** 做動畫影片（mp4），走完整 SDD（選用依賴 manim/ffmpeg） |
 
 ## 心法：SDD 四步（先想清楚再動手）

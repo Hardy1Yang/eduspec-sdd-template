@@ -153,7 +153,7 @@ git clone <套件的 repo 網址>
 <a id="part-6"></a>
 ## Part 6：發布給學生
 
-照 `PUBLISH-GITHUB-IO.md`（有逐步圖文步驟）：
+照 `PUBLISH-GITHUB-IO.md`（有逐步步驟）：
 - **互動教材**：放到 **GitHub Pages**，得到一個網址，把網址給學生就能玩（還能記錄、看全班結果）。
 - **助教**：放到 GitHub，讓學生 `git clone` 後用自己的 Claude Code 開來問。
 
