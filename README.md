@@ -26,6 +26,7 @@
 ├── templates/                   ← 迷你規格、驗收清單、rubric 範本
 ├── scripts/                     ← setup-check.sh（依賴一鍵檢查）
 ├── openspec/                    ← Spectra／SDD 設定（互動教材走完整 SDD 時用）
+├── example/ ＋ example-full/    ← 迷你格式示範 ＋ 真實課程實測全套（發布版附）
 └── agent/                       ← 空白「24h 助教」骨架（含教學框架與雙工具轉接頭）
     ├── AGENT.md / knowledge-graph.md / HOW-TO-FILL.md
     ├── references/              ← 教學風格 DNA ＋ 老師校準（優先級最高）
@@ -36,7 +37,7 @@
     └── .codex/                  ← Codex 轉接頭（skill）
 ```
 
-### 8 個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊.md`，`teach-context` 為蒸餾器產出 course-context 知識庫、不另產手冊）
+### 8 個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊-<類型>.md`（如 `使用手冊-slides.md`），`teach-context` 為蒸餾器產出 course-context 知識庫、不另產手冊）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
