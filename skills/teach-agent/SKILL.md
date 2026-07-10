@@ -54,7 +54,7 @@ README 要有「**怎麼用**」段落，並列**兩種工具的呼叫法**：Cl
 
 ## 8. 自查
 
-- [ ] 佔位符全部填完、無殘留 `{{ }}`。
+- [ ] 佔位符全部填完、runtime 檔**無殘留 `{{ }}`**（runtime 檔＝`AGENT.md`、`knowledge-graph.md`、`README.md`、`course-context/`、`supplementary/`、`references/teaching-style.md`、`.claude/`、`.codex/`）。**例外，不必歸零**：`HOW-TO-FILL.md`／`GETTING-STARTED.md`／`ACCEPTANCE-CHECKLIST.md`（填空指南，保留範例佔位符）與 `references/first-person-calibration.md`（**設計上由老師實測後親填**，生成時保留 `{{ }}`）。
 - [ ] `/指令` 與子代理實測能依規則回答（觀念題答、作業題只給提示、超綱不編造）。
 - [ ] README 有指令使用說明；`使用手冊.md` 老師端與學生端步驟齊備。
 
