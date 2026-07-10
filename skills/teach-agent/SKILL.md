@@ -35,7 +35,7 @@ metadata:
 
 ## 5. 產工具轉接頭（Claude 與 Codex 各一套，皆委派 AGENT.md）
 
-**原則：一個大腦、多個薄轉接頭**——真正的規則在 `AGENT.md`，轉接頭只把各工具導向它（不要把規則複製進轉接頭）。**同時產這兩套並填好 `{{ }}`（課名、代碼、主題）**：
+**原則：一個大腦、多個薄轉接頭**——真正的規則在 `AGENT.md`，轉接頭只把各工具導向它（不要把規則複製進轉接頭）。**兩套轉接頭的 workflow 都要委派 `AGENT.md` 的「〇、先讀」完整載入清單（含 `references/`、`course-context/index.md`、`supplementary/README.md`）與行為政策——不要寫死「只從 course-context 作答」**（否則 supplementary 不會被用到）。**同時產這兩套並填好 `{{ }}`（課名、代碼、主題）**：
 
 - **Claude Code**：`.claude/commands/ta.md`（`/ta` 指令）＋`.claude/agents/course-ta.md`（子代理）。
 - **Codex**：把 `.codex/skills/course-ta-agent/` 資料夾**改名為 `<課程代碼>-ta-agent`**，填好 `SKILL.md`（frontmatter `name`／`description`、workflow 委派 AGENT.md）與 `agents/openai.yaml`（display_name／default_prompt）。
