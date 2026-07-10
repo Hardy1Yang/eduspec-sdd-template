@@ -15,7 +15,7 @@
 | `skills/` | 8 個 skill（見第三節） |
 | `course-context/` | 放你的講義（AI 據此作答，降低幻覺） |
 | `templates/` | 迷你規格、驗收清單、rubric 空白範本 |
-| `agent/` | 空白助教骨架（= `prototype/`），含 `.claude/` 指令模板 |
+| `agent/` | 空白助教骨架（發布版對應 `prototype/agent/`），含 `.claude/`＋`.codex/` 轉接頭、`references/`、`supplementary/` |
 | `GETTING-STARTED.md` / `USER-MANUAL.md` | 從零上手 / 完整手冊 |
 
 ## 二、心法：先寫規格再生成（隨複雜度分級）
@@ -25,7 +25,7 @@
 | 投影片 / 學習單 / 小考 | 迷你規格（目的＋驗收清單）→ 生成 → 自查 |
 | 互動教材（程式） | 完整 SDD：`/spectra-propose` → 審 → `/spectra-apply` → 開瀏覽器驗 → `/spectra-archive` |
 
-## 三、八個 skill（餵最小輸入就生成，並各附一份 `使用手冊.md`）
+## 三、八個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊.md`，`teach-context` 為蒸餾器、不另產手冊）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
