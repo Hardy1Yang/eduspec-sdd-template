@@ -72,6 +72,7 @@
 2. **放講義**：丟進 `course-context/`（或用 `teach-context` 從 .tex/PDF/Word 自動蒸餾）。
 3. **生教材**：`用「teach-slides」這個 skill，單元：__，對象：__。`（其他 skill 同型）。
 4. **做助教**：用 `teach-agent`（或照 `agent/HOW-TO-FILL.md` 手動填），再用 `agent/ACCEPTANCE-CHECKLIST.md` 驗收。
+5. **想先看成品長什麼樣**：開 `example-full/`（真實課程實測全套——助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表；迷你格式示範另見 `example/`。
 
 ## 三個工具怎麼對應（不綁單一工具）
 

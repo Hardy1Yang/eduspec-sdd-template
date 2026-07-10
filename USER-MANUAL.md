@@ -17,6 +17,7 @@
 | `templates/` | 迷你規格、驗收清單、rubric 空白範本 |
 | `agent/` | 空白助教骨架（在套件根的 `agent/`），含 `.claude/`＋`.codex/` 轉接頭、`references/`、`supplementary/` |
 | `GETTING-STARTED.md` / `USER-MANUAL.md` | 從零上手 / 完整手冊 |
+| `example-full/`（發布版） | 真實課程實測全套範例：助教＋w2 教材＋SDD 歸檔＋操作走查（見其 README 對照表） |
 
 ## 二、心法：先寫規格再生成（隨複雜度分級）
 

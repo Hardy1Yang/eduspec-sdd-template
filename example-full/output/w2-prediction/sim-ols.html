@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>w2 OLS 互動模擬：你能贏過 OLS 嗎？</title>
+<style>
+  :root { --ink:#1a2233; --accent:#0f6ab4; --ols:#c0392b; --ok:#1e8a4c; }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+    margin: 0; padding: 20px; background: #f5f7fa; color: var(--ink);
+    font-size: 20px;
+  }
+  h1 { font-size: 34px; margin: 0 0 4px; }
+  .sub { font-size: 20px; color:#555; margin-bottom: 14px; }
+  .wrap { display: flex; flex-wrap: wrap; gap: 20px; max-width: 1280px; margin: 0 auto; }
+  .panel { background:#fff; border-radius: 12px; padding: 18px 22px; box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+  #chartPanel { flex: 2 1 560px; }
+  #ctrlPanel { flex: 1 1 340px; }
+  canvas { width: 100%; height: auto; display:block; }
+  label { display:block; font-size: 22px; font-weight: 600; margin-top: 14px; }
+  input[type=range] { width: 100%; height: 34px; }
+  .val { font-variant-numeric: tabular-nums; color: var(--accent); }
+  .mse {
+    font-size: 30px; font-weight: 700; margin: 14px 0 4px;
+    font-variant-numeric: tabular-nums;
+  }
+  .mse.ols { color: var(--ols); font-size: 24px; }
+  .beat { font-size: 22px; font-weight: 700; }
+  .beat.no { color: var(--ols); } .beat.yes { color: var(--ok); }
+  button {
+    font-size: 22px; font-weight: 700; padding: 12px 20px; margin: 12px 8px 0 0;
+    border: none; border-radius: 10px; cursor: pointer; color:#fff; background: var(--accent);
+  }
+  button.ols { background: var(--ols); }
+  button.ghost { background:#666; }
+  .takeaway {
+    margin-top: 16px; padding: 14px 16px; border-left: 6px solid var(--ols);
+    background: #fdf1ef; font-size: 24px; font-weight: 700; line-height: 1.5;
+  }
+  .small { font-size: 16px; color:#666; margin-top: 14px; line-height: 1.5; }
+  input[type=text], input[type=password] {
+    font-size: 18px; padding: 8px 10px; width: 100%; border: 1px solid #bbb; border-radius: 8px;
+  }
+  .field { margin-top: 10px; }
+  .hint { font-size: 15px; color:#777; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div style="flex-basis:100%">
+    <h1>你能贏過 OLS 嗎？——手搖飲銷量預測賽</h1>
+    <div class="sub">情境：台北一間手搖飲店記錄了 8 天的「當日最高溫（°C）」與「日銷量（杯）」。
+      拉動斜率與截距，讓你的直線的 <b>MSE（均方誤差）</b> 越小越好——然後跟「一鍵 OLS」比比看。</div>
+  </div>
+
+  <div class="panel" id="chartPanel">
+    <canvas id="chart" width="900" height="600"></canvas>
+    <div class="takeaway">你應該注意到：不管怎麼調，你的 MSE 都不會低於 OLS 的 MSE——OLS 就是這場比賽的必勝解。
+      因為 OLS 的定義就是「把平方誤差的平均（MSE）調到最小」的那條線。</div>
+  </div>
+
+  <div class="panel" id="ctrlPanel">
+    <label>斜率 b：<span class="val" id="slopeVal"></span></label>
+    <input type="range" id="slope" min="0" max="30" step="0.05">
+    <label>截距 a：<span class="val" id="interceptVal"></span></label>
+    <input type="range" id="intercept" min="-500" max="100" step="0.5">
+
+    <div class="mse">你的 MSE：<span id="mse"></span></div>
+    <div class="mse ols">OLS 的 MSE（要贏的目標）：<span id="olsMse"></span></div>
+    <div class="beat" id="beat"></div>
+
+    <button class="ols" id="olsBtn">一鍵 OLS（顯示必勝解）</button>
+    <button class="ghost" id="resetBtn">重設</button>
+
+    <div class="field">
+      <label style="font-size:18px">你的代號（不要用真名，只用來記錄練習）</label>
+      <input type="text" id="nickname" placeholder="例如：珍奶隊長" maxlength="20">
+    </div>
+    <div class="field">
+      <label style="font-size:18px">共享模式 token（選填）</label>
+      <input type="password" id="token" placeholder="留空＝離線模式（預設，完全可用）">
+      <div class="hint">沒有 token 也完全可以用：紀錄會存在你自己的瀏覽器（localStorage），可匯出 CSV。請勿外流 token，課程結束請刪除。</div>
+    </div>
+    <button id="csvBtn">匯出我的紀錄（CSV）</button>
+    <div class="small" id="logInfo"></div>
+    <div class="small">本互動由 AI 協助生成，經授課教師審核。資料為教學用虛構數據。</div>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* ── 內建教學資料（虛構）：當日最高溫 x (°C) vs 日銷量 y (杯) ── */
+const DATA = [
+  { x: 22, y: 180 }, { x: 24, y: 200 }, { x: 26, y: 240 }, { x: 27, y: 250 },
+  { x: 29, y: 300 }, { x: 31, y: 330 }, { x: 33, y: 360 }, { x: 35, y: 400 }
+];
+
+/* ── OLS：b = Σ(xᵢ−x̄)(yᵢ−ȳ) / Σ(xᵢ−x̄)² ， a = ȳ − b·x̄ ──
+   對上面資料的正確解（手算驗證用）：b ≈ 17.3905, a ≈ −210.9562, MSE ≈ 30.94 */
+function computeOLS(data) {
+  const n = data.length;
+  const mx = data.reduce((s, p) => s + p.x, 0) / n;
+  const my = data.reduce((s, p) => s + p.y, 0) / n;
+  const sxy = data.reduce((s, p) => s + (p.x - mx) * (p.y - my), 0);
+  const sxx = data.reduce((s, p) => s + (p.x - mx) * (p.x - mx), 0);
+  const b = sxy / sxx;
+  return { slope: b, intercept: my - b * mx };
+}
+function mseOf(data, a, b) {
+  return data.reduce((s, p) => s + Math.pow(p.y - (a + b * p.x), 2), 0) / data.length;
+}
+
+const OLS = computeOLS(DATA);
+const OLS_MSE = mseOf(DATA, OLS.intercept, OLS.slope);
+
+/* ── 畫布 ── */
+const cv = document.getElementById("chart");
+const ctx = cv.getContext("2d");
+const M = { l: 90, r: 30, t: 30, b: 70 };            // 邊界
+const X0 = 20, X1 = 37, Y0 = 100, Y1 = 450;          // 資料座標範圍
+const px = x => M.l + (x - X0) / (X1 - X0) * (cv.width - M.l - M.r);
+const py = y => cv.height - M.b - (y - Y0) / (Y1 - Y0) * (cv.height - M.t - M.b);
+
+function draw(a, b) {
+  ctx.clearRect(0, 0, cv.width, cv.height);
+  ctx.font = "20px sans-serif"; ctx.fillStyle = "#333"; ctx.strokeStyle = "#ccc"; ctx.lineWidth = 1;
+  // 格線與刻度
+  for (let gx = X0; gx <= X1; gx += 5) {
+    ctx.beginPath(); ctx.moveTo(px(gx), py(Y0)); ctx.lineTo(px(gx), py(Y1)); ctx.stroke();
+    ctx.fillText(gx, px(gx) - 10, cv.height - M.b + 28);
+  }
+  for (let gy = Y0; gy <= Y1; gy += 50) {
+    ctx.beginPath(); ctx.moveTo(px(X0), py(gy)); ctx.lineTo(px(X1), py(gy)); ctx.stroke();
+    ctx.fillText(gy, M.l - 55, py(gy) + 7);
+  }
+  // 軸
+  ctx.strokeStyle = "#333"; ctx.lineWidth = 2;
+  ctx.strokeRect(M.l, M.t, cv.width - M.l - M.r, cv.height - M.t - M.b);
+  ctx.font = "bold 24px sans-serif";
+  ctx.fillText("當日最高溫（°C）", cv.width / 2 - 90, cv.height - 14);
+  ctx.save(); ctx.translate(24, cv.height / 2 + 90); ctx.rotate(-Math.PI / 2);
+  ctx.fillText("日銷量（杯）", 0, 0); ctx.restore();
+
+  // 殘差線段
+  ctx.strokeStyle = "#e67e22"; ctx.lineWidth = 3;
+  DATA.forEach(p => {
+    const yhat = a + b * p.x;
+    ctx.beginPath(); ctx.moveTo(px(p.x), py(p.y)); ctx.lineTo(px(p.x), py(yhat)); ctx.stroke();
+  });
+  // 你的直線
+  ctx.strokeStyle = "#0f6ab4"; ctx.lineWidth = 4;
+  ctx.beginPath(); ctx.moveTo(px(X0), py(a + b * X0)); ctx.lineTo(px(X1), py(a + b * X1)); ctx.stroke();
+  // 資料點
+  ctx.fillStyle = "#1a2233";
+  DATA.forEach(p => { ctx.beginPath(); ctx.arc(px(p.x), py(p.y), 8, 0, Math.PI * 2); ctx.fill(); });
+}
+
+/* ── 控制項 ──
+   cur 保存「目前直線」的精確值：拉桿有步進（step）會四捨五入，
+   一鍵 OLS 必須用精確解，否則顯示的 MSE 會略高於最小值。 */
+const $ = id => document.getElementById(id);
+const slope = $("slope"), intercept = $("intercept");
+const cur = { a: 0, b: 10 };
+
+function syncFromSliders() {
+  cur.b = parseFloat(slope.value);
+  cur.a = parseFloat(intercept.value);
+}
+
+function render(logIt) {
+  const b = cur.b, a = cur.a;
+  const m = mseOf(DATA, a, b);
+  $("slopeVal").textContent = b.toFixed(2);
+  $("interceptVal").textContent = a.toFixed(1);
+  $("mse").textContent = m.toFixed(2);
+  $("olsMse").textContent = OLS_MSE.toFixed(2);
+  const beat = $("beat");
+  if (m <= OLS_MSE + 1e-9) { beat.textContent = "＝ 你達到了理論最小值（這就是 OLS 那條線）"; beat.className = "beat yes"; }
+  else { beat.textContent = "還差 " + (m - OLS_MSE).toFixed(2) + "（再試試？）"; beat.className = "beat no"; }
+  draw(a, b);
+  if (logIt) log("adjust", b, a, m);
+}
+
+/* ── 紀錄：localStorage 為主，無 token 一律離線、不報錯 ── */
+const KEY = "w2-ols-sim-log";
+function readLog() {
+  try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+}
+function log(action, b, a, m) {
+  try {
+    const rows = readLog();
+    rows.push({
+      time: new Date().toISOString(),
+      nickname: ($("nickname").value || "匿名").slice(0, 20),
+      action, slope: +b.toFixed(4), intercept: +a.toFixed(4), mse: +m.toFixed(4)
+    });
+    localStorage.setItem(KEY, JSON.stringify(rows));
+    $("logInfo").textContent = "已在本機記錄 " + rows.length + " 筆互動（離線模式）。";
+    // 共享模式：僅在老師提供 token 時才啟用；留空＝純離線，靜默略過、不報錯。
+    const token = $("token").value.trim();
+    if (token) {
+      $("logInfo").textContent = "已在本機記錄 " + rows.length + " 筆互動（共享模式需老師公告班級 repo 後啟用；目前仍以本機紀錄為準）。";
+    }
+  } catch (e) { /* 儲存失敗（如隱私模式）不影響互動本身 */ }
+}
+function exportCSV() {
+  const rows = readLog();
+  const head = "time,nickname,action,slope,intercept,mse";
+  const body = rows.map(r => [r.time, '"' + String(r.nickname).replace(/"/g, '""') + '"', r.action, r.slope, r.intercept, r.mse].join(","));
+  const blob = new Blob(["﻿" + [head].concat(body).join("\n")], { type: "text/csv;charset=utf-8" });
+  const aEl = document.createElement("a");
+  aEl.href = URL.createObjectURL(blob);
+  aEl.download = "w2-ols-sim-log.csv";
+  aEl.click();
+  URL.revokeObjectURL(aEl.href);
+}
+
+/* ── 事件 ── */
+slope.addEventListener("input", () => { syncFromSliders(); render(false); });
+intercept.addEventListener("input", () => { syncFromSliders(); render(false); });
+slope.addEventListener("change", () => { syncFromSliders(); render(true); });      // 放開拉桿才記錄
+intercept.addEventListener("change", () => { syncFromSliders(); render(true); });
+$("olsBtn").addEventListener("click", () => {
+  cur.b = OLS.slope; cur.a = OLS.intercept;               // 用精確解，不受拉桿步進影響
+  slope.value = OLS.slope; intercept.value = OLS.intercept; // 拉桿位置僅為近似顯示
+  render(false);
+  log("ols-click", OLS.slope, OLS.intercept, OLS_MSE);
+});
+$("resetBtn").addEventListener("click", () => {
+  cur.b = 10; cur.a = 0;
+  slope.value = 10; intercept.value = 0; render(true);
+});
+$("csvBtn").addEventListener("click", exportCSV);
+
+/* ── 初始 ── */
+slope.value = 10; intercept.value = 0;
+render(false);
+$("logInfo").textContent = "已在本機記錄 " + readLog().length + " 筆互動（離線模式）。";
+</script>
+</body>
+</html>
