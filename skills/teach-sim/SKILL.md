@@ -15,7 +15,7 @@ metadata:
 互動紀錄**預設離線**（localStorage）；另內建**選用的共享模式**——開啟後學生的互動可寫回班級 repo，
 老師能**看全班結果**（適合賽局遊戲、投票、模擬）。
 
-> **產出＝一個套件同層的獨立資料夾 `<單元>-sim/`**（與 teach-agent 的 `<課程代碼>-ta/` 對稱，**不進 `output/`**）。理由：sim 是唯一「可部署的 app」型教材，散布本身就是 git/Pages 操作，一個自足資料夾比散在 `output/` 更好用、也避免在套件（本身是 git repo）內 `git init` 造成巢狀。資料夾內容：`index.html`（一開始就用這名，Pages-ready）、`使用手冊-sim.md`、`sdd-archive/<日期>-<名稱>/`（規格）、`README.md`（預覽/發布步驟）。**投影片／學習單／小考／動畫維持進 `output/<單元>/`**（它們不是可部署 app、不需要）。
+> **產出＝一個套件同層的獨立資料夾 `<單元>-sim/`**（與 teach-agent 的 `<課程代碼>-ta/` 對稱，**不進 `output/`**）。理由：sim 是唯一「可部署的 app」型教材，散布本身就是 git/Pages 操作，一個自足資料夾比散在 `output/` 更好用、也避免在套件（本身是 git repo）內 `git init` 造成巢狀。資料夾內容：`index.html`（一開始就用這名，Pages-ready）、`使用手冊-sim.md`、`sdd-archive/<日期>-<名稱>/`（規格）、`README.md`（預覽/發布步驟）、`.gitignore`（至少含 `.DS_Store`）。**投影片／學習單／小考／動畫維持進 `output/<單元>/`**（它們不是可部署 app、不需要）。
 
 ## 1. 選互動形式（讀課程脈絡 + 對照表）
 
@@ -38,6 +38,8 @@ metadata:
 
 走 **Spectra**（`/spectra-propose`）或 **Spec Kit**（`/speckit.*`）。規格只寫「要什麼、成功長什麼樣」：目的、輸入、輸出、**是否需要看全班結果**、可打勾的驗收清單。**規格裡不寫程式碼。**
 
+> 規格三件套最終落在 sibling 的 `<單元>-sim/sdd-archive/<日期>-<名稱>/`（`proposal.md`／`specs/`／`tasks.md`），**不要留在套件 clone 的 `openspec/` 汙染它**；沒跑 Spectra 工具就直接照這格式寫進去（同 example-full 的歸檔）。
+
 **規格開頭先寫教學意圖**（依 [`../teaching-dna.md`](../teaching-dna.md)，讓互動不只是「能拉的玩具」）：
 - **這互動要破除／建立哪個直覺或迷思？**（問題先行）
 - **發現時刻（aha）**：學生操作到哪裡會撞見反直覺結果？（例：OLS sim——學生想手動調線贏過 OLS、發現贏不了 → 才懂「最小化 MSE」是什麼。）
@@ -53,7 +55,8 @@ metadata:
 
 - 單一 HTML（HTML＋CSS＋JS 內嵌），**預期部署到 GitHub Pages**（見 `../../PUBLISH-GITHUB-IO.md`，發布版附）。
 - **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到班級 repo 的 `logs/<單元>.csv`（token 存學生本機），老師端可彙整**看全班結果**。
-- **共享 CSV 統一格式**（讓不同人生成的 sim 老師端能一致彙整）：**單一檔 `logs/<單元>.csv`、append 不覆蓋**、首列固定表頭 `time,nickname,round,guess`（有需要可在 `guess` 後加該教材的欄位，但前四欄與順序不變）；每列一筆；暱稱欄照下方安全鐵則淨化＋防公式注入。
+- **共享 CSV 格式**（讓同一支 sim 不同人生成也能一致彙整）：**單一檔 `logs/<單元>.csv`、append 不覆蓋、有表頭列、每列一筆**；**固定前兩欄 `time,nickname`**，其後依該互動自訂欄位（賽局：`round,guess`；拉桿型：如 `action,slope,mse`——對映到該互動實際提交的值即可）；暱稱欄照下方安全鐵則淨化＋防公式注入。
+- **「看全班結果」的讀回**：共享模式下**再 GET 一次** `logs/<單元>.csv` 解析彙整；並內建一個**離線入口**（貼上／載入一份班級 CSV 來彙整），讓沒開共享、或要做安全測試時也能看結果——安全鐵則的 XSS 探針就靠這個離線入口在本機驗。
 - **無 token 時自動退回離線**：仍記 localStorage、可匯出 CSV，不報錯。
 - 全繁中標籤、字大適合投影、用**代號不放個資**。
 - **共享實作以下方「安全鐵則」四防線為準**（它就是規格）；本套件未附共享型 sim 範例，`example-full/`（發布版附）的 sim 為**離線型、不含共享實作**，不要去那裡找共享程式碼。
@@ -74,7 +77,7 @@ metadata:
 
 ## 6b. git 收尾（讓資料夾成為可推的 repo）
 
-在 **`<單元>-sim/` 這個資料夾**（它已在套件同層，不在 clone 內——不會巢狀）執行 `git init` 並做初始 commit（訊息如 `publish: <單元> 互動教材`）。至此整個資料夾即為**可直接推送的獨立 Pages repo**：
+在 **`<單元>-sim/` 這個資料夾**（它已在套件同層，不在 clone 內——不會巢狀）執行 **`git init -b main`**（分支用 `main`，對齊 Pages 發布步驟）並做初始 commit（訊息如 `publish: <單元> 互動教材`）。首次用 git 的老師若 commit 失敗，先設 `git config user.name`／`user.email`。至此整個資料夾即為**可直接推送的獨立 Pages repo**：
 
 - **本機預覽**：直接開 `index.html`（或用本機 HTTP server）。
 - **發布**：建 GitHub repo → push → 開 Pages（見 [`../../PUBLISH-GITHUB-IO.md`](../../PUBLISH-GITHUB-IO.md，發布版附)；含共享模式的最小權限 token）。共享模式的班級紀錄 repo 由老師**一次性手動建、整學期重用**（靜態網頁不自動建 repo——那需要過大權限）。
