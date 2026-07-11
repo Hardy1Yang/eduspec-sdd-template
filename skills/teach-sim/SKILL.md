@@ -81,7 +81,7 @@ metadata:
 在 **`<單元>-sim/` 這個資料夾**（它已在套件同層，不在 clone 內——不會巢狀）執行 **`git init -b main`**（分支用 `main`，對齊 Pages 發布步驟）並做初始 commit（訊息如 `publish: <單元> 互動教材`）。首次用 git 的老師若 commit 失敗，先設 `git config user.name`／`user.email`。至此整個資料夾即為**可直接推送的獨立 Pages repo**：
 
 - **本機預覽**：直接開 `index.html`（或用本機 HTTP server）。
-- **發布**：建 GitHub repo → push → 開 Pages（見 [`../../PUBLISH-GITHUB-IO.md`](../../PUBLISH-GITHUB-IO.md，發布版附)；含共享模式的最小權限 token）。共享模式的班級紀錄 repo 由老師**一次性手動建、整學期重用**（靜態網頁不自動建 repo——那需要過大權限）。
+- **發布**：建 GitHub repo → push → 開 Pages（見 [`../../PUBLISH-GITHUB-IO.md`](../../PUBLISH-GITHUB-IO.md)（發布版附）；含共享模式的最小權限 token）。共享模式的班級紀錄 repo 由老師**一次性手動建、整學期重用**（靜態網頁不自動建 repo——那需要過大權限）。
 
 ## 7. 產出 `使用手冊-sim.md`（老師端＋學生端）
 > 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
