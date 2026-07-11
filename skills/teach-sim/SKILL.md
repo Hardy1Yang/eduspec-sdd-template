@@ -61,6 +61,8 @@ metadata:
 `/spectra-archive`（或保留 `specs/`）。
 
 ## 7. 產出 `使用手冊.md`（老師端＋學生端）
+> 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
+
 
 除互動教材外，**額外產一份 `使用手冊-sim.md`（帶教材類型後綴，避免同單元互相覆蓋）**：
 - **老師端**：如何生成、如何部署到 GitHub Pages、如何開共享模式、如何彙整看全班結果。

@@ -56,6 +56,8 @@ README 結構固定為「上半給學生、下半給老師」：
 **下半【給老師】**：維護與更新（指向 `deploy/README.md`）、驗收（`ACCEPTANCE-CHECKLIST.md`）、發布方式；註明「一個大腦 `AGENT.md`、多個轉接頭」。
 
 ## 7. 產 `使用手冊.md`（老師端＋學生端）
+> 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
+
 
 在助教資料夾產一份 `使用手冊.md`：
 - **老師端**：怎麼生成（本流程）、怎麼在課堂用、怎麼加新單元、怎麼發布給學生。

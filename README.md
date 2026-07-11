@@ -6,7 +6,17 @@
 > **對象**：沒有程式背景的大學老師（本套件以經濟學門為例，但方法通用）。
 > **底層**：建立在開源的 **Spectra / OpenSpec** 之上，並對照 **GitHub Spec Kit**（官方標準）。
 
-> 🚀 **第一次使用、完全沒寫過程式？** 直接看 **[GETTING-STARTED.md](GETTING-STARTED.md)** —— 從裝軟體（Cursor／Claude Code／GitHub）到做出第一個助教與第一份教材，**每一步都手把手**。每個功能怎麼用看 **[USER-MANUAL.md](USER-MANUAL.md)**。**動手前先確認工具都裝好** → **[SETUP.md](SETUP.md)**（或跑 `bash scripts/setup-check.sh`），避免卡在缺件。
+## 📚 文件地圖（先知道要翻哪本）
+
+| 你的情況 | 看這本 |
+|----------|--------|
+| **第一次用、還沒裝工具** | **[GETTING-STARTED.md](GETTING-STARTED.md)**（第一次裝機，手把手） |
+| **想生成某個東西**（助教/投影片/小考/互動…） | **[生成手冊.md](生成手冊.md)**（按目標翻節：觸發句→過程→產出→驗收→發布） |
+| 想先看成品長什麼樣 | `example-full/`（真實課程全套＋操作走查） |
+| 查某功能的細節/FAQ | [USER-MANUAL.md](USER-MANUAL.md)（完整參考） |
+| 工具裝了沒 | [SETUP.md](SETUP.md) 或 `bash scripts/setup-check.sh` |
+
+每份生成物都自帶一份**格式統一的使用手冊**（`使用手冊-<類型>.md`，欄位見 `templates/usage-manual-template.md`）。
 
 ---
 
@@ -17,7 +27,7 @@
 ├── README.md                    ← 你正在看的這份
 ├── GETTING-STARTED.md           ← 零基礎完全指南（第一次先看）
 ├── USER-MANUAL.md               ← 完整功能手冊
-├── how-to-generate-with-sdd.md  ← 手把手：生教材＋互動網頁＋發布
+├── 生成手冊.md                   ← ★ 按目標的生成教學（觸發句→產出→驗收→發布）
 ├── PUBLISH-GITHUB-IO.md         ← 發布到 github.io、看全班結果
 ├── SETUP.md                     ← 依賴清單（＋ scripts/setup-check.sh 一鍵檢查）
 ├── constitution.md              ← 教材開發憲法（所有 skill 共用規則）

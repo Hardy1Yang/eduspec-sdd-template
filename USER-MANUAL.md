@@ -1,6 +1,6 @@
 # EduSpec 使用手冊（完整功能）
 
-> 快速上手見 [GETTING-STARTED.md](GETTING-STARTED.md)。這份是**完整參考**：每個功能怎麼用、產出什麼、怎麼驗收。
+> 這份是**完整參考（附錄性質）**。第一次裝機看 [GETTING-STARTED.md](GETTING-STARTED.md)；**日常生成看 [生成手冊.md](生成手冊.md)**（按目標組織）。
 > 貫穿原則：**老師是領域專家、AI 是助手；所有產出都要人工審核**（見 `constitution.md`）。
 
 ## 〇、先裝好工具
