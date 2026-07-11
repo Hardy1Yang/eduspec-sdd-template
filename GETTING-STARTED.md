@@ -49,7 +49,7 @@ macOS 或 Windows 都可以。
 
 > ✅ **這四樣裝好後，以後每次用都不必再裝。**
 > 想確認都裝好了？在套件根目錄跑 `bash scripts/setup-check.sh`（見 [SETUP.md](SETUP.md)），它會逐項回報「就緒／缺少（附安裝指引）」，缺件不會靜默。
-> **選裝（用到才需要，不用先裝）**：`pandoc`（`teach-context` 讀 .docx 講義用）、`manim`＋`ffmpeg`（`teach-animation` 做動畫影片用）。完整清單與安裝/驗證指令都在 [SETUP.md](SETUP.md)。
+> **選裝（用到才需要，不用先裝）**：`pandoc`（`teach-context` 讀 .docx）、`poppler/pdftotext`（**Codex** 讀 PDF 用；Claude Code 內建免裝）、`manim`＋`ffmpeg`（`teach-animation` 動畫）。完整清單與安裝/驗證指令都在 [SETUP.md](SETUP.md)。
 
 ---
 

@@ -24,6 +24,7 @@ check_req "Spectra CLI" spectra "見 https://kaochenlong.com/spectra-app-2（互
 echo "[選用]"
 check_opt "pandoc（讀 .docx 講義）" pandoc "brew install pandoc / apt install pandoc"
 check_opt "ffmpeg（teach-animation render 動畫）" ffmpeg "brew install ffmpeg / apt install ffmpeg"
+check_opt "pdftotext（Codex 讀 PDF 講義；Claude Code 內建可略）" pdftotext "brew install poppler / apt install poppler-utils"
 if python3 -c "import manim" >/dev/null 2>&1; then say_ok "manim（teach-animation 動畫，選用）"; else say_opt "manim（做動畫用）" "pip install manim（見 docs.manim.community）"; fi
 
 echo "[skill 可載入]"
