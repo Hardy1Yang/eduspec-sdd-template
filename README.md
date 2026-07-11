@@ -38,10 +38,11 @@
 ├── openspec/                    ← Spectra／SDD 設定（互動教材走完整 SDD 時用）
 ├── example/ ＋ example-full/    ← 迷你格式示範 ＋ 真實課程實測全套（發布版附）
 └── agent/                       ← 空白「24h 助教」骨架（含教學框架與雙工具轉接頭）
-    ├── AGENT.md / knowledge-graph.md / HOW-TO-FILL.md
+    ├── AGENT.md / knowledge-graph.md / INSTRUCTOR-MANUAL.md
     ├── references/              ← 教學風格 DNA ＋ 老師校準（優先級最高）
-    ├── course-context/index.md  ← 主題地圖 ＋ 查詢流程
-    ├── supplementary/           ← 講義以外素材（課綱/作業/考古題/案例/專案）＋行為政策
+    ├── syllabus.md / exams.md   ← 課務與考古題（根目錄，老師熟悉的分類）
+    ├── lecture-notes/ homework/ cases/ ← 講義（14 節）、每份作業一檔、案例（有才生成）
+    ├── source-materials/        ← 原始教材投放區（檔案偵測式初始化的輸入）
     ├── ACCEPTANCE-CHECKLIST.md   ← 助教驗收表（四層框架）
     ├── .claude/                 ← Claude Code 轉接頭（/ta 指令＋子代理）
     └── .codex/                  ← Codex 轉接頭（skill）
@@ -51,7 +52,7 @@
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
-| `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 把整個課程資料夾**分類蒸餾**：講義→`course-context`、課綱/作業/考古題/案例/專案→`supplementary`（降低整理負擔） |
+| `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 把整個課程資料夾**分類蒸餾**（有檔才生成）：講義→`lecture-notes/`、課綱→`syllabus.md`、作業→`homework/`、考古題→`exams.md`、案例→`cases/` |
 | `teach-prereq` | `用「teach-prereq」這個 skill，課名：__，對象：__。` | 課前先備知識清單（課裡常提到、卻假設你以前就會的）＋學生自我檢測 |
 | `teach-agent` | `用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。` | 一整個 24h 助教（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（標題＋3 要點＋建議視覺） |
@@ -75,15 +76,15 @@
 
 改行為改 `AGENT.md` 就好，兩邊自動一致。教學風格與「老師校準」在 `agent/references/`（校準優先級最高）。
 
-> **接地不只講義**：`agent/supplementary/` 放課綱/作業/考古題/案例/專案，助教依**行為政策**回應（課綱據實答＋標「以公告為準」、作業/考試只給提示、考古題帶複習）——**Claude 與 Codex 兩種轉接頭都委派 `AGENT.md` 的完整載入清單、行為一致**。**最省事**：把整個課程資料夾丟給 `teach-context` 自動分類蒸餾，`teach-agent` 就能**從零、指向一個資料夾**生出整個助教。
+> **接地不只講義**：課綱（根 `syllabus.md`）、作業（`homework/`）、考古題（根 `exams.md`）、案例（`cases/`，選用）都是助教的來源，依 `AGENT.md` 行為規則回應（課務據實答＋標「以公告為準」、作業/考試只給提示且**多輪拼不出完整解**、考古題帶複習）——**Claude 與 Codex 兩種轉接頭行為一致**。**最省事**：原始教材丟 `source-materials/`，`teach-agent` **檔案偵測式初始化**（有檔才生成）一次生出整個助教。
 
 ## 怎麼開始（四步）
 
 1. **裝好工具**：**必裝**＝Claude Code 或 Codex（終端機 AI）＋ git ＋ Spectra CLI；**選裝**＝pandoc（讀 .docx 講義）、manim＋ffmpeg（做動畫）。逐項安裝/驗證見 [SETUP.md](SETUP.md)，或跑 `bash scripts/setup-check.sh` 一鍵檢查。
 2. **放講義**：丟進 `course-context/`（或用 `teach-context` 從 .tex/PDF/Word 自動蒸餾）。
-   > **兩個 course-context 的關係**：套件根這份＝**工作區**（生教材用）；`agent/course-context/`＝**出貨快照**（助教自含、發布給學生的版本）。更新講義 → 改工作區 → 同步進 agent → 重發布（見 `agent/deploy/README.md` 維護節）。只做助教不生教材，可只用 agent 內那份。
+   > **講義放哪**：套件根 `course-context/`＝**工作區**（生教材用）；助教資料夾的 `lecture-notes/`＝**出貨快照**（自含、發布給學生）。更新講義 → 改工作區 → 同步進助教 → 重發布（見助教 `INSTRUCTOR-MANUAL.md` §14）。只做助教不生教材，可只用 `lecture-notes/`。
 3. **生教材**：`用「teach-slides」這個 skill，單元：__，對象：__。`（其他 skill 同型）。
-4. **做助教**：用 `teach-agent`（或照 `agent/HOW-TO-FILL.md` 手動填），再用 `agent/ACCEPTANCE-CHECKLIST.md` 驗收。
+4. **做助教**：原始教材丟 `agent/source-materials/` → 用 `teach-agent`（檔案偵測式初始化），再用 `agent/ACCEPTANCE-CHECKLIST.md` 驗收（老師手冊見 `agent/INSTRUCTOR-MANUAL.md`）。
 5. **想先看成品長什麼樣**：開 `example-full/`（真實課程實測全套——助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表；迷你格式示範另見 `example/`。
 
 ## 三個工具怎麼對應（不綁單一工具）

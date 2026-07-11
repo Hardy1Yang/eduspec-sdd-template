@@ -15,7 +15,7 @@
 | `skills/` | 8 個 skill（見第三節） |
 | `course-context/` | 放你的講義（AI 據此作答，降低幻覺） |
 | `templates/` | 迷你規格、驗收清單、rubric 空白範本 |
-| `agent/` | 空白助教骨架（在套件根的 `agent/`），含 `.claude/`＋`.codex/` 轉接頭、`references/`、`supplementary/` |
+| `agent/` | 空白助教骨架（老師熟悉的分類：根 `syllabus.md`/`exams.md`、`lecture-notes/`、`homework/`、`cases/`（選用）、`source-materials/`、`INSTRUCTOR-MANUAL.md`）＋`.claude/`＋`.codex/` 轉接頭 |
 | `example/` | 迷你格式示範（個經一單元） |
 | `scripts/` | `setup-check.sh` 依賴一鍵檢查 |
 | `openspec/` | Spectra／SDD 設定（互動教材走完整 SDD 時用） |
@@ -23,7 +23,7 @@
 | `example/`（發布版） | 迷你格式示範（填好的迷你助教＋一份投影片） |
 | `example-full/`（發布版） | 真實課程實測全套範例：助教＋w2 教材＋SDD 歸檔＋操作走查（見其 README 對照表） |
 
-> **兩個 `course-context/` 的關係**：套件根＝**工作區**（材料 skill 讀這裡）；`agent/course-context/`＝**出貨快照**（助教自含可攜，發布給學生）。更新講義先改工作區、再同步進 agent 重發布（`agent/deploy/README.md` 維護節）；只做助教可只用 agent 內那份。
+> **講義放哪**：套件根 `course-context/`＝**工作區**（材料 skill 讀這裡）；助教資料夾的 `lecture-notes/`＝**出貨快照**（自含可攜，發布給學生）。更新講義先改工作區、再同步進助教重發布（見助教的 `INSTRUCTOR-MANUAL.md` §14）；只做助教可只用 `lecture-notes/`。
 
 ## 二、心法：先寫規格再生成（隨複雜度分級）
 
@@ -47,20 +47,20 @@
 
 > **四個材料 skill（slides／worksheet／quiz／sim）都套用教學 DNA**（見 `skills/teaching-dna.md`）：問題先行、點出常見迷思、收一句金句——讓產出不只是「結構完整卻平庸」。投影片走「鉤子→直覺→機制→誤解→金句」弧線；小考誘答項編碼真實迷思；互動要有「發現時刻」。
 >
-> **材料 skill 也會選用 `supplementary/` 對齊課程實況**（若有）：quiz 對齊歷年考題風格、worksheet 銜接作業重點、slides/animation 依課程定位、sim 取材 case、`teach-prereq` 納入課綱明列先備——但**一律不把作業/考試/專案的解答抄進教材、不重現現行考題**（supplementary 本就不含解答）。
+> **材料 skill 也會選用助教的課程檔對齊實況**（若有）：quiz 對齊 `exams.md` 考風、worksheet 銜接 `homework/`、slides/animation 依 `syllabus.md` 定位、sim 取材 `cases/`、`teach-prereq` 納入課綱明列先備——但**一律不把作業/考試的解答抄進教材、不重現現行考題**（這些檔本就不含解答）。
 
 ## 四、助教（agent）
 
-- **建立**：用 `teach-agent`（或手動照 `agent/HOW-TO-FILL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高、`course-context/index.md` 主題地圖）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
-- **接地不只講義**：`agent/supplementary/` 放**講義以外**的課程素材（課綱/作業/考古題/案例/專案），助教依**行為政策**回應——課綱據實答（變動性標「以公告為準」）、作業/考試**只給提示**、考古題帶複習。**從零最省事**：把整個課程資料夾丟給 `teach-context` 自動分類蒸餾（講義→course-context、其餘→supplementary），`teach-agent` 指向資料夾就生出整個助教。
+- **建立**：用 `teach-agent`（檔案偵測式初始化：原始教材丟 `source-materials/`、有檔才生成；手動流程見助教的 `INSTRUCTOR-MANUAL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高、`course-context/index.md` 主題地圖）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
+- **接地不只講義**：課綱（根 `syllabus.md`）、作業（`homework/`）、考古題（根 `exams.md`）、案例（`cases/`，選用）都是助教的來源，依 `AGENT.md` 行為規則回應——課務據實答（變動性標「以公告為準」）、作業/考試**只給提示**（多輪也拼不出完整解）、考古題帶複習。**從零最省事**：原始教材丟 `source-materials/`，`teach-agent` 檔案偵測式初始化一次生成全部。
 - **驗收**：用 `agent/ACCEPTANCE-CHECKLIST.md`（四層框架、可影印）。
 - **用指令呼叫**：把助教資料夾當專案打開 →
   - Claude Code · 斜線指令：`/ta 你的問題`
   - Claude Code · 子代理：`用 <課程>-ta 子代理回答：…`（獨立 context）
   - Codex · skill：`Use $<課程>-ta-agent to answer: 你的問題`
   - **一個大腦、多轉接頭**：規則都在 `AGENT.md`；`.claude/` 與 `.codex/` 只是把不同工具導向它。
-- **預期行為（Claude 與 Codex 皆同）**：觀念題答並引用講義小節；**課務題據課綱答（標「以公告為準」）**；**作業/考試只給提示不給答案**；考古題帶複習；超綱題說超出範圍、不編造。兩種工具的轉接頭都委派 `AGENT.md` 的完整載入清單（含 `supplementary/`）。
-- **發布**：見 `agent/deploy/README.md`（GitHub clone 給學生）。
+- **預期行為（Claude 與 Codex 皆同）**：觀念題答並引用講義小節；**課務題據課綱答（標「以公告為準」）**；**作業/考試只給提示不給答案**；考古題帶複習；超綱題說超出範圍、不編造。兩種工具的轉接頭都委派 `AGENT.md` 的完整規則（來源路由、協助邊界、多輪不拼裝）。
+- **發布**：見助教的 `INSTRUCTOR-MANUAL.md` §12（GitHub clone 給學生；著作權與個資檢查在 §13）。
 
 ## 五、互動教材與「看全班結果」
 
