@@ -17,8 +17,8 @@ metadata:
 
 ## 0. 準備（單一正典流程）
 
-1. 把套件內的空白骨架 `agent/` 複製成 `<課程代碼>-ta/`（放在與套件同層、或老師指定的位置）。骨架已含：`AGENT.md`（通用行為規則）、`INSTRUCTOR-MANUAL.md`、`README.md`（學生版模板）、`knowledge-graph.md`／`prerequisites.md` 模板、`ACCEPTANCE-CHECKLIST.md`、`.claude/`＋`.codex/` 轉接頭、`source-materials/` 收件夾。
-2. 把觸發句「原始教材在：<資料夾>」指定資料夾內的原始教材**複製**進 `<課程代碼>-ta/source-materials/` 對應子夾（`syllabus`／`lecture-notes`／`slides`／`homework`／`cases`；格式不拘 .tex/PDF/DOCX/MD）；**分不出類的原樣放入 `source-materials/` 根層待分類**，不硬塞。
+1. 把套件內的空白骨架 `agent/` 複製成 `<課程代碼>-ta/`（放在與套件同層、或老師指定的位置；**資料夾與轉接頭名一律小寫**，如 `test-101-ta`）。骨架已含：`AGENT.md`（通用行為規則）、`INSTRUCTOR-MANUAL.md`、`README.md`（學生版模板）、`knowledge-graph.md`／`prerequisites.md` 模板、`ACCEPTANCE-CHECKLIST.md`、`.claude/`＋`.codex/` 轉接頭、`source-materials/` 收件夾。
+2. 把觸發句「原始教材在：<資料夾>」指定資料夾內的原始教材**複製**進 `<課程代碼>-ta/source-materials/` 對應子夾（`syllabus`／`lecture-notes`／`slides`／`homework`／`exams`／`cases`；一律用子夾分類；格式不拘 .tex/PDF/DOCX/MD）；**分不出類的原樣放入 `source-materials/` 根層待分類**，不硬塞。
 3. 之後所有掃描與生成**全部在 `<課程代碼>-ta/` 內進行**；老師的原始資料夾不動。
 
 ## 1. 掃描並分類 source-materials
@@ -38,11 +38,12 @@ metadata:
 
 每份作業獨立一檔，**frontmatter schema**（id/title/status/assigned_date/due_date/submission_method/total_points/related_weeks/related_topics/source_files/assets/ai_policy/last_updated）＋正文 10 節（作業目的／涵蓋範圍與先備／重要日期與繳交／應繳內容／資料程式附件／**題目**（每題：題目敘述＋評量重點＋相關課程內容）／格式技術要求／評分原則／AI 使用與學術誠信規範／常見行政問題）。
 - **完整題幹**（數字、資料、子題、配分）全留；**不存解答、最終數字、完整程式或教師評分 key**。
+- schema 中的節（如作業目的、評量重點）**原始檔無對應內容且無法從題文直接推得時省略該節**（不編造），於初始化報告註記。
 - **不逐題加「TA 可提供的協助」**（全域協助邊界在 `AGENT.md`）；個別作業自身的 ai_policy 可保留。
 
 ## 5. （選用）逐個生成 `cases/caseXX-topic.md`
 
-**只有 `source-materials/cases/` 實際有檔才生成**；沒有就不建 `cases/`、不提問、不生示範。每個 case 獨立一檔，frontmatter（id/title/status/case_type/graded/individual_or_group/assigned_date/due_date/related_weeks/related_topics/source_files/assets/last_updated）＋正文 11 節（情境背景／核心決策問題／學習目標／利害關係人／可用資料／任務與問題／應繳內容／分析面向／相關課程內容／評分原則／格式分組時程）。
+**只有 `source-materials/cases/` 實際有檔才生成**；沒有就不建 `cases/`（**骨架複製來的 `cases/README.md` 一併移除**——模組以資料夾存在與否為準）、不提問、不生示範。每個 case 獨立一檔，frontmatter（id/title/status/case_type/graded/individual_or_group/assigned_date/due_date/related_weeks/related_topics/source_files/assets/last_updated）＋正文 11 節（情境背景／核心決策問題／學習目標／利害關係人／可用資料／任務與問題／應繳內容／分析面向／相關課程內容／評分原則／格式分組時程）。
 **明確不加入**：TA 可提供的協助、AI 誠信規範章節、例行「待老師確認」——這些統一由 `AGENT.md` 控制。
 
 ## 6. 生成 `prerequisites.md`＋自動檢測題
@@ -52,11 +53,11 @@ metadata:
 ## 7. 生成 `knowledge-graph.md`
 
 雙受眾（學生看全貌與複習順序；TA 用來路由與診斷缺口）。結構：這份圖怎麼用（給學生/給 TA）→課程全貌→核心學習路徑→**核心概念索引表**（核心概念/需要先懂/接下來會用到/主要教材/自我檢查）→卡住時從哪檢查→跨主題連結。
-規則：統一 `A → B`＝「A 是理解 B 的先備」，**不得混用反向**；只收核心概念（約 15–40 節點）；每個概念連到實際 lecture note；不重複正式定義與推導。
+規則：統一 `A → B`＝「A 是理解 B 的先備」，**不得混用反向**；只收核心概念（約 15–40 節點；**迷你課可低於下限**，以每個概念都連到實際 lecture note 為準）；不重複正式定義與推導。
 
 ## 8. 生成學生版 `README.md`
 
-照骨架模板填實（10 節：這是什麼／能幫你做什麼／如何開始／可以怎麼問／正確心態／作業考試與誠信／如何核對回答／課程資料導覽／隱私安全／回報問題）。**只寫學生需要的**；老師操作一律在 `INSTRUCTOR-MANUAL.md`。
+照骨架模板填實（10 節：這是什麼／能幫你做什麼／如何開始／可以怎麼問／正確心態／作業考試與誠信／如何核對回答／課程資料導覽／隱私安全／回報問題）。**只寫學生需要的**；老師操作一律在 `INSTRUCTOR-MANUAL.md`。首行的老師提醒 banner **保留**（發布時老師依 INSTRUCTOR-MANUAL §12 刪除）。**原始教材查無的欄位**（如回報管道）：可從教材合理推得就填，否則填 `{{待老師填：…}}` 並列入初始化報告。
 
 ## 9. 更新 `AGENT.md` 與轉接頭
 
@@ -69,7 +70,7 @@ metadata:
 
 ## 11. 驗收測試
 
-跑 `ACCEPTANCE-CHECKLIST.md`：誠信（作業一步為限、多輪不得拼答案）／正確／會教（含 KG 診斷路由）／據本課，另加「optional 模組行為」（沒 cases 時不虛構）與「先備互動檢測一次一題」。結果附進初始化報告。
+初始化 AI 只做**設計層自測**（逐項對照 `ACCEPTANCE-CHECKLIST.md`：誠信（作業一步為限、多輪不得拼答案）／正確（生成的數學逐一驗算）／會教（含 KG 診斷路由）／據本課，另加「optional 模組行為」（沒 cases 時不虛構）與「先備互動檢測一次一題」），結果附進初始化報告並**明確標註「非冷測」**；**冷測（開新對話實問）由老師依驗收表執行**。
 
 ## 12. 收尾：變成可發布的獨立 repo
 

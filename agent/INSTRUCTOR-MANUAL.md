@@ -69,7 +69,7 @@
 ## 12. 發布給學生
 
 1. 建 GitHub repo（public 讓學生免費取用，或 private 邀請學生）。
-2. **刪掉 `README.md` 第一行的老師提醒 banner**、確認 `{{ }}` 全數填實。
+2. **刪掉 `README.md` 第一行的老師提醒 banner**、確認 `{{ }}` 全數填實（例外：`references/first-person-calibration.md` 是給你後續校準口吻用的模板，可整檔保留未填，不影響學生）。
 3. 推上 GitHub，把連結給學生——README 就是他們的使用說明。
 4. （選配）也可把 `AGENT.md` 內容貼進 GPTs／Claude Projects 當網頁版。
 
@@ -78,6 +78,7 @@
 - `source-materials/` 含你的原始教材：**是否隨學生版一起發布由你決定**（有著作權疑慮可在發布前移除或 `.gitignore`）。
 - `exams.md` 含考古題完整題幹：**是否讓學生看全文由你決定**。
 - repo 不得含學生個資；提醒學生不要輸入個資與金鑰。
+- 老師端文件（本手冊、`ACCEPTANCE-CHECKLIST.md`、`INITIALIZATION-REPORT.md`）隨學生版一起發布**無妨**（無敏感內容）；想給學生更乾淨的版本可在發布前移除。
 
 ## 14. 學期間更新
 

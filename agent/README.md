@@ -4,7 +4,7 @@
 
 ## 1. 這個 AI TA 是什麼
 
-這是 **{{課程名稱}}**（授課教師：{{授課教師}}）的 AI 助教——用這門課的教材與老師的說法回答你的問題，**全天候、免費**。它不是搜尋引擎，也不是答案產生器。
+這是 **{{課程名稱}}**（授課教師：{{授課教師}}）的 AI 助教——用這門課的教材與老師的說法回答你的問題，**全天候待命**（AI 工具本身的費用依你使用的方案而定）。它不是搜尋引擎，也不是答案產生器。
 
 ## 2. 它可以幫你做什麼
 
@@ -16,9 +16,12 @@
 
 ## 3. 如何開始使用
 
-1. **裝一個 coding agent**（擇一）：[Claude Code](https://code.claude.com/docs) 或 Codex，用你的帳號登入。
-2. **下載本資料夾**：`git clone <本 repo 網址>`（或網頁 Download ZIP）。
-3. **用 coding agent 打開這個資料夾**，開始發問。
+1. **裝一個 coding agent**（擇一，第一次啟動時登入帳號）：
+   - **Claude Code**：照[官方安裝頁](https://code.claude.com/docs)的指示安裝；
+   - **Codex**：照 [OpenAI Codex 官方頁](https://developers.openai.com/codex)的指示安裝。
+2. **下載本資料夾**：在 GitHub 頁面點「Code → Download ZIP」解壓縮（會用 git 的人可 `git clone <本 repo 網址>`）。
+3. **打開終端機**（Mac：Spotlight 搜「終端機/Terminal」；Windows：搜「PowerShell」），輸入 `cd 加一個空格`，把解壓後的資料夾**拖進視窗**後按 Enter——就進到資料夾了。
+4. 輸入 `claude`（或 `codex`）按 Enter 啟動，**直接開始發問**。卡在安裝？把錯誤訊息貼給任何 AI 助手都能帶你排除。
 
 ## 4. 可以怎麼問
 
