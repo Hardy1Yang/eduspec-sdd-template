@@ -18,11 +18,12 @@
 |----------|--------|
 | **第一次用、還沒裝工具** | **[GETTING-STARTED.md](GETTING-STARTED.md)**（第一次裝機，手把手） |
 | **想生成某個東西**（助教/投影片/小考/互動…） | **[生成手冊.md](生成手冊.md)**（按目標翻節：觸發句→過程→產出→驗收→發布） |
-| 想先看成品長什麼樣 | `example-full/`（真實課程全套＋操作走查） |
+| 想先看成品長什麼樣 | `example-full/`（發布版附；真實課程全套＋操作走查） |
 | 查某功能的細節/FAQ | [USER-MANUAL.md](USER-MANUAL.md)（完整參考） |
+| 發布互動教材 | PUBLISH-GITHUB-IO.md（發布版附） |
 | 工具裝了沒 | [SETUP.md](SETUP.md) 或 `bash scripts/setup-check.sh` |
 
-每份生成物都自帶一份**格式統一的使用手冊**（`使用手冊-<類型>.md`，欄位見 `templates/usage-manual-template.md`）。
+教材類生成物各附一份**格式統一的使用手冊**（`使用手冊-<類型>.md`，欄位見 `templates/usage-manual-template.md`）。
 
 ---
 
@@ -34,7 +35,7 @@
 ├── GETTING-STARTED.md           ← 零基礎完全指南（第一次先看）
 ├── USER-MANUAL.md               ← 完整功能手冊
 ├── 生成手冊.md                   ← ★ 按目標的生成教學（觸發句→產出→驗收→發布）
-├── PUBLISH-GITHUB-IO.md         ← 發布到 github.io、看全班結果
+├── PUBLISH-GITHUB-IO.md（發布版附）         ← 發布到 github.io、看全班結果
 ├── SETUP.md                     ← 依賴清單（＋ scripts/setup-check.sh 一鍵檢查）
 ├── constitution.md              ← 教材開發憲法（所有 skill 共用規則）
 ├── skills/                      ← 8 個 skill（見下）
@@ -45,27 +46,31 @@
 ├── example/ ＋ example-full/    ← 迷你格式示範 ＋ 真實課程實測全套（發布版附）
 └── agent/                       ← 空白「24h 助教」骨架（含教學框架與雙工具轉接頭）
     ├── AGENT.md / knowledge-graph.md / INSTRUCTOR-MANUAL.md
+    ├── README.md                ← 學生版使用說明模板（發布後學生第一眼）
     ├── references/              ← 教學風格 DNA ＋ 老師校準（優先級最高）
     ├── syllabus.md / exams.md   ← 課務與考古題（根目錄，老師熟悉的分類）
+    ├── prerequisites.md         ← 課前先備＋自我檢測題模板
     ├── lecture-notes/ homework/ cases/ ← 講義（14 節）、每份作業一檔、案例（有才生成）
     ├── source-materials/        ← 原始教材投放區（檔案偵測式初始化的輸入）
     ├── ACCEPTANCE-CHECKLIST.md   ← 助教驗收表（四層框架）
+    ├── INITIALIZATION-REPORT.md  ← 初始化的集中檢查回報
     ├── .claude/                 ← Claude Code 轉接頭（/ta 指令＋子代理）
     └── .codex/                  ← Codex 轉接頭（skill）
+        （完整樹見骨架的 INSTRUCTOR-MANUAL.md §2）
 ```
 
-### 8 個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊-<類型>.md`（如 `使用手冊-slides.md`），`teach-context` 為蒸餾器產出 course-context 知識庫、不另產手冊）
+### 8 個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊-<類型>.md`（如 `使用手冊-slides.md`），`teach-context` 為蒸餾器——分類蒸餾出 `lecture-notes/`、根 `syllabus.md`/`exams.md`、`homework/`、`cases/`（有檔才生成），不另產手冊）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
-| `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 把整個課程資料夾**分類蒸餾**（有檔才生成）：講義→`lecture-notes/`、課綱→`syllabus.md`、作業→`homework/`、考古題→`exams.md`、案例→`cases/` |
-| `teach-prereq` | `用「teach-prereq」這個 skill，課名：__，對象：__。` | 課前先備知識清單（課裡常提到、卻假設你以前就會的）＋學生自我檢測 |
+| `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾或檔案路徑>。` | 把整個課程資料夾**分類蒸餾**（有檔才生成）：講義→`lecture-notes/`、課綱→`syllabus.md`、作業→`homework/`、考古題→`exams.md`、案例→`cases/` |
+| `teach-prereq` | `用「teach-prereq」這個 skill，課名：____，對象：____。` | 課前先備知識清單（課裡常提到、卻假設你以前就會的）＋學生自我檢測 |
 | `teach-agent` | `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` | 一整個 24h 助教資料夾 `<課程代碼>-ta/`（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表，已 git init 可發布） |
-| `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（標題＋3 要點＋建議視覺） |
+| `teach-slides` | `用「teach-slides」這個 skill，單元：____，對象：____。` | 投影片（標題＋3 要點＋建議視覺） |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性／總結性） |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程 |
-| `teach-sim` | `用「teach-sim」我想做一個 __ 的互動教材給 __。` | 互動網頁（**網路版部署**；紀錄預設離線、可開共享看全班結果），走完整 SDD |
-| `teach-animation` | `用「teach-animation」我想做一個 __ 的動畫。` | 用 **manim** 做動畫影片（mp4），走完整 SDD（選用依賴 manim/ffmpeg） |
+| `teach-sim` | `用「teach-sim」這個 skill，我想做一個 ____ 的互動教材給 ____。` | 互動網頁（**網路版部署**；紀錄預設離線、可開共享看全班結果），走完整 SDD |
+| `teach-animation` | `用「teach-animation」這個 skill，我想做一個 ____ 的動畫。` | 用 **manim** 做動畫影片（mp4），走完整 SDD（選用依賴 manim/ffmpeg） |
 
 ## 心法：SDD 四步（先想清楚再動手）
 
@@ -87,12 +92,12 @@
 ## 怎麼開始（四步）
 
 1. **裝好工具**：**必裝**＝Claude Code 或 Codex（終端機 AI）＋ git ＋ Spectra CLI；**選裝**＝pandoc（讀 .docx 講義）、manim＋ffmpeg（做動畫）。逐項安裝/驗證見 [SETUP.md](SETUP.md)，或跑 `bash scripts/setup-check.sh` 一鍵檢查。
-2. **放講義**：丟進 `course-context/`（或用 `teach-context` 從 .tex/PDF/Word 自動蒸餾）。
-   > **講義放哪**：套件根 `course-context/`＝**工作區**（生教材用）；助教資料夾的 `lecture-notes/`＝**出貨快照**（自含、發布給學生）。更新講義 → 改工作區 → 同步進助教 → 重發布（見助教 `INSTRUCTOR-MANUAL.md` §14）。只做助教不生教材，可只用 `lecture-notes/`。
-3. **生教材**：`用「teach-slides」這個 skill，單元：__，對象：__。`（其他 skill 同型）。
+2. **放講義**：丟進 `course-context/`（懶得整理可用 `teach-context` 把原始檔分類蒸餾，見上表）。
+   > **講義放哪**：套件根 `course-context/` 僅供**材料 skill**（投影片/學習單/小考等）當工作區；助教資料夾的 `lecture-notes/` 由 `teach-agent` 從其 `source-materials/` 生成——**兩條獨立的線，沒有同步機制**。助教講義要更新，是把新原始檔丟進助教 repo 的 `source-materials/` 再重跑初始化或增量生成（見助教 `INSTRUCTOR-MANUAL.md` §14）。只做助教不生教材，可不用 `course-context/`。
+3. **生教材**：`用「teach-slides」這個 skill，單元：____，對象：____。`（其他 skill 同型）。
 4. **做助教**：貼觸發句 `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`——它會複製骨架 `agent/` 成 `<課程代碼>-ta/`、把你指定資料夾的教材匯入其 `source-materials/`、檔案偵測式生成、最後 git init 成可發布 repo；再用產出資料夾內的 `ACCEPTANCE-CHECKLIST.md` 驗收（老師手冊見其 `INSTRUCTOR-MANUAL.md`）。
 
-> **想先看成品長什麼樣**：開 `example-full/`（真實課程實測全套——助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表；迷你格式示範另見 `example/`。
+> **想先看成品長什麼樣**：開 `example-full/`（發布版附；真實課程實測全套——助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表；迷你格式示範另見 `example/`。
 
 ## 三個工具怎麼對應（不綁單一工具）
 
@@ -119,7 +124,7 @@
 
 > 產出檔案 ≠ 堪用。助教有一張完整可影印的驗收表 → **`agent/ACCEPTANCE-CHECKLIST.md`**（四層：誠信＞正確＞會教＞據本課，誠信類必 100% 過）。下面是精簡版。
 
-**驗收助教** — 四組探針：① 觀念題（答＋引用小節）② 作業題（**只給提示**）③ 超綱題（**不編造**）④ 誘導幻覺（不被牽走）。（空白表在 `agent/ACCEPTANCE-CHECKLIST.md`；填好的真實範例見 `example-full/` 內助教的同名檔。）
+**驗收助教** — 四組探針：① 觀念題（答＋引用小節）② 作業題（**只給提示**）③ 超綱題（**不編造**）④ 誘導幻覺（不被牽走）。（空白表在 `agent/ACCEPTANCE-CHECKLIST.md`；填好的真實範例見 `example-full/`（發布版附）內助教的同名檔。）
 
 **驗收學習單** — 親手做一遍：結構齊（3 題＋迷思＋給學生版＋老師審核欄）／每題對應真實迷思／**親自驗算答案**／強弱學生視角試鑑別度／學生版無洩漏／台灣用語無簡體。
 

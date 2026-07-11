@@ -20,9 +20,9 @@
 
 ## skill 怎麼用它（重要規則）
 
-- 你觸發任何 `teach-*` skill 時只給「單元＋對象」，skill 會**自動來這裡找對應單元**。
+- 你觸發**材料 skill**（slides／worksheet／quiz）時給「單元＋對象」，skill 會**自動來這裡找對應單元**；sim／animation 給概念句（`我想做一個 __ 的…`）；做助教用 `teach-agent` 的四參數句（課名／授課教師／對象／原始教材資料夾）。
 - **查無內容時，skill 會請你先補放講義，不會自己臆造課程內容**（見 `../constitution.md`）。
-- 助教 agent 也據這裡作答，找不到就說「講義未提及」。
+- 助教讀的是自己 repo 內的 `lecture-notes/`，不讀本工作區。
 
 ## 著作權提醒
 

@@ -1,6 +1,6 @@
 ---
 name: teach-sim
-description: 給定要教的概念，走完整 SDD（規格→計畫→任務→實作→歸檔）產出互動教材。預設為「網路版（GitHub Pages 託管）＋共享紀錄（可看全班結果）」，離線單機為備選。做互動教材、賽局遊戲、需要看全班結果的模擬時使用。
+description: 給定要教的概念，走完整 SDD（規格→計畫→任務→實作→歸檔）產出互動教材。部署預設網路版（GitHub Pages 託管）；互動紀錄預設離線（localStorage、可匯出 CSV），全班共享為選用模式（需 token）。做互動教材、賽局遊戲、需要看全班結果的模擬時使用。
 license: MIT
 metadata:
   author: EduSpec
@@ -12,8 +12,8 @@ metadata:
 **觸發**：`用「teach-sim」這個 skill，我想做一個 ____ 的互動教材給 ____。`
 
 互動教材**是程式**，坑比較多，所以走**完整 SDD**。本版**預設產網路版**（GitHub Pages 託管），
-並內建**共享紀錄**——學生的互動可寫回班級 repo，老師能**看全班結果**（適合賽局遊戲、投票、模擬）。
-不需要共享時，可退回離線單機版。
+互動紀錄**預設離線**（localStorage）；另內建**選用的共享模式**——開啟後學生的互動可寫回班級 repo，
+老師能**看全班結果**（適合賽局遊戲、投票、模擬）。
 
 ## 1. 選互動形式（讀課程脈絡 + 對照表）
 
@@ -47,7 +47,7 @@ metadata:
 
 `/spectra-apply` 依任務做出互動教材。**預設網路版**：
 
-- 單一 HTML（HTML＋CSS＋JS 內嵌），**預期部署到 GitHub Pages**（見 `../../PUBLISH-GITHUB-IO.md`）。
+- 單一 HTML（HTML＋CSS＋JS 內嵌），**預期部署到 GitHub Pages**（見 `../../PUBLISH-GITHUB-IO.md`，發布版附）。
 - **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到班級 repo 的 `logs/` 檔（token 存學生本機），老師端可彙整**看全班結果**。
 - **無 token 時自動退回離線**：仍記 localStorage、可匯出 CSV，不報錯。
 - 全繁中標籤、字大適合投影、用**代號不放個資**。
@@ -60,7 +60,7 @@ metadata:
 
 `/spectra-archive`（或保留 `specs/`）。
 
-## 7. 產出 `使用手冊.md`（老師端＋學生端）
+## 7. 產出 `使用手冊-sim.md`（老師端＋學生端）
 > 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
 
 

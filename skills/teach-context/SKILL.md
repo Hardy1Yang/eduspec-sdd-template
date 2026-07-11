@@ -27,7 +27,7 @@ metadata:
 | **講義** | lecture、note、week、章節內容 | `lecture-notes/wXX-topic.md`（走第 2 步）|
 | **投影片** | slides、beamer、ppt | **不另生檔**——作對應講義的**輔助來源**（見第 2 步）|
 | **作業** | homework、hw、problem set | `homework/hwXX.md`（**一份作業一檔**，走第 3 步）|
-| **考古題／考試** | exam、midterm、final、quiz | 根目錄 `exams.md`（單檔；規格未定案下的預設）|
+| **考古題／考試** | exam、midterm、final、quiz | 根目錄 `exams.md`（預設單檔；要不要一考一檔由老師決定）|
 | **案例** | case、task description | `cases/caseXX-topic.md`（**有檔才生**，走第 4 步）|
 | **疑似專案** | project、proposal、milestone、專案規範 | **不生成**——列入初始化報告「未處理檔」（Project 屬獨立 repo）|
 
@@ -57,7 +57,7 @@ metadata:
 
 ## 4. （選用）逐個蒸餾 case → `cases/caseXX-topic.md`
 
-只有 case 原始教材存在才生成（schema 見 teach-agent 第 5 步）；保留任務、資料欄位、題幹細節；不含受評產出的解答；**不加**誠信章節與 TA 協助節。
+只有 case 原始教材存在才生成（schema 見 teach-agent 第 6 步）；保留任務、資料欄位、題幹細節；不含受評產出的解答；**不加**誠信章節與 TA 協助節。
 
 ## 5. 順帶擷取教師慣用語
 

@@ -5,7 +5,7 @@
 > **這份文件假設你完全沒寫過程式。** 每一步都寫清楚「在**哪裡**做、**打什麼**、會**看到什麼**」。
 > 跟著做，最後你會得到：(1) 一個能用 `/ta` 指令問的 24 小時助教；(2) 一份你自己單元的教材；(3) 一個能給學生的網址。
 > 現場有助教協助；卡關就看最後的「卡住了？」或問工作坊助教。
-> **想先看做出來長什麼樣？** 開套件內的 `example-full/`——一門真實課程的完整實測成品（助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表。
+> **想先看做出來長什麼樣？** 開套件內的 `example-full/`（發布版附）——一門真實課程的完整實測成品（助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表。
 
 ---
 
@@ -96,8 +96,8 @@ git clone <套件的 repo 網址>
 2. 把你的講義放進去，**一個單元一個檔**。最簡單的做法：在 `course-context/` 上按右鍵 →「New File」→ 命名 `w1-你的主題.md` → 把講義重點貼進去、存檔（<kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>S</kbd>）。
 3. 英文講義沒關係，貼原文即可；**數學符號保留原樣**。
    > 細節見 `course-context/README.md`。**沒放講義，AI 會請你先放，不會亂編。**
-   > **懶得手動整理？** 打 `用「teach-context」這個 skill，講義在：<你的課程資料夾>。`，它會**把整個資料夾分類蒸餾**：講義→`lecture-notes/`、課綱→根 `syllabus.md`、作業→`homework/`（每份一檔）、考古題→根 `exams.md`、案例→`cases/`（**有原始教材才生成**）。助教依 `AGENT.md` 的行為規則使用它們（課務據實答、作業/考試只給提示）。**要從零做整個助教**直接跳 [Part 3](#part-3)——`teach-agent` 會自動呼叫這個蒸餾流程。
-   > **想列「學生課前該會什麼」？** 打 `用「teach-prereq」這個 skill，課名：__，對象：__。`，它會盤點課裡假設你已會、卻不教的**外部先備知識**，產出老師清單＋學生自我檢測。
+   > **懶得手動整理？** 打 `用「teach-context」這個 skill，講義在：<資料夾或檔案路徑>。`，它會**把整個資料夾分類蒸餾**：講義→`lecture-notes/`、課綱→根 `syllabus.md`、作業→`homework/`（每份一檔）、考古題→根 `exams.md`、案例→`cases/`（**有原始教材才生成**）。助教依 `AGENT.md` 的行為規則使用它們（課務據實答、作業/考試只給提示）。**要從零做整個助教**直接跳 [Part 3](#part-3)——`teach-agent` 會自動呼叫這個蒸餾流程。
+   > **想列「學生課前該會什麼」？** 打 `用「teach-prereq」這個 skill，課名：____，對象：____。`，它會盤點課裡假設你已會、卻不教的**外部先備知識**，產出老師清單＋學生自我檢測。
 
 ---
 
@@ -109,7 +109,7 @@ git clone <套件的 repo 網址>
    ```
    用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。
    ```
-3. **你會看到** AI 一步步幫你：複製空白骨架 `agent/` 成 `<課程代碼>-ta/` → 把你指定資料夾的教材複製進其 `source-materials/` → **有檔才生成**課綱、講義筆記、作業、知識圖、`/ta` 指令檔、學生版 README → 產出 `INITIALIZATION-REPORT.md`（集中列出需要你檢查的地方）→ 最後 `git init`＋初始 commit，讓它成為可直接發布的獨立 repo。
+3. **你會看到** AI 一步步幫你：複製空白骨架 `agent/` 成 `<課程代碼>-ta/` → 把你指定資料夾的教材複製進其 `source-materials/` → **有檔才生成**課綱、講義、作業、考古題、先備檢測、知識圖、學生版 README、雙轉接頭（完整清單見 [生成手冊.md](生成手冊.md) §1）→ 產出 `INITIALIZATION-REPORT.md`（集中列出需要你檢查的地方）→ 最後 `git init`＋初始 commit，讓它成為可直接發布的獨立 repo。
 4. 完成後，它會告訴你助教資料夾在哪。**用 Cursor 把 `<課程代碼>-ta/` 另外開起來**（File → Open Folder…選它）。
 5. **驗收**：用助教資料夾裡的 `ACCEPTANCE-CHECKLIST.md` 逐項打勾（尤其「作業題只給提示、不編造」必過）；發布給學生見其 `INSTRUCTOR-MANUAL.md` 發布節。
 
@@ -143,21 +143,20 @@ git clone <套件的 repo 網址>
 用「teach-slides」這個 skill，單元：供需均衡，對象：大一新生。      ← 投影片
 用「teach-worksheet」這個 skill，單元：供需均衡，對象：大一新生。  ← 學習單
 用「teach-quiz」這個 skill，單元：供需均衡，對象：大一新生。      ← 小考＋評分規準
-用「teach-sim」我想做一個 供需拉桿 的互動教材給 大一新生。         ← 互動模擬（網路版）
+用「teach-sim」這個 skill，我想做一個 供需拉桿 的互動教材給 大一新生。 ← 互動模擬（網路版）
 ```
 - **你會看到**：它**先給你一份「迷你規格」**（這份教材要做什麼、成功長什麼樣）請你確認，你看過覺得 OK 再讓它生成。
 - 生成完，它會**附一份 `使用手冊-<類型>.md`**（如 `使用手冊-slides.md`），告訴你這份怎麼用、怎麼發給學生。生成的檔會放在 `output/<單元>/`。
 - **重要**：AI 給的是**草稿**，請你**親自看過學科正確性**再用。
-- **進階**：想做**動畫影片**（如中央極限定理）用 `用「teach-animation」我想做一個 __ 的動畫。`（需選裝 manim/ffmpeg，見 [SETUP.md](SETUP.md)）；想列**課前先備知識**用 `teach-prereq`。八個 skill 一覽見 [USER-MANUAL.md](USER-MANUAL.md)。
+- **進階**：想做**動畫影片**（如中央極限定理）用 `用「teach-animation」這個 skill，我想做一個 ____ 的動畫。`（需選裝 manim/ffmpeg，見 [SETUP.md](SETUP.md)）；想列**課前先備知識**用 `teach-prereq`。八個 skill 一覽見 [USER-MANUAL.md](USER-MANUAL.md)。
 
 ---
 
 <a id="part-6"></a>
 ## Part 6：發布給學生
 
-照套件根的 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（有逐步步驟）：
-- **互動教材**：放到 **GitHub Pages**，得到一個網址，把網址給學生就能玩（還能記錄、看全班結果）。
-- **助教**：放到 GitHub，讓學生 `git clone` 後用自己的 Claude Code 開來問。
+- **互動教材／網頁**：照套件根的 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附）（有逐步步驟）放到 **GitHub Pages**，得到一個網址，把網址給學生就能玩（還能記錄、看全班結果）。
+- **助教**：照**產出 repo**（你的 `<課程代碼>-ta/` 資料夾）內的 `INSTRUCTOR-MANUAL.md` §12——建 GitHub repo、刪 README banner、推上去，讓學生 `git clone` 後用自己的 Claude Code 開來問。
 
 ---
 

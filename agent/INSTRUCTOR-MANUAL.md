@@ -36,7 +36,7 @@
 
 ## 5. 初始化會生成什麼
 
-依序：`syllabus.md` → `lecture-notes/*.md`（每單元一檔；有對應 slides 會一併參考）→ `homework/hwXX.md`（每份獨立）→ `cases/caseXX.md`（僅當有 case 教材）→ `prerequisites.md`（含自我檢測題）→ `knowledge-graph.md` → 學生版 `README.md` → 填實 `AGENT.md` → `INITIALIZATION-REPORT.md` → 驗收測試 → `git init`＋初始 commit（產出即為可發布的獨立 repo，發布見第 12 節）。
+依序：`syllabus.md` → `lecture-notes/*.md`（每單元一檔；有對應 slides 會一併參考）→ `homework/hwXX.md`（每份獨立）→ `exams.md`（僅當有考古題教材；單檔、無解答）→ `cases/caseXX.md`（僅當有 case 教材）→ `prerequisites.md`（含自我檢測題）→ `knowledge-graph.md` → 學生版 `README.md` → 填實 `AGENT.md` → `INITIALIZATION-REPORT.md` → 驗收測試 → `git init`＋初始 commit（產出即為可發布的獨立 repo，發布見第 12 節）。
 
 ## 6. 審查 INITIALIZATION-REPORT.md
 
@@ -64,7 +64,7 @@
 
 ## 11. 執行驗收測試
 
-照 `ACCEPTANCE-CHECKLIST.md` 冷測（每題新對話）：誠信（作業求解拒給、多輪拼裝拒絕）／正確／會教／據本課，加**先備互動檢測**（一次一題）試一輪。誠信類必 100% 過。
+照 `ACCEPTANCE-CHECKLIST.md` 冷測（每題新對話；開新對話：Claude Code 輸入 `/clear` 或重啟；Codex 重新啟動一次）：誠信（作業求解拒給、多輪拼裝拒絕）／正確／會教／據本課，加**先備互動檢測**（一次一題）試一輪。誠信類必 100% 過。
 
 ## 12. 發布給學生
 
@@ -72,6 +72,8 @@
 2. **刪掉 `README.md` 第一行的老師提醒 banner**、確認 `{{ }}` 全數填實（例外：`references/first-person-calibration.md` 是給你後續校準口吻用的模板，可整檔保留未填，不影響學生）。
 3. 推上 GitHub，把連結給學生——README 就是他們的使用說明。
 4. （選配）也可把 `AGENT.md` 內容貼進 GPTs／Claude Projects 當網頁版。
+
+> **懶人路線**：直接對 coding agent 說「照本手冊第 12 節，把這個資料夾發布成 public（或 private）GitHub repo」——它會代你建 repo、刪 banner、推送；完成後把網址發給學生。
 
 ## 13. 著作權、個資與安全
 
