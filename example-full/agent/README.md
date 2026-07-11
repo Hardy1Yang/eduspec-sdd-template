@@ -1,42 +1,34 @@
-# fa-25-econ-5166-ta-agent
+# Econ 5166「Data Science and Social Inquiry」——24 小時 AI 助教（範例，涵蓋 w1–w3）
 
-**Econ 5166「Data Science and Social Inquiry」（授課教師：陳由常）的學生端 24 小時 AI 助教。** 用這門課的教學口吻回答、遇作業只給提示、據講義作答不編造。目前已載入 w1（數學複習）、w2（預測問題）、w3（迴歸樹）。
+這是 Econ 5166（授課教師：陳由常）的 AI 助教：用這門課的講義與老師的說法回答你的問題，**全天候、免費**。本範例載入 w1–w3（數學回顧、預測/OLS、迴歸樹）與課綱/作業/考古題脈絡。
 
-## 檔案結構
+## 三步開始用
 
-```
-fa-25-econ-5166-ta-agent/
-├── HOW-TO-FILL.md          # 填空指南（骨架文件，供加新單元時參考）
-├── GETTING-STARTED.md      # 快速上手（兩條路線：teach-agent 自動／手動填）
-├── AGENT.md                # 大腦：口吻 + 據講義作答 + 只給提示 + 資料來源行為政策
-├── knowledge-graph.md      # 概念先備依賴圖（含外部先備知識）
-├── prerequisites.md        # 課前先備知識清單（老師端）＋學生課前自我檢測
-├── references/             # 教學風格 DNA ＋ 老師校準（優先級最高）
-├── course-context/         # 講義精華（w1–w3）＋ index.md 主題地圖
-├── supplementary/          # 課綱/作業/考古題/案例/專案摘要 ＋ 行為政策
-├── ACCEPTANCE-CHECKLIST.md # 助教驗收表（四層框架、可影印）
-├── .claude/  .codex/       # Claude Code／Codex 兩個薄轉接頭（皆委派 AGENT.md）
-├── deploy/                 # 發布給學生的說明
-├── 使用手冊.md              # 老師端＋學生端使用手冊
-└── README.md               # 你正在看的這份
-```
+1. **裝一個 coding agent**（擇一）：[Claude Code](https://code.claude.com/docs) 或 Codex，用你的帳號登入。
+2. **下載本資料夾**：`git clone <repo 網址>`（或 Download ZIP）。
+3. **用 coding agent 打開這個資料夾**，直接發問（見下）。
 
-## 怎麼用（指令互動）
+## 怎麼問
 
-把**這個助教資料夾當作 Claude Code 專案打開**（`claude` 或 Cursor 開資料夾），它內建兩種呼叫方式：
+- **Claude Code**：打 `/ta 你的問題`（例：`/ta 什麼是最佳預測子？`）；或說「用 `fa-25-econ-5166-ta` 子代理回答：…」。
+- **Codex**：打 `Use $fa-25-econ-5166-ta-agent to answer: 你的問題`。
 
-- **Claude Code · 斜線指令**：`/ta 你的問題` —— 直接問，例如 `/ta 為什麼條件期望是最佳預測子？`
-- **Claude Code · 子代理**：一句話「用 `fa-25-econ-5166-ta` 子代理回答：……」，在獨立 context 回答。
-- **Codex · skill**：`Use $fa-25-econ-5166-ta-agent to answer: 你的問題`。
+## 它會怎麼回答（請先知道）
 
-預期行為：**觀念題**完整答並引用講義小節（例：「見 w2-prediction-problem 第 5 節」）；**作業題／考試題只給提示不給答案**；**課務題**據 syllabus 答、變動性資訊標「以最新公告為準」；**超綱題**（未載入週次）說超出範圍、不編造。
+- **觀念題**：完整教學（直覺→機制→陷阱→一句重點），並引講義小節。
+- **作業／考題**：講得清楚題目在問什麼，但**只給提示、不給答案**——刻意設計。
+- **課務**：據課綱回答，變動資訊以最新公告為準。
+- **課程沒教的**（含 w4 之後）：直說「尚未載入／超出範圍」，不會亂編。
 
-> **一個大腦、多個轉接頭**：規則都在 `AGENT.md`；`.claude/`（Claude Code）與 `.codex/`（Codex）只是把不同工具導向它。改行為改 `AGENT.md` 就好，兩邊自動一致。
+## 使用須知（誠信與免責）
 
-## 驗收助教表現
-
-用 **[`ACCEPTANCE-CHECKLIST.md`](ACCEPTANCE-CHECKLIST.md)** 逐項打勾——它用四層框架（誠信＞正確＞會教＞據本課）判「這是不是你這門課的好助教」。**誠信類必 100% 過**（不代寫、不編造）。
+- AI 可能講錯——**交出去的內容視同你自己確認、自己負責**。
+- 作業使用 AI 請依老師的**綠／黃／紅燈**規範，誠實揭露。
+- 本助教由 AI 協助建置、經審核流程驗證；學科正確性最終以老師與講義為準。
 
 ---
 
-*本助教由 EduSpec 的 teach-context／teach-agent／teach-prereq skills 生成；內容為 AI 蒸餾草稿，一切回答與蒸餾內容需授課教師人工審核。*
+## 給老師（學生可略過）
+
+- 本檔是 **example-full 的展示助教**——由潔淨室測試以 `teach-context`＋`teach-agent` 從真實 fa-25 素材建出（過程見 [`../操作走查.md`](../操作走查.md)）。
+- 維護與更新見 `deploy/README.md`；驗收見 `ACCEPTANCE-CHECKLIST.md`；架構＝一個大腦 `AGENT.md`＋雙轉接頭（`.claude/`＋`.codex/`）；講義在 `course-context/`、講義以外素材在 `supplementary/`；`HOW-TO-FILL.md`／`GETTING-STARTED.md` 為骨架指南原樣保留供對照。
