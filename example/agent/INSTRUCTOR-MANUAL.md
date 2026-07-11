@@ -30,4 +30,5 @@
 ## 4. 發布與更新（示範情境）
 
 - 發布：確認 README 無老師提醒 banner、`{{ }}` 全填實 → 推上 GitHub 給學生。
+  （**懶人路線**：直接對 coding agent 說「照本手冊發布節，把這個資料夾發布成 public/private GitHub repo」即可代辦。）
 - 學期間：教完新單元 → 原始檔丟 `source-materials/` → 增量初始化 → 更新 `AGENT.md` 已載入清單與 `knowledge-graph.md`。
