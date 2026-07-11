@@ -19,7 +19,7 @@ metadata:
 
 ## 2. 寫迷你規格
 
-用 `templates/mini-spec.md`：這份小考測哪些節點、幾分、時間、題型。請老師確認。
+用 `templates/mini-spec.md`（存為 `mini-spec-quiz.md`，帶類型後綴）：這份小考測哪些節點、幾分、時間、題型。請老師確認。
 
 ## 3. 出題（依教學 DNA，考「懂不懂」而非「背不背」）
 

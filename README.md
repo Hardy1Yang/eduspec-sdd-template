@@ -71,6 +71,7 @@
 
 1. **裝好工具**：**必裝**＝Claude Code 或 Codex（終端機 AI）＋ git ＋ Spectra CLI；**選裝**＝pandoc（讀 .docx 講義）、manim＋ffmpeg（做動畫）。逐項安裝/驗證見 [SETUP.md](SETUP.md)，或跑 `bash scripts/setup-check.sh` 一鍵檢查。
 2. **放講義**：丟進 `course-context/`（或用 `teach-context` 從 .tex/PDF/Word 自動蒸餾）。
+   > **兩個 course-context 的關係**：套件根這份＝**工作區**（生教材用）；`agent/course-context/`＝**出貨快照**（助教自含、發布給學生的版本）。更新講義 → 改工作區 → 同步進 agent → 重發布（見 `agent/deploy/README.md` 維護節）。只做助教不生教材，可只用 agent 內那份。
 3. **生教材**：`用「teach-slides」這個 skill，單元：__，對象：__。`（其他 skill 同型）。
 4. **做助教**：用 `teach-agent`（或照 `agent/HOW-TO-FILL.md` 手動填），再用 `agent/ACCEPTANCE-CHECKLIST.md` 驗收。
 5. **想先看成品長什麼樣**：開 `example-full/`（真實課程實測全套——助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表；迷你格式示範另見 `example/`。
