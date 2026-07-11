@@ -46,6 +46,8 @@
 3. 互動工具在啟用 GitHub 共享模式時，透過 GitHub API 把每筆紀錄 append 到 repo 的一個 log 檔（實作骨架見 `example-full/output/w2-prediction/sim-ols.html` 的共享模式段——註解「共享模式：僅在老師提供 token 時才啟用」）。
 4. 學期/活動結束後，到 GitHub Settings → Tokens **刪除 token**。
 
+> ⚠️ **安全（共享模式必讀）**：班級 repo 的紀錄是**任何持 token 的學生都能寫入**的多人可寫來源——等同不可信輸入。惡意暱稱可夾帶 `<img src=x onerror=...>`，在別人開「看全班結果」時竊取其 localStorage 裡的 token。互動工具**渲染共享回來的資料時必須淨化**（用 textContent／DOM 建構、去角括號、CSV 值防公式注入）——`teach-sim` 生成時已內建這四道防線並在驗收清單列有安全探針；老師發布前照該探針測一次。
+
 > ⚠️ 這模式**需要網路與 token、門檻較高**，且要提醒學生 token 保管與個資。**預設關閉**；一般課堂用 Part A + C 的離線 localStorage + 匯出 CSV 就夠了。
 
 ---
