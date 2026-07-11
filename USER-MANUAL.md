@@ -65,7 +65,7 @@
 
 ## 五、互動教材與「看全班結果」
 
-- **網路版部署**：sim 的散布本身就是一個 Pages/git 操作——skill 的**發布收尾**會把 html 整理成 `index.html` 的**可直接推資料夾**（不必自己搬檔改名），照套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附）推上 GitHub Pages，給學生連結。
+- **產出＝可直接推的資料夾**：sim 生成為**套件同層的 `<單元>-sim/`**（`index.html`＋手冊＋sdd-archive＋README，已 git init，不進 `output/`——與 teach-agent 的獨立資料夾對稱）。本機開 `index.html` 預覽；發布就建 GitHub repo → push → 開 Pages，照套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附），給學生連結。
 - **紀錄預設離線**：互動紀錄存學生**自己瀏覽器**（localStorage）、可**匯出 CSV**——不連網、不含個資，一般課堂這樣就夠。
 - **共享紀錄（選用・進階）**：學生貼自己的 GitHub token（存本機，**最小權限：只授權那一個班級 repo**），互動 append 到班級 repo，老師端**彙整看全班結果**（適合賽局遊戲）。用**代號、不放個資**；沒 token 時自動退回離線、不報錯。共享回來的資料視為不可信輸入、已內建淨化（見 PUBLISH-GITHUB-IO 安全段）。
 
@@ -83,7 +83,7 @@
 |------|------|
 | skill 沒依講義答 | 確認 `course-context/` 有對應單元；skill 查無會請你補放 |
 | `/ta` 指令沒出現 | 打開的要是**助教資料夾**本身；重開 Claude Code |
-| 共享模式連不上 | 檢查 token 權限（勾 `repo`）與 `owner/repo`；沒設 token 會自動離線 |
+| 共享模式連不上 | 檢查 token（**fine-grained、只授權班級 repo 的 Contents 讀寫**，勿用全帳號）與 `owner/repo`；沒設 token 會自動離線 |
 | 想換概念重做 | 先改規格再重跑（SDD 精神），別直接改程式 |
 
 ---

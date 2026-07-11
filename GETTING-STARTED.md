@@ -169,7 +169,7 @@ git clone <套件的 repo 網址>
 | 打 `claude` 說「找不到指令」 | 安裝沒完成或要重開終端機；重裝一次 |
 | skill 打了沒反應／答得很空 | 確認 `course-context/` 有放對應單元的講義 |
 | `/ta` 指令沒出現 | 打開的要是**助教資料夾本身**；重開 Claude Code |
-| 互動教材共享模式連不上 | 沒設 token 會自動離線、仍可用；設 token 要勾 `repo` 權限 |
+| 互動教材共享模式連不上 | 沒設 token 會自動離線、仍可用；設 token 用 **fine-grained、只授權那一個班級 repo 的 Contents 讀寫**（勿用全帳號 token，見 PUBLISH-GITHUB-IO Part D） |
 | 想換內容重做 | **先改規格再重跑**（別直接改程式），這就是 SDD 的精神 |
 
 > 更完整的每個功能說明 → 見 [USER-MANUAL.md](USER-MANUAL.md)。

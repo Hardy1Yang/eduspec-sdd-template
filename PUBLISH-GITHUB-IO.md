@@ -46,7 +46,7 @@
    - **command 選項（有裝 GitHub CLI 的老師）**：可用 `gh` 建立同樣範圍的 fine-grained token；**不要**直接用 `gh auth token`——那是你**整個帳號**的登入 token，貼進共享頁面等於把全帳號交出去。
    - ⚠️ **絕對不要**把「勾滿整個 `repo` scope 的 classic token」或「`gh auth token` 全帳號 token」貼進這個全班可寫的網頁——一旦被惡意暱稱的 XSS 竊走，攻擊者就能動你所有 repo。
 2. token **只貼在自己的瀏覽器**（存 localStorage，不上傳任何第三方）。
-3. 互動工具在啟用 GitHub 共享模式時，透過 GitHub API 把每筆紀錄 append 到 repo 的一個 log 檔（`teach-sim` 生成的共享型 sim 已內建 GitHub Contents API 讀寫與淨化；要參考完整實作可看已生成的共享型 sim）。
+3. 互動工具在啟用 GitHub 共享模式時，透過 GitHub API 把每筆紀錄 append 到 repo 的一個 log 檔（實作規格＝`teach-sim` SKILL §4 的共享 CSV 格式與四道安全防線；本套件未附共享型 sim 範例，`example-full/` 的 sim 為離線型、不含共享程式碼）。
 4. 學期/活動結束後，到 GitHub Settings → Tokens **刪除 token**。
 
 > ⚠️ **安全（共享模式必讀）**：班級 repo 的紀錄是**任何持 token 的學生都能寫入**的多人可寫來源——等同不可信輸入。惡意暱稱可夾帶 `<img src=x onerror=...>`，在別人開「看全班結果」時竊取其 localStorage 裡的 token。互動工具**渲染共享回來的資料時必須淨化**（用 textContent／DOM 建構、去角括號、CSV 值防公式注入）——`teach-sim` 生成時已內建這四道防線並在驗收清單列有安全探針；老師發布前照該探針測一次。

@@ -15,9 +15,13 @@ metadata:
 互動紀錄**預設離線**（localStorage）；另內建**選用的共享模式**——開啟後學生的互動可寫回班級 repo，
 老師能**看全班結果**（適合賽局遊戲、投票、模擬）。
 
+> **產出＝一個套件同層的獨立資料夾 `<單元>-sim/`**（與 teach-agent 的 `<課程代碼>-ta/` 對稱，**不進 `output/`**）。理由：sim 是唯一「可部署的 app」型教材，散布本身就是 git/Pages 操作，一個自足資料夾比散在 `output/` 更好用、也避免在套件（本身是 git repo）內 `git init` 造成巢狀。資料夾內容：`index.html`（一開始就用這名，Pages-ready）、`使用手冊-sim.md`、`sdd-archive/<日期>-<名稱>/`（規格）、`README.md`（預覽/發布步驟）。**投影片／學習單／小考／動畫維持進 `output/<單元>/`**（它們不是可部署 app、不需要）。
+
 ## 1. 選互動形式（讀課程脈絡 + 對照表）
 
 到 `course-context/`（套件根的工作區，或助教資料夾內的 `lecture-notes/`——以實際放講義的那份為準） 確認要教的概念，用下表把「概念」對到「互動形式」。
+
+> **sim 以概念驅動**：有對應講義就對齊它的用例；**沒有對應講義也可以做**——用內建的示範情境/資料（如 OLS sim 用內建資料集），但**教學數值需老師校準**（這點與 `teach-slides` 不同——slides 必須有講義單元才生成）。
 
 > **選用·課程 case**：若本課有 `cases/`（每個 case 一檔），case 任務（如預測/分類/因果案例）是**天然的互動主題來源**，可據此挑題。沒有就照常。
 
@@ -45,12 +49,14 @@ metadata:
 
 ## 4. 實作（Implement）——網路版為主
 
-`/spectra-apply` 依任務做出互動教材。**預設網路版**：
+`/spectra-apply` 依任務做出互動教材，**直接寫進套件同層的 `<單元>-sim/` 資料夾、檔名 `index.html`**（不進 `output/`）。**預設網路版**：
 
 - 單一 HTML（HTML＋CSS＋JS 內嵌），**預期部署到 GitHub Pages**（見 `../../PUBLISH-GITHUB-IO.md`，發布版附）。
-- **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到班級 repo 的 `logs/` 檔（token 存學生本機），老師端可彙整**看全班結果**。
+- **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到班級 repo 的 `logs/<單元>.csv`（token 存學生本機），老師端可彙整**看全班結果**。
+- **共享 CSV 統一格式**（讓不同人生成的 sim 老師端能一致彙整）：**單一檔 `logs/<單元>.csv`、append 不覆蓋**、首列固定表頭 `time,nickname,round,guess`（有需要可在 `guess` 後加該教材的欄位，但前四欄與順序不變）；每列一筆；暱稱欄照下方安全鐵則淨化＋防公式注入。
 - **無 token 時自動退回離線**：仍記 localStorage、可匯出 CSV，不報錯。
 - 全繁中標籤、字大適合投影、用**代號不放個資**。
+- **共享實作以下方「安全鐵則」四防線為準**（它就是規格）；本套件未附共享型 sim 範例，`example-full/`（發布版附）的 sim 為**離線型、不含共享實作**，不要去那裡找共享程式碼。
 
 > **⚠ 共享模式的安全鐵則（讀回的資料＝不可信輸入）**：班級 repo 的 CSV 是**任何持 token 的學生都能寫入**的多人可寫來源，等同不可信使用者輸入——惡意暱稱可夾帶 `<img src=x onerror=...>` 竊取其他人 localStorage 裡的 token。生成共享型 sim **必須**內建四道防線：
 > 1. **渲染用 textContent／DOM 建構，禁止 innerHTML 拼接**共享回來的欄位（暱稱等）；聚合畫面與回合結果都算。
@@ -64,18 +70,21 @@ metadata:
 
 ## 6. 歸檔
 
-`/spectra-archive`（或保留 `specs/`）。
+把規格三件套放進 **`<單元>-sim/sdd-archive/<日期>-<名稱>/`**（`proposal.md`／`specs/`／`tasks.md`，格式同 `example-full/`（發布版附）的歸檔）——歸檔跟著資料夾走，發布時一起帶著。
 
-## 6b. 發布收尾（選用，與 teach-agent 對稱）
+## 6b. git 收尾（讓資料夾成為可推的 repo）
 
-**要上 GitHub Pages 或開共享模式的 sim** 才需要這步（純課堂投影／離線教材可略）：把 `output/<單元>/` 的互動網頁整理成一個 **Pages-ready 的獨立資料夾**——複製那支 html 成資料夾內的 **`index.html`**（Pages 以 `index.html` 為首頁），在該資料夾 `git init` 並做初始 commit（訊息如 `publish: <單元> 互動教材`）。至此它即為**可直接推送的 Pages repo**，老師不必再自己搬檔改名；發布步驟（建 repo、開 Pages、共享模式的最小權限 token）見 [`../../PUBLISH-GITHUB-IO.md`](../../PUBLISH-GITHUB-IO.md，發布版附)。
+在 **`<單元>-sim/` 這個資料夾**（它已在套件同層，不在 clone 內——不會巢狀）執行 `git init` 並做初始 commit（訊息如 `publish: <單元> 互動教材`）。至此整個資料夾即為**可直接推送的獨立 Pages repo**：
+
+- **本機預覽**：直接開 `index.html`（或用本機 HTTP server）。
+- **發布**：建 GitHub repo → push → 開 Pages（見 [`../../PUBLISH-GITHUB-IO.md`](../../PUBLISH-GITHUB-IO.md，發布版附)；含共享模式的最小權限 token）。共享模式的班級紀錄 repo 由老師**一次性手動建、整學期重用**（靜態網頁不自動建 repo——那需要過大權限）。
 
 ## 7. 產出 `使用手冊-sim.md`（老師端＋學生端）
 > 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
 
 
-除互動教材外，**額外產一份 `使用手冊-sim.md`（帶教材類型後綴，避免同單元互相覆蓋）**：
-- **老師端**：如何生成、**發布收尾**（整理成 `index.html` 的 Pages-ready 資料夾，見 §6b）、如何部署到 GitHub Pages、如何開共享模式（含最小權限 token）、如何彙整看全班結果。
+在 **`<單元>-sim/` 資料夾內**另產一份 **`使用手冊-sim.md`**（跟著資料夾走、一起發布）：
+- **老師端**：如何生成、**git 收尾與發布**（`<單元>-sim/` 已是可推資料夾，見 §6b）、如何部署到 GitHub Pages、如何開共享模式（含最小權限 token）、如何彙整看全班結果。
 - **學生端**：如何開連結、如何操作、（共享模式）如何貼 token（含 token 保管與事後刪除提醒）。
 
 ---

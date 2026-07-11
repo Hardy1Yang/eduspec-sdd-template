@@ -12,6 +12,7 @@
 
 ### 怎麼發布
 - <發布方式：印發/課程平台/GitHub Pages/repo；連結見套件對應文件>
+- <（互動教材專屬）發布收尾：在套件外建 `<單元>-sim/`（含 `index.html`＋git init）；開共享模式時說明**最小權限 token**（只授權班級 repo）與保管/刪除——見 `PUBLISH-GITHUB-IO.md`（發布版附）>
 
 ## 學生端
 

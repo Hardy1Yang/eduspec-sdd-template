@@ -26,7 +26,7 @@
 
 ## 四、程式與素材品質
 
-- **產出存放位置**：生成的教材檔一律存到 `output/<單元或主題>/`（例：`output/供需均衡/slides.md`；各教材的使用手冊與迷你規格帶類型後綴（`使用手冊-slides.md`、`mini-spec-slides.md`），避免互相覆蓋）；**不覆蓋 `course-context/` 的講義原檔**。互動網頁與動畫也放對應子資料夾。
+- **產出存放位置**：生成的教材檔一律存到 `output/<單元或主題>/`（例：`output/供需均衡/slides.md`；各教材的使用手冊與迷你規格帶類型後綴（`使用手冊-slides.md`、`mini-spec-slides.md`），避免互相覆蓋）；**不覆蓋 `course-context/` 的講義原檔**。動畫也放對應子資料夾。**例外：`teach-sim` 的互動網頁是可部署的 app，產出為套件同層的獨立資料夾 `<單元>-sim/`（不進 `output/`，見 teach-sim SKILL），以便自成一個可推的 Pages repo。**
 - **能跑 ≠ 正確**；接受變更前先看 diff、親手驗過每個互動邏輯。
 - 互動素材以**單檔 HTML** 為基礎、字大、適合投影。
 - **部署預設為網路版（GitHub Pages 託管）**；**互動紀錄預設離線**（localStorage、可匯出 CSV），**共享看全班結果為選用**（適合賽局遊戲；需 token），且**無 token 時一律自動退回離線、不報錯**。
