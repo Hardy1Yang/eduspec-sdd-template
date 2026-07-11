@@ -66,12 +66,16 @@ metadata:
 
 `/spectra-archive`（或保留 `specs/`）。
 
+## 6b. 發布收尾（選用，與 teach-agent 對稱）
+
+**要上 GitHub Pages 或開共享模式的 sim** 才需要這步（純課堂投影／離線教材可略）：把 `output/<單元>/` 的互動網頁整理成一個 **Pages-ready 的獨立資料夾**——複製那支 html 成資料夾內的 **`index.html`**（Pages 以 `index.html` 為首頁），在該資料夾 `git init` 並做初始 commit（訊息如 `publish: <單元> 互動教材`）。至此它即為**可直接推送的 Pages repo**，老師不必再自己搬檔改名；發布步驟（建 repo、開 Pages、共享模式的最小權限 token）見 [`../../PUBLISH-GITHUB-IO.md`](../../PUBLISH-GITHUB-IO.md，發布版附)。
+
 ## 7. 產出 `使用手冊-sim.md`（老師端＋學生端）
 > 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
 
 
 除互動教材外，**額外產一份 `使用手冊-sim.md`（帶教材類型後綴，避免同單元互相覆蓋）**：
-- **老師端**：如何生成、如何部署到 GitHub Pages、如何開共享模式、如何彙整看全班結果。
+- **老師端**：如何生成、**發布收尾**（整理成 `index.html` 的 Pages-ready 資料夾，見 §6b）、如何部署到 GitHub Pages、如何開共享模式（含最小權限 token）、如何彙整看全班結果。
 - **學生端**：如何開連結、如何操作、（共享模式）如何貼 token（含 token 保管與事後刪除提醒）。
 
 ---

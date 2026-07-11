@@ -41,9 +41,12 @@
 
 若要把全班的互動集中成一份共享紀錄（透過 GitHub API 寫回班級 repo）：
 
-1. 每位學生到 **GitHub → Settings → Developer settings → Personal access tokens (classic)**，產生一個勾選 `repo` 的 token（`ghp_` 開頭）。
+1. 產生一個**最小權限**的 token——**只授權那一個班級紀錄 repo**，不要用能碰全帳號的 token：
+   - **建議（網頁 UI，fine-grained）**：**GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token** → **Repository access** 選 **Only select repositories** 勾**那一個班級 repo** → **Permissions → Repository permissions → Contents** 設 **Read and write** → 產生（`github_pat_` 開頭）。這個 token 只能讀寫那一個 repo，外洩傷害有限。
+   - **command 選項（有裝 GitHub CLI 的老師）**：可用 `gh` 建立同樣範圍的 fine-grained token；**不要**直接用 `gh auth token`——那是你**整個帳號**的登入 token，貼進共享頁面等於把全帳號交出去。
+   - ⚠️ **絕對不要**把「勾滿整個 `repo` scope 的 classic token」或「`gh auth token` 全帳號 token」貼進這個全班可寫的網頁——一旦被惡意暱稱的 XSS 竊走，攻擊者就能動你所有 repo。
 2. token **只貼在自己的瀏覽器**（存 localStorage，不上傳任何第三方）。
-3. 互動工具在啟用 GitHub 共享模式時，透過 GitHub API 把每筆紀錄 append 到 repo 的一個 log 檔（實作骨架見 `example-full/output/w2-prediction/sim-ols.html` 的共享模式段——註解「共享模式：僅在老師提供 token 時才啟用」）。
+3. 互動工具在啟用 GitHub 共享模式時，透過 GitHub API 把每筆紀錄 append 到 repo 的一個 log 檔（`teach-sim` 生成的共享型 sim 已內建 GitHub Contents API 讀寫與淨化；要參考完整實作可看已生成的共享型 sim）。
 4. 學期/活動結束後，到 GitHub Settings → Tokens **刪除 token**。
 
 > ⚠️ **安全（共享模式必讀）**：班級 repo 的紀錄是**任何持 token 的學生都能寫入**的多人可寫來源——等同不可信輸入。惡意暱稱可夾帶 `<img src=x onerror=...>`，在別人開「看全班結果」時竊取其 localStorage 裡的 token。互動工具**渲染共享回來的資料時必須淨化**（用 textContent／DOM 建構、去角括號、CSV 值防公式注入）——`teach-sim` 生成時已內建這四道防線並在驗收清單列有安全探針；老師發布前照該探針測一次。

@@ -65,9 +65,9 @@
 
 ## 五、互動教材與「看全班結果」
 
-- **網路版部署**：部署到 GitHub Pages（見套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附）），給學生連結。
+- **網路版部署**：sim 的散布本身就是一個 Pages/git 操作——skill 的**發布收尾**會把 html 整理成 `index.html` 的**可直接推資料夾**（不必自己搬檔改名），照套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附）推上 GitHub Pages，給學生連結。
 - **紀錄預設離線**：互動紀錄存學生**自己瀏覽器**（localStorage）、可**匯出 CSV**——不連網、不含個資，一般課堂這樣就夠。
-- **共享紀錄（選用・進階）**：學生貼自己的 GitHub token（存本機），互動 append 到班級 repo，老師端**彙整看全班結果**（適合賽局遊戲）。用**代號、不放個資**；沒 token 時自動退回離線、不報錯。
+- **共享紀錄（選用・進階）**：學生貼自己的 GitHub token（存本機，**最小權限：只授權那一個班級 repo**），互動 append 到班級 repo，老師端**彙整看全班結果**（適合賽局遊戲）。用**代號、不放個資**；沒 token 時自動退回離線、不報錯。共享回來的資料視為不可信輸入、已內建淨化（見 PUBLISH-GITHUB-IO 安全段）。
 
 ## 六、發布到 github.io
 
