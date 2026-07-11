@@ -2,7 +2,7 @@
 
 > 形成性評量：課中／課後即時診斷「懂了沒」，不計成績。
 > AI 產草稿，**每個 AI 欄位後附「老師審核」欄——不審不用**。
-> 對應講義：`course-context/w2-prediction-problem.md`；已參考 `supplementary/assignments.md` 對齊 HW1 的技能範圍（MSE、估計量好壞的判斷），**不洩題、不代解作業**。
+> 對應講義：`agent/lecture-notes/w02-prediction-problem.md`；已參考 `agent/homework/hw01.md` 對齊 HW1 的技能範圍（MSE、估計量好壞的判斷），**不洩題、不代解作業**。
 
 ## 迷你規格
 

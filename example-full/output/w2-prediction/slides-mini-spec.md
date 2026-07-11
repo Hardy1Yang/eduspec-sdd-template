@@ -14,7 +14,7 @@
 
 ## 範圍（涵蓋哪些、不涵蓋哪些）
 
-- 涵蓋單元：`course-context/w2-prediction-problem.md`（§1–§8）。
+- 涵蓋單元：`agent/lecture-notes/w02-prediction-problem.md`（§1–§6）。
 - 不做：時間序列預測（講義明言不涵蓋）；不進入 w3 的迴歸樹／隨機森林細節（只在地圖張預告）；不含完整證明（只給證明直覺）。
 
 ## 驗收準則（做完逐項打勾）

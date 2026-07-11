@@ -6,6 +6,12 @@
 > **對象**：沒有程式背景的大學老師（本套件以經濟學門為例，但方法通用）。
 > **底層**：建立在開源的 **Spectra / OpenSpec** 之上，並對照 **GitHub Spec Kit**（官方標準）。
 
+## 快速開始（三步）
+
+1. **下載本套件**：`git clone <本套件 repo 網址>`（或 Download ZIP 解壓）。
+2. **準備一個原始教材資料夾**：課綱、講義、作業、考古題放進同一個資料夾即可（.tex/PDF/DOCX/MD 格式不拘）。
+3. **用 Claude Code 或 Codex 打開本套件，貼**：`用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` → 產出 `<課程代碼>-ta/`（已 git init），即為可發布的學生 repo；驗收用其中的 `ACCEPTANCE-CHECKLIST.md`（骨架 `agent/` 附）。
+
 ## 📚 文件地圖（先知道要翻哪本）
 
 | 你的情況 | 看這本 |
@@ -54,7 +60,7 @@
 |-------|------|------|
 | `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 把整個課程資料夾**分類蒸餾**（有檔才生成）：講義→`lecture-notes/`、課綱→`syllabus.md`、作業→`homework/`、考古題→`exams.md`、案例→`cases/` |
 | `teach-prereq` | `用「teach-prereq」這個 skill，課名：__，對象：__。` | 課前先備知識清單（課裡常提到、卻假設你以前就會的）＋學生自我檢測 |
-| `teach-agent` | `用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。` | 一整個 24h 助教（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表） |
+| `teach-agent` | `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` | 一整個 24h 助教資料夾 `<課程代碼>-ta/`（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表，已 git init 可發布） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（標題＋3 要點＋建議視覺） |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性／總結性） |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程 |
@@ -76,7 +82,7 @@
 
 改行為改 `AGENT.md` 就好，兩邊自動一致。教學風格與「老師校準」在 `agent/references/`（校準優先級最高）。
 
-> **接地不只講義**：課綱（根 `syllabus.md`）、作業（`homework/`）、考古題（根 `exams.md`）、案例（`cases/`，選用）都是助教的來源，依 `AGENT.md` 行為規則回應（課務據實答＋標「以公告為準」、作業/考試只給提示且**多輪拼不出完整解**、考古題帶複習）——**Claude 與 Codex 兩種轉接頭行為一致**。**最省事**：原始教材丟 `source-materials/`，`teach-agent` **檔案偵測式初始化**（有檔才生成）一次生出整個助教。
+> **接地不只講義**：課綱（根 `syllabus.md`）、作業（`homework/`）、考古題（根 `exams.md`）、案例（`cases/`，選用）都是助教的來源，依 `AGENT.md` 行為規則回應（課務據實答＋標「以公告為準」、作業/考試只給提示且**多輪拼不出完整解**、考古題帶複習）——**Claude 與 Codex 兩種轉接頭行為一致**。**最省事**：觸發句指定原始教材資料夾，`teach-agent` 會複製骨架、匯入教材、**檔案偵測式初始化**（有檔才生成）一次生出整個助教。
 
 ## 怎麼開始（四步）
 
@@ -84,8 +90,9 @@
 2. **放講義**：丟進 `course-context/`（或用 `teach-context` 從 .tex/PDF/Word 自動蒸餾）。
    > **講義放哪**：套件根 `course-context/`＝**工作區**（生教材用）；助教資料夾的 `lecture-notes/`＝**出貨快照**（自含、發布給學生）。更新講義 → 改工作區 → 同步進助教 → 重發布（見助教 `INSTRUCTOR-MANUAL.md` §14）。只做助教不生教材，可只用 `lecture-notes/`。
 3. **生教材**：`用「teach-slides」這個 skill，單元：__，對象：__。`（其他 skill 同型）。
-4. **做助教**：原始教材丟 `agent/source-materials/` → 用 `teach-agent`（檔案偵測式初始化），再用 `agent/ACCEPTANCE-CHECKLIST.md` 驗收（老師手冊見 `agent/INSTRUCTOR-MANUAL.md`）。
-5. **想先看成品長什麼樣**：開 `example-full/`（真實課程實測全套——助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表；迷你格式示範另見 `example/`。
+4. **做助教**：貼觸發句 `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`——它會複製骨架 `agent/` 成 `<課程代碼>-ta/`、把你指定資料夾的教材匯入其 `source-materials/`、檔案偵測式生成、最後 git init 成可發布 repo；再用產出資料夾內的 `ACCEPTANCE-CHECKLIST.md` 驗收（老師手冊見其 `INSTRUCTOR-MANUAL.md`）。
+
+> **想先看成品長什麼樣**：開 `example-full/`（真實課程實測全套——助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表；迷你格式示範另見 `example/`。
 
 ## 三個工具怎麼對應（不綁單一工具）
 
@@ -112,7 +119,7 @@
 
 > 產出檔案 ≠ 堪用。助教有一張完整可影印的驗收表 → **`agent/ACCEPTANCE-CHECKLIST.md`**（四層：誠信＞正確＞會教＞據本課，誠信類必 100% 過）。下面是精簡版。
 
-**驗收助教** — 四組探針：① 觀念題（答＋引用小節）② 作業題（**只給提示**）③ 超綱題（**不編造**）④ 誘導幻覺（不被牽走）。（完整版與紀錄表見 `example/agent/ACCEPTANCE-CHECKLIST.md`。）
+**驗收助教** — 四組探針：① 觀念題（答＋引用小節）② 作業題（**只給提示**）③ 超綱題（**不編造**）④ 誘導幻覺（不被牽走）。（空白表在 `agent/ACCEPTANCE-CHECKLIST.md`；填好的真實範例見 `example-full/` 內助教的同名檔。）
 
 **驗收學習單** — 親手做一遍：結構齊（3 題＋迷思＋給學生版＋老師審核欄）／每題對應真實迷思／**親自驗算答案**／強弱學生視角試鑑別度／學生版無洩漏／台灣用語無簡體。
 

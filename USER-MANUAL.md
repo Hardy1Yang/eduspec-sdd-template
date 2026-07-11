@@ -16,7 +16,6 @@
 | `course-context/` | 放你的講義（AI 據此作答，降低幻覺） |
 | `templates/` | 迷你規格、驗收清單、rubric 空白範本 |
 | `agent/` | 空白助教骨架（老師熟悉的分類：根 `syllabus.md`/`exams.md`、`lecture-notes/`、`homework/`、`cases/`（選用）、`source-materials/`、`INSTRUCTOR-MANUAL.md`）＋`.claude/`＋`.codex/` 轉接頭 |
-| `example/` | 迷你格式示範（個經一單元） |
 | `scripts/` | `setup-check.sh` 依賴一鍵檢查 |
 | `openspec/` | Spectra／SDD 設定（互動教材走完整 SDD 時用） |
 | `GETTING-STARTED.md` / `USER-MANUAL.md` | 從零上手 / 完整手冊 |
@@ -38,7 +37,7 @@
 |-------|------|------|
 | `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾>。` | 從 .tex/PDF/Word 蒸餾出 `course-context` 精華（降低整理負擔） |
 | `teach-prereq` | `用「teach-prereq」這個 skill，課名：__，對象：__。` | 課前先備知識清單（外部/假設先備）＋學生課前自我檢測；寫回知識圖供助教診斷 |
-| `teach-agent` | `用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。` | 一整個 24h 助教（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表＋使用手冊） |
+| `teach-agent` | `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` | 一整個 24h 助教資料夾 `<課程代碼>-ta/`（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表，已 git init 可發布） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：__，對象：__。` | 投影片（每張標題＋3 要點＋建議視覺）＋使用手冊 |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性 3 題附迷思／總結性先藍圖）＋使用手冊 |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程＋使用手冊 |
@@ -51,8 +50,8 @@
 
 ## 四、助教（agent）
 
-- **建立**：用 `teach-agent`（檔案偵測式初始化：原始教材丟 `source-materials/`、有檔才生成；手動流程見助教的 `INSTRUCTOR-MANUAL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高、`course-context/index.md` 主題地圖）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
-- **接地不只講義**：課綱（根 `syllabus.md`）、作業（`homework/`）、考古題（根 `exams.md`）、案例（`cases/`，選用）都是助教的來源，依 `AGENT.md` 行為規則回應——課務據實答（變動性標「以公告為準」）、作業/考試**只給提示**（多輪也拼不出完整解）、考古題帶複習。**從零最省事**：原始教材丟 `source-materials/`，`teach-agent` 檔案偵測式初始化一次生成全部。
+- **建立**：貼 `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`——它會複製骨架 `agent/` 成 `<課程代碼>-ta/`、把你指定資料夾的教材複製進其 `source-materials/`、檔案偵測式初始化（有檔才生成）、最後 `git init`＋初始 commit 成可發布的獨立 repo（手動流程見助教的 `INSTRUCTOR-MANUAL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
+- **接地不只講義**：課綱（根 `syllabus.md`）、作業（`homework/`）、考古題（根 `exams.md`）、案例（`cases/`，選用）都是助教的來源，依 `AGENT.md` 行為規則回應——課務據實答（變動性標「以公告為準」）、作業/考試**只給提示**（多輪也拼不出完整解）、考古題帶複習。**從零最省事**：觸發句指定原始教材資料夾，`teach-agent` 一次生成全部。
 - **驗收**：用 `agent/ACCEPTANCE-CHECKLIST.md`（四層框架、可影印）。
 - **用指令呼叫**：把助教資料夾當專案打開 →
   - Claude Code · 斜線指令：`/ta 你的問題`
@@ -64,13 +63,13 @@
 
 ## 五、互動教材與「看全班結果」
 
-- **網路版部署**：部署到 GitHub Pages（見 `PUBLISH-GITHUB-IO.md`），給學生連結。
+- **網路版部署**：部署到 GitHub Pages（見套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)），給學生連結。
 - **紀錄預設離線**：互動紀錄存學生**自己瀏覽器**（localStorage）、可**匯出 CSV**——不連網、不含個資，一般課堂這樣就夠。
 - **共享紀錄（選用・進階）**：學生貼自己的 GitHub token（存本機），互動 append 到班級 repo，老師端**彙整看全班結果**（適合賽局遊戲）。用**代號、不放個資**；沒 token 時自動退回離線、不報錯。
 
 ## 六、發布到 github.io
 
-見 `PUBLISH-GITHUB-IO.md`：5 步發布互動工具＋完整「做→發布→學生用→匯出/彙整紀錄」流程。
+見套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)：5 步發布互動工具＋完整「做→發布→學生用→匯出/彙整紀錄」流程。
 
 ## 七、驗收（人工，務必做）
 

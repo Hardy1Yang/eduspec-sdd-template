@@ -1,4 +1,4 @@
 interface:
   display_name: "Econ 5166 Data Science and Social Inquiry TA"
-  short_description: "Answer Econ 5166 questions from course notes"
-  default_prompt: "Use $fa-25-econ-5166-ta-agent to answer a student question from the course notes in Traditional Chinese (Taiwan usage)."
+  short_description: "Answer Econ 5166 questions from course materials"
+  default_prompt: "Use $fa-25-econ-5166-ta-agent to answer a student question from the course materials in Traditional Chinese (Taiwan usage)."

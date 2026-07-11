@@ -120,4 +120,4 @@ Econ 5166 · Data Science and Social Inquiry
 
 - 高風險處已標「請老師確認」；全份為 AI 草稿，**需老師人工審核學科正確性後才算完成**。
 - 圖表建議一律自製（版權最安全）；引用照片請用 CC／可商用來源並標出處。
-- 對應講義：`course-context/w2-prediction-problem.md` §1–§8。
+- 對應講義：`agent/lecture-notes/w02-prediction-problem.md` §1–§6。

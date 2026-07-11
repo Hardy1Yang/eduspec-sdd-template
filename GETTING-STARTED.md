@@ -96,7 +96,7 @@ git clone <套件的 repo 網址>
 2. 把你的講義放進去，**一個單元一個檔**。最簡單的做法：在 `course-context/` 上按右鍵 →「New File」→ 命名 `w1-你的主題.md` → 把講義重點貼進去、存檔（<kbd>Cmd</kbd>/<kbd>Ctrl</kbd>+<kbd>S</kbd>）。
 3. 英文講義沒關係，貼原文即可；**數學符號保留原樣**。
    > 細節見 `course-context/README.md`。**沒放講義，AI 會請你先放，不會亂編。**
-   > **懶得手動整理？** 打 `用「teach-context」這個 skill，講義在：<你的課程資料夾>。`，它會**把整個資料夾分類蒸餾**：講義→`lecture-notes/`、課綱→根 `syllabus.md`、作業→`homework/`（每份一檔）、考古題→根 `exams.md`、案例→`cases/`（**有原始教材才生成**）。助教依 `AGENT.md` 的行為規則使用它們（課務據實答、作業/考試只給提示）。這樣就能**指向一個資料夾、從零生出助教**。
+   > **懶得手動整理？** 打 `用「teach-context」這個 skill，講義在：<你的課程資料夾>。`，它會**把整個資料夾分類蒸餾**：講義→`lecture-notes/`、課綱→根 `syllabus.md`、作業→`homework/`（每份一檔）、考古題→根 `exams.md`、案例→`cases/`（**有原始教材才生成**）。助教依 `AGENT.md` 的行為規則使用它們（課務據實答、作業/考試只給提示）。**要從零做整個助教**直接跳 [Part 3](#part-3)——`teach-agent` 會自動呼叫這個蒸餾流程。
    > **想列「學生課前該會什麼」？** 打 `用「teach-prereq」這個 skill，課名：__，對象：__。`，它會盤點課裡假設你已會、卻不教的**外部先備知識**，產出老師清單＋學生自我檢測。
 
 ---
@@ -104,14 +104,14 @@ git clone <套件的 repo 網址>
 <a id="part-3"></a>
 ## Part 3：做你的 24 小時助教
 
-1. 在 Cursor 按 <kbd>Ctrl</kbd>+<kbd>`</kbd> 叫出終端機，打 `claude` 啟動（第一次見 Part 0-③）。
-2. 在對話裡**貼上這句**（把粗體換成你的課）：
+1. **準備一個原始教材資料夾**：把課綱、講義、作業、考古題放進電腦上同一個資料夾（.tex/PDF/DOCX/MD 格式不拘，不用先整理）。
+2. 在 Cursor 按 <kbd>Ctrl</kbd>+<kbd>`</kbd> 叫出終端機，打 `claude` 啟動（第一次見 Part 0-③），在對話裡**貼上這句**（填上你的課與教材資料夾路徑）：
    ```
-   用「teach-agent」這個 skill，課名：個體經濟學（初級），授課教師：你的名字，對象：大一新生。
+   用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。
    ```
-3. **你會看到** AI 一步步幫你：讀你的講義 → 填好助教的大腦（`AGENT.md`）、知識圖、`/ta` 指令檔、README 和一份使用手冊。
-4. 完成後，它會告訴你助教資料夾在哪。**用 Cursor 把那個資料夾另外開起來**（File → Open Folder…選它）。
-5. **驗收**：用助教資料夾裡的 `ACCEPTANCE-CHECKLIST.md` 逐項打勾（尤其「作業題只給提示、不編造」必過）。
+3. **你會看到** AI 一步步幫你：複製空白骨架 `agent/` 成 `<課程代碼>-ta/` → 把你指定資料夾的教材複製進其 `source-materials/` → **有檔才生成**課綱、講義筆記、作業、知識圖、`/ta` 指令檔、學生版 README → 產出 `INITIALIZATION-REPORT.md`（集中列出需要你檢查的地方）→ 最後 `git init`＋初始 commit，讓它成為可直接發布的獨立 repo。
+4. 完成後，它會告訴你助教資料夾在哪。**用 Cursor 把 `<課程代碼>-ta/` 另外開起來**（File → Open Folder…選它）。
+5. **驗收**：用助教資料夾裡的 `ACCEPTANCE-CHECKLIST.md` 逐項打勾（尤其「作業題只給提示、不編造」必過）；發布給學生見其 `INSTRUCTOR-MANUAL.md` 發布節。
 
 ---
 
@@ -155,7 +155,7 @@ git clone <套件的 repo 網址>
 <a id="part-6"></a>
 ## Part 6：發布給學生
 
-照 `PUBLISH-GITHUB-IO.md`（有逐步步驟）：
+照套件根的 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（有逐步步驟）：
 - **互動教材**：放到 **GitHub Pages**，得到一個網址，把網址給學生就能玩（還能記錄、看全班結果）。
 - **助教**：放到 GitHub，讓學生 `git clone` 後用自己的 Claude Code 開來問。
 

@@ -1,35 +1,28 @@
-# w2 課程脈絡：Prediction Problems（預測問題）
+---
+id: w02-prediction-problem
+title: 第二週：預測問題（Prediction Problems）
+week: 2
+source_files:
+  - w2-prediction-problem.tex
+last_updated: 2026-07-11
+---
 
-> 來源 = Econ 5166「Data Science and Social Inquiry」w2 講義（授課教師：陳由常）。
-> 助教作答時應以本檔為依據，回答時註明引用的小節編號；若學生問題在本檔查無對應內容，應回覆「講義未提及」，不得自行編造。
+# 第二週：預測問題（Prediction Problems）
 
-## 1. 預測問題的設定
+## 1. 與前後週的關係
+
+- 本週直接使用第一週複習的期望值、條件期望、線性模型與 OLS：把 OLS 從「量化關係的工具」轉成「預測子」，並用風險函數評估它。
+- 與機器學習的連結（後續課程預告）——講義指出：機器學習方法的一大優勢，在於能平衡近似誤差與估計誤差的取捨。透過正則化（regularization）或自適應演算法，機器學習模型能直接從資料中搜尋好的模型設定，有效處理兩種誤差之間的張力。第三週的迴歸樹就是第一個例子。
+
+## 2. 核心問題
 
 - 給定 i.i.d. 樣本 $\mathcal{D}=\{(\bm{x}_i,y_i)\}_{i=1}^n$，目標是建構一個預測子（predictor）$g(\cdot): \mathcal{X} \mapsto \mathcal{Y}$，即把 $\bm{x}$ 映射到 $y$ 的函數。
 - 用途：觀察到新的共變數向量 $\bm{x}_{n+1}$（但沒有其結果變數）時，可以形成預測 $\hat{y}_{n+1} = g(\bm{x}_{n+1})$。
 - 講義註明：本課程不涵蓋時間序列預測（用過去觀察值預測未來），焦點是橫斷面（cross-sectional）預測，觀察值假設為自同一母體獨立且同分布抽出。
 
-## 2. 預測的商業應用
+## 3. 正式定義與假設
 
-講義列出的例子：
-
-- 需求預測（demand prediction）：供應鏈管理。
-- 顧客流失（customer churn）：預測哪些顧客近期可能離開。
-- 顧客終身價值（customer lifetime value）：估計新顧客一生會在公司花多少錢。
-- 風險評分（risk scoring）：預測貸款或信用卡違約風險。
-- 推薦系統（recommender systems）：根據使用者歷史，預測其是否會看某部影片或購買某商品。
-
-大型語言模型（large language model, LLM）也是一種預測演算法：它根據前文預測下一個最可能的字。講義稱：可以說預測是讓資料科學在今日具有影響力的最核心任務。
-
-## 3. 以 OLS 迴歸作為預測子
-
-- 預測的核心是找出 $\bm{x}$ 與 $y$ 之間的規律：看到 $\bm{x}$ 時，我們通常會預期 $y$ 是多少。
-- 若相信 $y$ 與 $\bm{x}$ 呈線性關係 $y = \bm{x}^T\bm{\beta} + \varepsilon$，可用資料 $\mathcal{D}$ 估計
-  $$\hat{\bm{\beta}} = \arg\min_{\bm{\beta}\in\mathbb{R}^p} \frac{1}{n}\sum_{i=1}^n \big(y_i - \bm{x}_i^T\bm{\beta}\big)^2,$$
-  得到預測子 $\hat{g}(\bm{x})=\bm{x}^T\hat{\bm{\beta}}$。
-- 講義附散布圖示意：以配適直線 $\hat g(\mathbf{x})=\mathbf{x}^T\hat{\boldsymbol{\beta}}$，將新點 $x_{n+1}$ 對應到預測值 $\hat{y}_{n+1}$。
-
-## 4. 評估預測子：損失函數與風險函數
+評估預測子：損失函數與風險函數。
 
 - **損失函數（loss function）** $L(y, \hat{y})$：量化在真值為 $y$ 時預測 $\hat{y}$ 的成本。連續結果變數最常用平方損失（squared loss）：$L(y, \hat{y}) = (y - \hat{y})^2$。
 - 損失取決於 $(\bm{x},y)$ 的隨機實現值，因此本身是隨機的。為得到非隨機的績效衡量，定義**風險函數（risk function）**：
@@ -38,7 +31,9 @@
 - 在平方損失下，風險即為**均方誤差（mean squared error, MSE）**：$R(g) = \mathbf{E}\big[(y-g(\bm{x}))^2\big]$。
 - 講義 Remark：MSE 雖常用但不一定合適——MSE 是對稱的，高估與低估被視為一樣糟。但現實中成本常不對稱。講義例子：預測下一小時 YouBike 的可借車輛數，若 $(y,\hat{y})=(0,2)$，對使用者的困擾比 $(y,\hat{y})=(9,7)$ 嚴重得多，儘管兩者平方誤差相同。
 
-## 5. 條件期望值是最佳預測子（關鍵定理）
+## 4. 推導與機制
+
+### 4.1 條件期望值是最佳預測子（關鍵定理）
 
 **Proposition 1（Conditional mean is the best predictor）**：在所有可能的函數 $g: \mathcal{X} \rightarrow \mathcal{Y}$ 中，最小化均方誤差
 $$\min_{g: \mathcal{X} \rightarrow \mathcal{Y}} \E{(y-g(\bm{x}))^2}$$
@@ -59,7 +54,24 @@ $$\mathbf{E}[y] = \mathbf{E}\big[\mathbf{E}[y|\bm{x}]\big].$$
 - Proposition 1 只適用於平方損失。在其他損失函數下（例如 $L_1$ 損失 $\E{|y-g(\bm{x})|}$），條件平均數**不是**最佳預測子。
 - 條件平均雖是最佳預測子，我們仍需從資料中把它估計出來。
 
-## 6. 線性假設是否成立？（工資例子）
+### 4.2 模型複雜度的代價：預測誤差三分解
+
+- 迴歸問題的真正挑戰是如何設定（specify）條件平均函數。$\bm{x}$ 是一維或二維時可看散布圖；高維時目視檢查不可行。不斷把模型加複雜有代價：更複雜的模型更難估計，估計誤差可能抵銷預測準確度的潛在增益。
+- 設模型 $y = g(\bm{x}, \bm{\beta}_0) + \varepsilon$（$\bm{\beta}_0$ 為真實參數），估計量 $\hat{\bm{\beta}} = \arg\min_{\bm{\beta}\in\mathbb{R}^p} \frac{1}{n}\sum_{i=1}^n [y_i - g(\bm{x}_i, \bm{\beta})]^2$。對新觀察值 $\bm{x}_{n+1}$，預測誤差可分解為：
+  $$y_{n+1} - \hat{y}_{n+1} = \underbrace{\big[y_{n+1} - E[y_{n+1}|\bm{x}_{n+1}]\big]}_{\text{irreducible error（不可消除誤差）：最佳預測子的誤差}} + \underbrace{\big[E[y_{n+1}|\bm{x}_{n+1}] - g(\bm{x}_{n+1}, \bm{\beta}_0)\big]}_{\text{approximation error（近似誤差）：模型設定錯誤}} + \underbrace{\big[g(\bm{x}_{n+1}, \bm{\beta}_0) - g(\bm{x}_{n+1}, \hat{\bm{\beta}})\big]}_{\text{estimation error（估計誤差）：有限樣本不確定性}}$$
+- 直覺：第一項不可消除（irreducible），是最佳預測子本身的誤差；第二、三項存在取捨（trade-off）——降低近似誤差需要提高模型複雜度，但通常會使估計誤差變大。
+
+## 5. 分析方法、求解步驟與實證策略
+
+### 5.1 以 OLS 迴歸作為預測子
+
+- 預測的核心是找出 $\bm{x}$ 與 $y$ 之間的規律：看到 $\bm{x}$ 時，我們通常會預期 $y$ 是多少。
+- 若相信 $y$ 與 $\bm{x}$ 呈線性關係 $y = \bm{x}^T\bm{\beta} + \varepsilon$，可用資料 $\mathcal{D}$ 估計
+  $$\hat{\bm{\beta}} = \arg\min_{\bm{\beta}\in\mathbb{R}^p} \frac{1}{n}\sum_{i=1}^n \big(y_i - \bm{x}_i^T\bm{\beta}\big)^2,$$
+  得到預測子 $\hat{g}(\bm{x})=\bm{x}^T\hat{\bm{\beta}}$。
+- 講義附散布圖示意：以配適直線 $\hat g(\mathbf{x})=\mathbf{x}^T\hat{\boldsymbol{\beta}}$，將新點 $x_{n+1}$ 對應到預測值 $\hat{y}_{n+1}$。
+
+### 5.2 線性假設是否成立？（工資例子）
 
 - 由 Proposition 1，OLS 是好的預測子的條件為：真實條件平均函數是線性的，即存在 $\bm{\beta}\in\mathbb{R}^p$ 使 $E[y|\bm{x}] = \bm{x}^T\bm{\beta}$。是否成立取決於情境。
 - 講義例子：用工作經驗年數（$Exp_i$）與受教育年數（$Schooling_i$）預測工資（$Wage_i$）：
@@ -70,17 +82,14 @@ $$\mathbf{E}[y] = \mathbf{E}\big[\mathbf{E}[y|\bm{x}]\big].$$
   $$Wage_i = \beta_0 + \beta_1 \cdot Exp_i + \beta_2 \cdot Exp_i^2 + \beta_3 \cdot Schooling_i + \varepsilon_i,$$
   但也沒有特別理由相信真實條件平均恰好是 $Exp_i$ 的二次式。
 
-## 7. 模型複雜度的代價：預測誤差三分解
+## 6. 課程例子
 
-- 迴歸問題的真正挑戰是如何設定（specify）條件平均函數。$\bm{x}$ 是一維或二維時可看散布圖；高維時目視檢查不可行。不斷把模型加複雜有代價：更複雜的模型更難估計，估計誤差可能抵銷預測準確度的潛在增益。
-- 設模型 $y = g(\bm{x}, \bm{\beta}_0) + \varepsilon$（$\bm{\beta}_0$ 為真實參數），估計量 $\hat{\bm{\beta}} = \arg\min_{\bm{\beta}\in\mathbb{R}^p} \frac{1}{n}\sum_{i=1}^n [y_i - g(\bm{x}_i, \bm{\beta})]^2$。對新觀察值 $\bm{x}_{n+1}$，預測誤差可分解為：
-  $$y_{n+1} - \hat{y}_{n+1} = \underbrace{\big[y_{n+1} - E[y_{n+1}|\bm{x}_{n+1}]\big]}_{\text{irreducible error（不可消除誤差）：最佳預測子的誤差}} + \underbrace{\big[E[y_{n+1}|\bm{x}_{n+1}] - g(\bm{x}_{n+1}, \bm{\beta}_0)\big]}_{\text{approximation error（近似誤差）：模型設定錯誤}} + \underbrace{\big[g(\bm{x}_{n+1}, \bm{\beta}_0) - g(\bm{x}_{n+1}, \hat{\bm{\beta}})\big]}_{\text{estimation error（估計誤差）：有限樣本不確定性}}$$
-- 直覺：第一項不可消除（irreducible），是最佳預測子本身的誤差；第二、三項存在取捨（trade-off）——降低近似誤差需要提高模型複雜度，但通常會使估計誤差變大。
+預測的商業應用。講義列出的例子：
 
-## 8. 與機器學習的連結（後續課程預告）
+- 需求預測（demand prediction）：供應鏈管理。
+- 顧客流失（customer churn）：預測哪些顧客近期可能離開。
+- 顧客終身價值（customer lifetime value）：估計新顧客一生會在公司花多少錢。
+- 風險評分（risk scoring）：預測貸款或信用卡違約風險。
+- 推薦系統（recommender systems）：根據使用者歷史，預測其是否會看某部影片或購買某商品。
 
-講義指出：機器學習方法的一大優勢，在於能平衡近似誤差與估計誤差的取捨。透過正則化（regularization）或自適應演算法，機器學習模型能直接從資料中搜尋好的模型設定，有效處理兩種誤差之間的張力。
-
----
-
-> 提醒：助教應依本檔內容作答並在回答中註明引用的小節；本檔查無的內容一律回覆「講義未提及」，不得編造經濟事實或數據。
+大型語言模型（large language model, LLM）也是一種預測演算法：它根據前文預測下一個最可能的字。講義稱：可以說預測是讓資料科學在今日具有影響力的最核心任務。

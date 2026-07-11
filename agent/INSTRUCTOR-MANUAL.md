@@ -22,20 +22,21 @@
 ├── references/          ← 教學風格與你的親自校準
 ├── ACCEPTANCE-CHECKLIST.md ← 發布前驗收表
 ├── INITIALIZATION-REPORT.md ← 初始化的集中檢查回報
+├── .claude/ ＋ .codex/  ← 兩種 coding agent 的薄轉接頭（皆委派 AGENT.md）
 └── source-materials/    ← 你的原始教材放這裡（初始化的輸入）
 ```
 
-## 3. 準備 source-materials
+## 3. 準備原始教材
 
-把原始教材照類型丟進 `source-materials/`：`syllabus.*`（PDF/DOCX/MD 皆可）、`lecture-notes/`、`slides/`（選用，作為講義的輔助來源）、`homework/`、`cases/`（選用）。**沒有的類型不用建資料夾。**
+把課綱、講義、投影片、作業、考古題、案例放進電腦上**同一個原始教材資料夾**（格式不拘 .tex/PDF/DOCX/MD，不用先整理）。初始化技能會把它們複製進本資料夾的 `source-materials/` 對應子夾（`syllabus`／`lecture-notes`／`slides`／`homework`／`cases`；沒有的類型不會建資料夾）。**手動路線**：你也可以自己照類型丟進 `source-materials/` 再跑初始化——但一句話觸發（第 4 節）是正典流程。
 
 ## 4. 執行初始化技能
 
-在套件根對 coding agent 說：`用「teach-agent」這個 skill，課名：__，授課教師：__，對象：__。`（原始教材已在 `source-materials/`）。它會**掃描實際存在的檔案、有什麼生成什麼**。
+在**套件根**對 coding agent 說：`用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`它會複製空白骨架成 `<課程代碼>-ta/`、把你指定資料夾的教材匯入其 `source-materials/`，再**掃描實際存在的檔案、有什麼生成什麼**。
 
 ## 5. 初始化會生成什麼
 
-依序：`syllabus.md` → `lecture-notes/*.md`（每單元一檔；有對應 slides 會一併參考）→ `homework/hwXX.md`（每份獨立）→ `cases/caseXX.md`（僅當有 case 教材）→ `prerequisites.md`（含自我檢測題）→ `knowledge-graph.md` → 學生版 `README.md` → 填實 `AGENT.md` → `INITIALIZATION-REPORT.md` → 驗收測試。
+依序：`syllabus.md` → `lecture-notes/*.md`（每單元一檔；有對應 slides 會一併參考）→ `homework/hwXX.md`（每份獨立）→ `cases/caseXX.md`（僅當有 case 教材）→ `prerequisites.md`（含自我檢測題）→ `knowledge-graph.md` → 學生版 `README.md` → 填實 `AGENT.md` → `INITIALIZATION-REPORT.md` → 驗收測試 → `git init`＋初始 commit（產出即為可發布的獨立 repo，發布見第 12 節）。
 
 ## 6. 審查 INITIALIZATION-REPORT.md
 

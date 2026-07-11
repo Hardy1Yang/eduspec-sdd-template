@@ -1,17 +1,33 @@
-教學脈絡摘要（AI 蒸餾、老師審），不含作業/考試解答
+---
+id: case01
+title: 預測個案：販賣機部署決策（Decision on Vending Machine Deployment）
+status: closed             # fa-25 示範版
+case_type: 預測／商業決策
+graded: true               # 各組被指派延伸題並課堂發表（見 syllabus）
+individual_or_group: 分組（延伸題發表）；分析練習個人可做
+assigned_date: 以最新公告為準
+due_date: 以最新公告為準
+related_weeks: [w02, w03]
+related_topics: [敘述性分析, 線性迴歸, 交叉驗證, 隨機森林, 特徵重要性, 預測導向的商業決策]
+source_files: Prediction Case Discription.pdf
+assets: []
+last_updated: 2026-07-11
+---
 
-# 個案摘要 — 預測個案：販賣機部署決策（Case Study: Decision on Vending Machine Deployment）
+# Case 1 — 預測個案：販賣機部署決策
 
-## 情境背景
+## 1. 情境與背景
+
 - 你是台北市各級學校的販賣機營運商，機器只賣一種飲料
 - 公司要擴張，已找出 1,000 個候選新據點；每個候選點含建物類型、室內/室外、離最近便利商店的距離、以及未來一年的天氣與行事曆變數
 
-## 資料描述
+## 2. 可用資料與證據
+
 - 歷史資料：3,000 台販賣機過去 365 天的每日銷售紀錄
 - 預測目標：每台機器的每日總銷量（只有一種飲料）
 - 變數包含：氣溫（12–35°C）、濕度、是否週末、附近是否有社團活動日、建物類型（dorm / classroom / gym / office）、是否室內、離最近便利商店距離（0–500 公尺）
 
-## 學生要做什麼（四大題 + 前置作業）
+## 3. 任務與問題（四大題 + 前置作業）
 
 ### 前置：資料清理（Before You Start）
 - 資料可能有雜訊或不一致（重複、遺漏值、不合理的購買量）——先檢查並清理再分析
@@ -38,10 +54,13 @@
 - 情境：7/1–8/31 期間 3,000 台機器營運，每日缺貨率須低於 10%；每台容量 100 單位，每位補貨人員每日最多補 10 台；以模型預測的日需求決定每日早上補貨
 - 模擬並畫出「補貨人力 vs. 平均每日缺貨率」的缺貨機率前緣曲線（stockout probability frontier），求滿足缺貨率低於 10% 所需的最少補貨人力
 
-## 交付（Deliverables）
+## 4. 應繳交內容（Deliverables）
+
 最終分析須包含：
 - 部署地點的建議（該在哪些候選點裝機）
 - 每日期望營收、成本與利潤的推估
 
-## 課程脈絡
+## 5. 相關課程內容
+
 - 依 syllabus：每個 case 附三組引導問題，模擬資料專家拆解問題的方式；課程會提供 RMarkdown 完整參考解答；各組會被指派 case 的延伸題並於課堂發表（發表安排以最新公告為準）
+- 對應單元：`lecture-notes/w02-prediction-problem.md`（預測問題、OLS、風險）與 `lecture-notes/w03-regression-trees.md`（樹、交叉驗證）

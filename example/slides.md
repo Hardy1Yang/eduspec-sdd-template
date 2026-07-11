@@ -6,7 +6,7 @@ paginate: true
 
 <!--
 示範：由 teach-slides 對「供需均衡」單元生成的投影片（每張＝標題＋3 要點＋建議視覺）。
-素材源自 example/agent/course-context/w1-supply-demand.md，經授課教師審核。
+素材源自 example/agent/lecture-notes/w01-supply-demand.md，經授課教師審核。
 -->
 
 # 供給、需求與市場均衡

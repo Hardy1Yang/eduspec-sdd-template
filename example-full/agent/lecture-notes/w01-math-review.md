@@ -1,9 +1,15 @@
-> 來源 = Econ 5166「Data Science and Social Inquiry」w1 講義（授課教師：陳由常）
-> 助教應據此檔作答，回答時註明引用小節（如「見第 3 節」）；若問題內容在本檔查無，請回覆「講義未提及」，不得編造。
+---
+id: w01-math-review
+title: 第一週：數學複習（Math Review）
+week: 1
+source_files:
+  - w1-math-review.tex
+last_updated: 2026-07-11
+---
 
-# W1 Math Review（數學複習）重點整理
+# 第一週：數學複習（Math Review）
 
-## 1. 課程的四大基礎
+## 1. 學習目標
 
 資料科學、計量經濟學與統計學都建立在四個基礎上：
 
@@ -14,7 +20,12 @@
 
 本講義是數學參考資料（refresher 兼 diagnostic tool），學生只需對「其他講義或作業明確提到的內容」負責，不必精通此份講義的全部。
 
-## 2. 資料與矩陣、符號慣例
+## 2. 與前後週的關係
+
+- 本週複習的期望值、條件期望、線性模型與 OLS，是第二週「預測問題」的直接先備；矩陣符號與維度檢查的習慣貫穿整門課。
+- 講義中預告的 LASSO、決策樹（decision trees）、隨機森林（random forests）、交叉驗證等，都是課程後續各週的主題；SVD 是 PCA、降維、推薦系統的數學基礎；梯度下降與數值最佳化會在之後的機器學習方法中反覆出現。
+
+## 3. 重要名詞與符號
 
 - 結構化資料可想成 Excel 試算表：每一列（row）是一個觀察值（observation），每一行（column）是一個變數。observation（單一筆紀錄）與 sample（全部觀察值的集合）不同。
 - 資料在數學上就是 $n \times p$ 矩陣 $\bm{X}_{n \times p}$，元素 $x_{ij}$；$n$ = 樣本數、$p$ = 變數個數；$i$ 指觀察值、$j$ 指變數。每個觀察值可寫成 $p \times 1$ 行向量 $\bm{x}_i$，資料矩陣可寫成 $\bm{X} = (\bm{x}_1^T, \ldots, \bm{x}_n^T)^T$。
@@ -26,14 +37,15 @@
 - 學習訣竅：遇到矩陣或向量務必**檢查維度**（check dimensions），做矩陣乘法前先確認維度相容。
 - 矩陣可統一表示多種資料：影像（$x_{ij}$ = 像素 $(i,j)$ 的顏色）、文字（$x_{ij}$ = 文件 $i$ 中字詞 $j$ 的出現次數）、使用者—項目互動（$x_{ij}=1$ 表示使用者 $i$ 與項目 $j$ 互動過，例如看過某部電影）。
 
-## 3. 用矩陣做資料操作
+## 4. 正式定義與假設
+
+### 4.1 內積、範數與距離
 
 - 迴歸配適值是內積：$\hat{y}_i = \langle \bm{x}_i, \hat{\bm{\beta}} \rangle = \bm{x}_i^{\top}\hat{\bm{\beta}} = \sum_{j=1}^p x_{ij}\hat{\beta}_j$。
 - 向量長度（norm）：$\|\bm{x}_i\| = \sqrt{\langle \bm{x}_i, \bm{x}_i \rangle} = \sqrt{\sum_{j=1}^p x_{ij}^2}$。
 - 歐幾里得距離：$d(\bm{x}_i, \bm{x}_{i'}) = \|\bm{x}_i - \bm{x}_{i'}\| = \sqrt{\sum_{j=1}^p (x_{ij}-x_{i'j})^2}$。
-- 迴歸係數定義為最小化平方誤差和：$\hat{\bm{\beta}} = \arg\min_{\bm{\beta}} \|\bm{y} - \bm{X}\bm{\beta}\|^2$，有閉合解（closed-form solution）$\hat{\bm{\beta}} = (\bm{X}^\top \bm{X})^{-1}\bm{X}^\top \bm{y}$。閉合解就像有公式可以直接代入計算；若無公式，則需靠演算法逐步逼近。
 
-## 4. 線性變換與兩大定理
+### 4.2 線性變換與兩大定理
 
 - **線性變換定義**：$f: \mathbb{R}^n \to \mathbb{R}^m$ 是線性變換若 (i) $f(\mathbf{u}+\mathbf{v}) = f(\mathbf{u}) + f(\mathbf{v})$，(ii) $f(c\mathbf{u}) = cf(\mathbf{u})$，$\forall \mathbf{u}, \mathbf{v}, c$。
 - 關鍵事實：每個 $\mathbb{R}^n \to \mathbb{R}^m$ 的線性變換都可以用矩陣表示。講義以 $\mathbb{R}^2 \to \mathbb{R}^2$ 的例子說明：90 度順時針旋轉 $\begin{pmatrix}0&1\\-1&0\end{pmatrix}$、縮放 $\begin{pmatrix}c_1&0\\0&c_2\end{pmatrix}$、投影到 x 軸 $\begin{pmatrix}1&0\\0&0\end{pmatrix}$。
@@ -41,7 +53,7 @@
 - **奇異值分解（SVD）**：任意 $m \times n$ 矩陣 $\bm{A}$，存在正交矩陣 $\bm{U}_{m\times m}, \bm{V}_{n \times n}$ 與對角矩陣 $\bm{\Sigma}_{m \times n}$ 使 $\bm{A} = \bm{U\Sigma V}$。$\bm{\Sigma}$ 的對角元素稱為奇異值（singular values）。SVD 是 PCA、降維、推薦系統的數學基礎。
 - 課程要求：不必完整證明，但要能**精確陳述**這兩個定理。
 
-## 5. 機率：CDF 與常見分配
+### 4.3 機率：CDF 與常見分配
 
 - 機率是描述不確定性的數學語言。頻率學派把機率解讀為長期頻率；貝氏學派解讀為信念程度。機率論在統計/資料科學的三個角色：描述母體、刻畫抽樣過程、分析方法的隨機性質——即描述**資料生成過程（DGP, data-generating process）**。
 - **CDF 定義**：$F_X(x) = P(X \leq x)$。CDF 完全刻畫 $X$ 的分配；由 CDF 可導出各事件機率，例如 $P(X > a) = 1 - F_X(a)$、$P(a < X \leq b) = F_X(b) - F_X(a)$。
@@ -51,7 +63,7 @@
 - 分配會依實體機制自然出現：常態＝身高分配（由中央極限定理 CLT 可解釋）、指數＝燈泡壽命、Pareto＝家戶財富或城市規模。
 - 實務提醒：簡單的分配特徵分析就很有價值，例如分析顧客終身價值（CLTV, customer lifetime value）的分配可協助決定合理的獲客成本。
 
-## 6. 多變量分配與多變量常態
+### 4.4 多變量分配與多變量常態
 
 - **聯合 CDF**：$F_{\bm{x}}(x_1, \ldots, x_p) = P(X_1 \leq x_1, \ldots, X_p \leq x_p)$；同理有聯合 p.m.f. / p.d.f.。
 - **多變量常態** $\bm{x} \sim \mathcal{N}_p(\bm{\mu},\bm{\Sigma})$：$\bm{\mu}$ 為 $p\times 1$ 均值向量、$\bm{\Sigma}$ 為 $p \times p$ 正定共變異數矩陣（$\sigma_{ij} = Cov(X_i,X_j)$、$\sigma_{ii} = Var(X_i)$；$\bm{\Sigma}$ 必為對稱）。聯合 pdf：$f_{\bm{X}}(\bm{x}) = (2\pi)^{-\frac{p}{2}}\det(\bm{\Sigma})^{-\frac{1}{2}} \exp\left(-\frac{1}{2}(\bm{x}-\bm{\mu})^T \bm{\Sigma}^{-1}(\bm{x}-\bm{\mu})\right)$。
@@ -63,7 +75,7 @@
   3. 條件分配 $X_1\mid X_2,\dots,X_p$ 也是常態。
 - 反例：邊際皆常態不代表聯合常態。取 $W, Z$ 獨立標準常態，$X = W$、$Y = sgn(W)\cdot |Z|$，則 $X, Y$ 各自常態但 $(X,Y)$ 非聯合常態。
 
-## 7. 獨立性、共變異數與相關
+### 4.5 獨立性、共變異數與相關
 
 - 常見關係量：共變異數 $\text{Cov}(X,Y)$、條件期望 $E[Y \mid X]$（如身高多 1 公分平均多重多少）、條件變異數 $\text{Var}(Y \mid X)$（如今日股市波動高，明日是否也高）。
 - **獨立定義**：$P(X \in E, Y \in F) = P(X \in E)P(Y \in F)$ 對所有事件 $E, F$。等價直覺：$P(X \in E \mid Y \in F) = P(X \in E)$——知道 $Y$ 對 $X$ 毫無資訊。
@@ -73,7 +85,13 @@
 - 共變異數只捕捉**線性相依**：若 $Y = aX + b$（$a \neq 0$），則 $a>0$ 時 $\text{Corr}(X,Y)=1$、$a<0$ 時 $=-1$。但非線性相依可以有零相關——強相關的非線性關係仍可能 $Cov = 0$。
 - 「相關不代表因果」，但相關仍非常有用，五大用途：(1) 產生假說（建議用 pair plot：對角線放各變數的直方圖/核密度、非對角放兩兩散布圖）、(2) 風險對沖（兩支報酬 $R_1, R_2$ 負相關的股票，分散投資組合 $\tilde{R} = \tfrac{1}{2}R_1 + \tfrac{1}{2}R_2$ 可在相同期望報酬 $r$ 下降低變異數）、(3) 預測（預測本質上利用相關，如昨天下雨預測今天下雨；推薦系統的 item-to-item 與 user-to-user 推薦）、(4) 降維、(5) 發掘隱藏結構。
 
-## 8. 學統計的方法：以線性迴歸為例
+## 5. 推導與機制
+
+- 迴歸係數定義為最小化平方誤差和：$\hat{\bm{\beta}} = \arg\min_{\bm{\beta}} \|\bm{y} - \bm{X}\bm{\beta}\|^2$，有閉合解（closed-form solution）$\hat{\bm{\beta}} = (\bm{X}^\top \bm{X})^{-1}\bm{X}^\top \bm{y}$。閉合解就像有公式可以直接代入計算；若無公式，則需靠演算法逐步逼近。
+
+## 6. 分析方法、求解步驟與實證策略
+
+### 6.1 學統計的方法：以線性迴歸為例
 
 統計的核心：在無法取得整個母體時，用樣本推論母體（from the part to the whole）。學任何統計方法的**四步驟**：
 1. 理解目標與動機
@@ -92,7 +110,7 @@
 - **理論性質**：不偏性（unbiasedness，$\mathbb{E}[\hat{\bm{\beta}}] = \bm{\beta}$）與一致性（consistency，$\hat{\bm{\beta}} \xrightarrow{p} \bm{\beta}$ as $n \to \infty$）。這些性質取決於假設，討論時必須講清楚在什麼假設下成立。
 - 本課程較不強調嚴格證明（現代方法常需 VC dimension 等博士級工具），但會用偏誤、變異數、條件期望等概念建立直覺。每個主題都會配一個案例研究（case study），因為實務上還需要：把研究/商業問題轉成資料問題、對非技術受眾溝通結果、辨識資料限制（缺漏、測量誤差、樣本選擇）。
 
-## 9. 計算與梯度下降
+### 6.2 計算與梯度下降
 
 - 現代機器學習與古典統計的關鍵差異之一是**模型複雜度**：OLS 可能只有十幾個參數；核方法、隨機森林隱含上千自由度；深度學習可達數百萬甚至數十億參數。訓練這些模型是大規模（常為非凸）最佳化問題。OLS 有閉合解，多數現代方法必須用迭代數值演算法（如梯度下降）。
 - 例子：**LASSO**（least absolute shrinkage and selection operator）$\min_{\alpha, \bm{\beta}} \sum_{i=1}^n (y_i - \alpha - \bm{x}_i^\top \bm{\beta})^2 + \lambda \sum_{j=1}^p |\beta_j|$，懲罰項促使係數稀疏，一般無閉合解。
@@ -105,12 +123,13 @@
 - **「天真」梯度下降的潛在問題**：非嚴格凸（non-strict convex）時會卡在局部極小或平坦處（Stuck）；等高線狹長時會鋸齒前進（zig-zagging）。
 - 重要變體：加速梯度下降、L-BFGS（Limited-memory Broyden–Fletcher–Goldfarb–Shanno）、隨機梯度下降（SGD）。L-BFGS 與 SGD 廣用於 SVM、迴歸樹、神經網路。許多機器學習的近期突破源於最佳化方法的進步。
 
-## 10. 講義中的學習方法提醒
+## 7. 常見誤解
+
+- 初學者常以為越複雜的技術越強大；實務上檢視變數分配的簡單特徵就常有價值。
+
+## 8. 本週重點整理
+
+講義中的學習方法提醒：
 
 - 遇到新定義或定理，務必：(1) 用白話翻譯定義，(2) 動手做簡單具體的例子——具體例子能建立直覺。
 - 練習第一原理思考（first-principle thinking）：例如自己驗證旋轉、縮放、投影確實符合線性變換定義。
-- 初學者常以為越複雜的技術越強大；實務上檢視變數分配的簡單特徵就常有價值。
-
----
-
-> 提醒：助教作答一律以本檔為據，回答時註明引用小節；若查無相關內容，回覆「講義未提及」，不得自行編造。

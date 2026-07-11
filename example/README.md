@@ -9,11 +9,16 @@
 example/
 ├── agent/            ← 填好的迷你助教（把 ../agent 的佔位符都填成真值）
 │   ├── AGENT.md          大腦（已填課名、口吻、規則）
+│   ├── syllabus.md       課務（示範）
+│   ├── lecture-notes/w01-supply-demand.md   一個示範單元（14 節統一結構）
 │   ├── knowledge-graph.md
-│   ├── course-context/w1-supply-demand.md   一個示範單元
+│   ├── INSTRUCTOR-MANUAL.md ＋ INITIALIZATION-REPORT.md ＋ ACCEPTANCE-CHECKLIST.md（老師端）
+│   ├── source-materials/ 本例原始教材為假想（見其 README）
 │   └── .claude/          /ta 指令與子代理（已填）
 └── slides.md         ← 一份生成的投影片（供需均衡）
 ```
+
+本例沒有 `homework/`、`cases/`、`exams.md`——**有原始教材才生成**，沒有就不虛構。
 
 ## 怎麼試
 - 用 Cursor 打開 `example/agent/` 資料夾（當專案），打 `/ta 什麼是市場均衡？`，看它據講義回答、作業題只給提示。
