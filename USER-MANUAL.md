@@ -67,7 +67,7 @@
 
 - **產出＝可直接推的資料夾**：sim 生成為**套件同層的 `<單元>-sim/`**（`index.html`＋手冊＋sdd-archive＋README，已 git init，不進 `output/`——與 teach-agent 的獨立資料夾對稱）。本機開 `index.html` 預覽；發布就建 GitHub repo → push → 開 Pages，照套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附），給學生連結。
 - **紀錄預設離線**：互動紀錄存學生**自己瀏覽器**（localStorage）、可**匯出 CSV**——不連網、不含個資，一般課堂這樣就夠。
-- **共享紀錄（選用・進階）**：學生貼自己的 GitHub token（存本機，**最小權限：只授權那一個班級 repo**），互動 append 到班級 repo，老師端**彙整看全班結果**（適合賽局遊戲）。用**代號、不放個資**；沒 token 時自動退回離線、不報錯。共享回來的資料視為不可信輸入、已內建淨化（見 PUBLISH-GITHUB-IO 安全段）。
+- **共享紀錄（選用・進階）**：紀錄放**另一個與 Pages 分開的班級紀錄 repo**（分開的理由：token 無法只鎖 `logs/`，同 repo 會讓寫入 token 能改發布頁）。老師產**一把 fine-grained、只授權該紀錄 repo 的**共享 token（fine-grained token 無法讓學生各自產寫你 repo 的 token，故老師產一把、活動時公布給全班），學生貼上後互動 append 到 `logs/<單元>.csv`，老師端**彙整看全班結果**。用**代號、不放個資**；沒 token 時自動退回離線。共享回來的資料視為不可信輸入、已內建淨化。**端到端六步（建 repo→發 token→設定→學生貼→寫入→彙整）見 PUBLISH-GITHUB-IO Part D**。
 
 ## 六、發布到 github.io
 

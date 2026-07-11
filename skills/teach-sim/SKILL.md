@@ -54,7 +54,8 @@ metadata:
 `/spectra-apply` 依任務做出互動教材，**直接寫進套件同層的 `<單元>-sim/` 資料夾、檔名 `index.html`**（不進 `output/`）。**預設網路版**：
 
 - 單一 HTML（HTML＋CSS＋JS 內嵌），**預期部署到 GitHub Pages**（見 `../../PUBLISH-GITHUB-IO.md`，發布版附）。
-- **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到班級 repo 的 `logs/<單元>.csv`（token 存學生本機），老師端可彙整**看全班結果**。
+- **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到**班級紀錄 repo**（**與發布網頁的 Pages repo 分開的另一個 repo**）的 `logs/<單元>.csv`（token 存學生本機），老師端可彙整**看全班結果**。
+  > **紀錄 repo 必須與 Pages repo 分開**：fine-grained token 只能鎖到整個 repo、**不能只鎖 `logs/`**，若同一個 repo，學生的共享寫入 token 就能改到發布的 `index.html`。分開後 token 碰不到發布程式碼。端到端建 repo／發 token／設定／彙整流程見 `../../PUBLISH-GITHUB-IO.md`（發布版附）Part D。
 - **共享 CSV 格式**（讓同一支 sim 不同人生成也能一致彙整）：**單一檔 `logs/<單元>.csv`、append 不覆蓋、有表頭列、每列一筆**；**固定前兩欄 `time,nickname`**，其後依該互動自訂欄位（賽局：`round,guess`；拉桿型：如 `action,slope,mse`——對映到該互動實際提交的值即可）；暱稱欄照下方安全鐵則淨化＋防公式注入。
 - **「看全班結果」的讀回**：共享模式下**再 GET 一次** `logs/<單元>.csv` 解析彙整；並內建一個**離線入口**（貼上／載入一份班級 CSV 來彙整），讓沒開共享、或要做安全測試時也能看結果——安全鐵則的 XSS 探針就靠這個離線入口在本機驗。
 - **無 token 時自動退回離線**：仍記 localStorage、可匯出 CSV，不報錯。
