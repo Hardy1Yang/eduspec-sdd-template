@@ -84,7 +84,7 @@ metadata:
 - **發布**：建 GitHub repo → push → 開 Pages（見 [`../../PUBLISH-GITHUB-IO.md`](../../PUBLISH-GITHUB-IO.md)（發布版附）；含共享模式的最小權限 token）。共享模式的班級紀錄 repo 由老師**一次性手動建、整學期重用**（靜態網頁不自動建 repo——那需要過大權限）。
 
 ## 7. 產出 `使用手冊-sim.md`（老師端＋學生端）
-> 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
+> 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄）——所有教材的手冊長一樣。
 
 
 在 **`<單元>-sim/` 資料夾內**另產一份 **`使用手冊-sim.md`**（跟著資料夾走、一起發布）：

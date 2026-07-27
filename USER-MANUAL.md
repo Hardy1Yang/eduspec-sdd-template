@@ -12,7 +12,7 @@
 | 目錄／檔 | 是什麼 |
 |----------|--------|
 | `constitution.md` | 教材開發憲法（所有 skill 共用的底線規則） |
-| `skills/` | 8 個 skill（見第三節） |
+| `skills/` | 9 個 skill（見第三節） |
 | `course-context/` | 放你的講義（AI 據此作答，降低幻覺） |
 | `templates/` | 迷你規格、驗收清單、rubric 空白範本 |
 | `agent/` | 空白助教骨架（老師熟悉的分類：`AGENT.md`、根 `syllabus.md`/`exams.md`、`lecture-notes/`、`homework/`、`cases/`（選用）、`source-materials/`、`INSTRUCTOR-MANUAL.md`）＋`.claude/`＋`.codex/` 轉接頭；完整樹見其 `INSTRUCTOR-MANUAL.md` §2 |
@@ -33,7 +33,7 @@
 | 投影片 / 學習單 / 小考 | 迷你規格（目的＋驗收清單）→ 生成 → 自查 |
 | 互動教材（程式） | 完整 SDD：`/spectra-propose` → 審 → `/spectra-apply` → 開瀏覽器驗 → `/spectra-archive` |
 
-## 三、八個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊-<類型>.md`（如 `使用手冊-slides.md`），`teach-context` 為蒸餾器、不另產手冊）
+## 三、九個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊-<類型>.md`（如 `使用手冊-slides.md`），`teach-context` 為蒸餾器、不另產手冊）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
@@ -45,6 +45,7 @@
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程＋使用手冊 |
 | `teach-sim` | `用「teach-sim」這個 skill，我想做一個 ____ 的互動教材給 ____。` | 互動教材（**網路版部署**；紀錄預設離線、可開共享看全班結果）＋使用手冊 |
 | `teach-animation` | `用「teach-animation」這個 skill，我想做一個 ____ 的動畫。` | 用 **manim** 做動畫影片（mp4）＋使用手冊（選用依賴 manim/ffmpeg，見 SETUP） |
+| `teach-refine` | `用「teach-refine」這個 skill，TA 資料夾：____，回饋來源：____。` | 上線後迭代：回饋收斂成逐條裁決表→老師確認→最小修改對應層→重跑相關驗收探針→`REFINE-LOG.md` 留痕 |
 
 > **四個材料 skill（slides／worksheet／quiz／sim）都套用教學 DNA**（見 `skills/teaching-dna.md`）：問題先行、點出常見迷思、收一句金句——讓產出不只是「結構完整卻平庸」。投影片走「地圖→鉤子→直覺→機制→誤解→金句」弧線；小考誘答項編碼真實迷思；互動要有「發現時刻」。
 >
@@ -62,6 +63,7 @@
   - **一個大腦、多轉接頭**：規則都在 `AGENT.md`；`.claude/` 與 `.codex/` 只是把不同工具導向它。
 - **預期行為（Claude 與 Codex 皆同）**：觀念題答並引用講義小節；**課務題據課綱答（標「以公告為準」）**；**作業/考試只給提示不給答案**；考古題帶複習；超綱題說超出範圍、不編造。兩種工具的轉接頭都委派 `AGENT.md` 的完整規則（來源路由、協助邊界、多輪不拼裝）。
 - **發布**：見助教的 `INSTRUCTOR-MANUAL.md` §12（GitHub clone 給學生；著作權與個資檢查在 §13）。
+- **上線後迭代（`teach-refine`）**：老師試用意見、學生問答紀錄、驗收失敗項都收進 `用「teach-refine」這個 skill，TA 資料夾：____，回饋來源：____。`——它先把回饋收斂成逐條裁決表（各標對應層：`AGENT.md` 規則／週蒸餾／知識圖譜／某 skill）、**你確認後才動手**、一輪只改一層、改完重跑相關驗收探針並在 `REFINE-LOG.md` 留痕。常見失誤：把模糊回饋直接改規則（應標「待老師釐清」）；一輪同時動多層（難以歸因）。
 
 ## 五、互動教材與「看全班結果」
 

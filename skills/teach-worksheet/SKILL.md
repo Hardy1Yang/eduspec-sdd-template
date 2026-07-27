@@ -25,7 +25,7 @@ metadata:
 
 ## 3. 形成性學習單
 
-先用 `templates/mini-spec.md` 寫迷你規格（存為 `mini-spec-worksheet.md`，帶類型後綴），再產：
+先用 `templates/mini-spec.md` 寫迷你規格（存為 `mini-spec-worksheet.md`，帶類型後綴）——**明確標為「待審核（請先審核，不 OK 就叫我改）」、不要暗示已通過審核**；不必真的停下等回覆，接著往下產：
 
 - **3 題，題型混合：1 是非、1 單選、1 簡答。**
 - **每題情境開場**（從一個具體情境/樸素做法切入，不是定義複誦）；題序走**想法系譜**（先讓學生撞到樸素做法的牆、再導向正解）——見 [`../teaching-dna.md`](../teaching-dna.md)。
@@ -46,7 +46,7 @@ metadata:
 對照迷你規格驗收清單；答案親自驗算；提醒人工審核。
 
 ## 6. 產出使用手冊（每次生成都做）
-> 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
+> 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄）——所有教材的手冊長一樣。
 
 
 除學習單外，另產一份 `使用手冊-worksheet.md`（帶教材類型後綴，避免同單元互相覆蓋）：**老師端**（如何生成、如何在課堂發放與批改）；**學生端**（如何填寫、繳交）。

@@ -38,7 +38,7 @@
 ├── PUBLISH-GITHUB-IO.md（發布版附）         ← 發布到 github.io、看全班結果
 ├── SETUP.md                     ← 依賴清單（＋ scripts/setup-check.sh 一鍵檢查）
 ├── constitution.md              ← 教材開發憲法（所有 skill 共用規則）
-├── skills/                      ← 8 個 skill（見下）
+├── skills/                      ← 9 個 skill（見下）
 ├── course-context/              ← 放你的講義（AI 據此作答，降低幻覺）
 ├── templates/                   ← 迷你規格、驗收清單、rubric 範本
 ├── scripts/                     ← setup-check.sh（依賴一鍵檢查）
@@ -59,7 +59,7 @@
         （完整樹見骨架的 INSTRUCTOR-MANUAL.md §2）
 ```
 
-### 8 個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊-<類型>.md`（如 `使用手冊-slides.md`），`teach-context` 為蒸餾器——分類蒸餾出 `lecture-notes/`、根 `syllabus.md`/`exams.md`、`homework/`、`cases/`（有檔才生成），不另產手冊）
+### 9 個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊-<類型>.md`（如 `使用手冊-slides.md`），`teach-context` 為蒸餾器——分類蒸餾出 `lecture-notes/`、根 `syllabus.md`/`exams.md`、`homework/`、`cases/`（有檔才生成），不另產手冊）
 
 | Skill | 觸發 | 產出 |
 |-------|------|------|
@@ -71,6 +71,7 @@
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程 |
 | `teach-sim` | `用「teach-sim」這個 skill，我想做一個 ____ 的互動教材給 ____。` | 互動網頁（**網路版部署**；紀錄預設離線、可開共享看全班結果），走完整 SDD |
 | `teach-animation` | `用「teach-animation」這個 skill，我想做一個 ____ 的動畫。` | 用 **manim** 做動畫影片（mp4），走完整 SDD（選用依賴 manim/ffmpeg） |
+| `teach-refine` | `用「teach-refine」這個 skill，TA 資料夾：____，回饋來源：____。` | 上線後迭代：回饋→逐條裁決表→老師確認→最小修改→重跑驗收探針→`REFINE-LOG.md` 留痕 |
 
 ## 心法：SDD 四步（先想清楚再動手）
 
@@ -101,7 +102,7 @@
 
 ## 三個工具怎麼對應（不綁單一工具）
 
-8 個 skill 都是**純 `SKILL.md`**，Spectra、Spec Kit、Cursor、Claude Code、Codex 都讀得懂。互動網頁的完整 SDD 流程對照：
+9 個 skill 都是**純 `SKILL.md`**，Spectra、Spec Kit、Cursor、Claude Code、Codex 都讀得懂。互動網頁的完整 SDD 流程對照：
 
 | 心法四步 | Spectra（主推·中文·免裝 Node·有 GUI） | GitHub Spec Kit（官方標準） |
 |---------|------------------------------------------|------------------------------|

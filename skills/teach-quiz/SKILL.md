@@ -19,7 +19,7 @@ metadata:
 
 ## 2. 寫迷你規格
 
-用 `templates/mini-spec.md`（存為 `mini-spec-quiz.md`，帶類型後綴）：這份小考測哪些節點、幾分、時間、題型。請老師確認。
+用 `templates/mini-spec.md`（存為 `mini-spec-quiz.md`，帶類型後綴）：這份小考測哪些節點、幾分、時間、題型。**把這份規格明確標為「待審核（請先審核，不 OK 就叫我改）」、不要暗示已通過審核**；不必真的停下等回覆，接著往下出題。
 
 ## 3. 出題（依教學 DNA，考「懂不懂」而非「背不背」）
 
@@ -48,7 +48,7 @@ metadata:
 答案與計算親自驗算；提醒人工審核。
 
 ## 7. 產出使用手冊（每次生成都做）
-> 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄表）——所有教材的手冊長一樣。
+> 欄位照 [`templates/usage-manual-template.md`](../../templates/usage-manual-template.md)（老師端：重生成／課堂使用／發布；學生端：取得／使用；審核紀錄）——所有教材的手冊長一樣。
 
 
 除小考與 rubric 外，另產一份 `使用手冊-quiz.md`（帶教材類型後綴，避免同單元互相覆蓋）：**老師端**（如何生成、如何施測、如何依 rubric 與人工複核流程批改）；**學生端**（如何作答、AI 使用燈號）。
