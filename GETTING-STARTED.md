@@ -1,6 +1,7 @@
 # 從零開始・第一次裝機指南（零基礎也能照做）
 
 > 裝好之後，日常生成請翻 **[生成手冊.md](生成手冊.md)**（按目標一節一節照做）。
+> **工作坊當天**：指令不用背，照 **[WORKSHOP-COMMANDS.md](WORKSHOP-COMMANDS.md)** 這張抄——複製、改空格、貼上就能用。
 
 > **這份文件假設你完全沒寫過程式。** 每一步都寫清楚「在**哪裡**做、**打什麼**、會**看到什麼**」。
 > 跟著做，最後你會得到：(1) 一個能用 `/ta` 指令問的 24 小時助教；(2) 一份你自己單元的教材；(3) 一個能給學生的網址。
@@ -50,7 +51,10 @@ macOS 或 Windows 都可以。
 2. 之後要把成品「放上網給學生」時會用到。
 
 > ✅ **這四樣裝好後，以後每次用都不必再裝。**
-> 想確認都裝好了？在套件根目錄跑 `bash scripts/setup-check.sh`（見 [SETUP.md](SETUP.md)），它會逐項回報「就緒／缺少（附安裝指引）」，缺件不會靜默。
+> 想確認都裝好了？在套件根目錄跑環境檢查（見 [SETUP.md](SETUP.md)），它會逐項回報「就緒／缺少（附安裝指引）」，缺件不會靜默：
+> - **Mac**：`bash scripts/setup-check.sh`
+> - **Windows**：`powershell -ExecutionPolicy Bypass -File scripts\setup-check.ps1`
+> - 工作坊當天加 `--essential`（Windows 加 `-Essential`）只看必要項。
 > **選裝（用到才需要，不用先裝）**：`pandoc`（`teach-context` 讀 .docx）、`poppler/pdftotext`（**Codex** 讀 PDF 用；Claude Code 內建免裝）、`manim`＋`ffmpeg`（`teach-animation` 動畫）。完整清單與安裝/驗證指令都在 [SETUP.md](SETUP.md)。
 
 ---
@@ -102,7 +106,7 @@ git clone <套件的 repo 網址>
 3. 英文講義沒關係，貼原文即可；**數學符號保留原樣**。
    > 細節見 `course-context/README.md`。**沒放講義，AI 會請你先放，不會亂編。**
    > **懶得手動整理？** 打 `用「teach-context」這個 skill，講義在：<資料夾或檔案路徑>。`，它會**把整個資料夾分類蒸餾**：講義→`lecture-notes/`、課綱→根 `syllabus.md`、作業→`homework/`（每份一檔）、考古題→根 `exams.md`、案例→`cases/`（**有原始教材才生成**）。助教依 `AGENT.md` 的行為規則使用它們（課務據實答、作業/考試只給提示）。**要從零做整個助教**直接跳 [Part 3](#part-3)——`teach-agent` 會自動呼叫這個蒸餾流程。
-   > ⚠️ **會吃 AI 用量**：蒸餾是**一檔一單位平行處理**（同時開多個 sub-agent），檔案越多、燒得越兇。**第一次先只放一個單元或一小部分**試水溫，別一次倒整包課程；確認順了再加量。**免費／低額度方案可能中途就把 session 額度用完、跑不完**。
+   > ⚠️ **會吃 AI 用量**：蒸餾是**一檔一單位平行處理**（同時開多個 sub-agent），檔案越多、燒得越兇。**第一次先只放前三週的素材**試水溫，別一次倒整包課程；確認順了再加量。**免費／低額度方案可能中途就把 session 額度用完、跑不完**。
    > **想列「學生課前該會什麼」？** 打 `用「teach-prereq」這個 skill，課名：____，對象：____。`，它會盤點課裡假設你已會、卻不教的**外部先備知識**，產出老師清單＋學生自我檢測。
 
 ---
@@ -111,7 +115,8 @@ git clone <套件的 repo 網址>
 ## Part 3：做你的 24 小時助教
 
 1. **準備一個原始教材資料夾**：把課綱、講義、作業、考古題放進電腦上同一個資料夾（.tex/PDF/DOCX/MD 格式不拘，不用先整理）。
-   > ⚠️ **會吃 AI 用量**：`teach-agent` 會自動蒸餾整包教材、**平行開多個 sub-agent**，資料越多燒得越兇。**第一次先只放一兩個單元**跑通整條流程，別一次倒整學期；**免費／低額度方案可能中途額度用完、跑不完**。順了再逐步加量。
+   > 📍 **工作坊當天的統一慣例**：這個資料夾請**放在桌面**、命名 `roll`；等一下生成的助教資料夾也**指定放桌面**——大家路徑一致，卡住時助教一眼就能找到你的檔案。
+   > ⚠️ **會吃 AI 用量**：`teach-agent` 會自動蒸餾整包教材、**平行開多個 sub-agent**，資料越多燒得越兇。**第一次先只放前三週的素材**跑通整條流程，別一次倒整學期；**免費／低額度方案可能中途額度用完、跑不完**。順了再逐步加量。
 2. 在 Cursor 按 <kbd>Ctrl</kbd>+<kbd>&#96;</kbd> 叫出終端機，打 `claude` 啟動（第一次見 Part 0-③），在對話裡**貼上這句**（填上你的課與教材資料夾路徑）：
    ```
    用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。
@@ -163,8 +168,25 @@ git clone <套件的 repo 網址>
 <a id="part-6"></a>
 ## Part 6：發布給學生
 
-- **互動教材／網頁**：照套件根的 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附）（有逐步步驟）放到 **GitHub Pages**，得到一個網址，把網址給學生就能玩（還能記錄、看全班結果）。
-- **助教**：照**產出 repo**（你的 `<課程代碼>-ta/` 資料夾）內的 `INSTRUCTOR-MANUAL.md` §12——建 GitHub repo、刪 README banner、推上去，讓學生 `git clone` 後用自己的 Claude Code 開來問。
+### 助教——方式 A（推薦）：zip 分享，完全不用 git
+
+1. 把你的 `<課程代碼>-ta/` 資料夾**打包成 zip**——**打包前把 `source-materials/` 整個資料夾移除或排除**（那裡面是你的原始檔，可能含解答；生成的內容本身已排除解答）。一行指令（在助教資料夾的上一層執行）：
+   ```bash
+   zip -r 課程代碼-ta.zip 課程代碼-ta -x "課程代碼-ta/source-materials/*" -x "課程代碼-ta/.git/*"
+   ```
+2. 把 zip 上傳到課程平台（NTU COOL 等），學生下載解壓。
+3. 學生端只要三步：**裝 VS Code＋AI extension（Claude Code 或 Codex）→ Open Folder 開啟解壓的資料夾 → 打 `/ta 你的問題`**。不需要 GitHub 帳號、不需要學 git。
+
+### 助教——方式 B（選用/課後）：GitHub repo
+
+> ⚠️ **先看這行再開始**：Mac 第一次用 git 推送會跳出**安裝 Xcode command line tools** 的視窗（要輸入電腦密碼、等數分鐘）；Windows 需要已裝 git。時間不夠就先用方式 A，這條課後再走。
+
+照**產出 repo**（你的 `<課程代碼>-ta/` 資料夾）內的 `INSTRUCTOR-MANUAL.md` §12——建 GitHub repo、刪 README banner、推上去，讓學生 `git clone` 後用自己的 Claude Code 開來問。好處是之後更新方便（改了 push、學生 pull）。
+
+### 互動教材／網頁
+
+- **單機版（最簡單）**：產出的 `<單元>-sim/index.html` **直接把檔案傳給學生就能玩**（點兩下用瀏覽器開）——不需要發布到任何地方。
+- **全班共享模式（選用）**：要「記錄、看全班結果」才需要放上 **GitHub Pages**——照套件根的 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附）逐步做，得到網址發給學生。
 
 ---
 

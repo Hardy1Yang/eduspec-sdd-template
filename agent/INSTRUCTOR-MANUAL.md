@@ -68,12 +68,26 @@
 
 ## 12. 發布給學生
 
+### 方式 A（推薦）：zip 分享——不用 git、不用 GitHub 帳號
+
+1. **刪掉 `README.md` 第一行的老師提醒 banner**、確認 `{{ }}` 全數填實（例外：`references/first-person-calibration.md` 可整檔保留未填，不影響學生）。
+2. 在助教資料夾的**上一層**打包（**排除 `source-materials/`**——那是你的原始檔、可能含解答；也排除 `.git/`）：
+   ```bash
+   zip -r 課程代碼-ta.zip 課程代碼-ta -x "課程代碼-ta/source-materials/*" -x "課程代碼-ta/.git/*"
+   ```
+3. 把 zip 上傳到課程平台（NTU COOL 等），學生下載解壓。
+4. 學生端三步：**裝 VS Code＋AI extension（Claude Code 或 Codex）→ Open Folder 開啟解壓資料夾 → `/ta 問題`**。README 就是他們的使用說明。
+
+### 方式 B（選用）：GitHub repo——之後更新方便（改了 push、學生 pull）
+
+> ⚠️ **前置**：Mac 第一次用 git 會跳出**安裝 Xcode command line tools**（要電腦密碼、等數分鐘）；Windows 需已裝 git。趕時間先走方式 A。
+
 1. 建 GitHub repo（public 讓學生免費取用，或 private 邀請學生）。
-2. **刪掉 `README.md` 第一行的老師提醒 banner**、確認 `{{ }}` 全數填實（例外：`references/first-person-calibration.md` 是給你後續校準口吻用的模板，可整檔保留未填，不影響學生）。
-3. 推上 GitHub，把連結給學生——README 就是他們的使用說明。
+2. 刪 banner、確認 `{{ }}` 填實（同方式 A 第 1 步）。
+3. 推上 GitHub，把連結給學生（`source-materials/` 是否隨版發布見第 13 節——有疑慮就 `.gitignore` 排除）。
 4. （選配）也可把 `AGENT.md` 內容貼進 GPTs／Claude Projects 當網頁版。
 
-> **懶人路線**：直接對 coding agent 說「照本手冊第 12 節，把這個資料夾發布成 public（或 private）GitHub repo」——它會代你建 repo、刪 banner、推送；完成後把網址發給學生。
+> **懶人路線**：直接對 coding agent 說「照本手冊第 12 節方式 B，把這個資料夾發布成 public（或 private）GitHub repo，`source-materials/` 不要推上去」——它會代你建 repo、刪 banner、推送；完成後把網址發給學生。
 
 ## 13. 著作權、個資與安全
 
