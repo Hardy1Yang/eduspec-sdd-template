@@ -52,7 +52,7 @@ mkdir "$env:USERPROFILE\Desktop\rawcourse"
 （`<資料夾>` 填你桌面 `rawcourse` 的完整路徑。）
 
 > 路徑怎麼拿？在檔案總管/Finder 對 `rawcourse` 按右鍵複製路徑；Mac 通常是 `/Users/你的名字/Desktop/rawcourse`，Windows 是 `C:\Users\你的名字\Desktop\rawcourse`。
-> 按下去會跑十幾分鐘——正常。讓它跑，去休息，回來先看 `INITIALIZATION-REPORT.md` 第 0 節。
+> 按下去會跑十幾到二十幾分鐘——正常。讓它跑，去休息，回來先看 `INITIALIZATION-REPORT.md` 第 0 節。
 
 ---
 

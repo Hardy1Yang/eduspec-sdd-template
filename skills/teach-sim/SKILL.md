@@ -17,6 +17,12 @@ metadata:
 
 > **產出＝一個套件同層的獨立資料夾 `<單元>-sim/`**（與 teach-agent 的 `<課程代碼>-ta/` 對稱，**不進 `output/`**）。理由：sim 是唯一「可部署的 app」型教材，散布本身就是 git/Pages 操作，一個自足資料夾比散在 `output/` 更好用、也避免在套件（本身是 git repo）內 `git init` 造成巢狀。資料夾內容：`index.html`（一開始就用這名，Pages-ready）、`使用手冊-sim.md`、`sdd-archive/<日期>-<名稱>/`（規格）、`README.md`（預覽/發布步驟）、`.gitignore`（至少含 `.DS_Store`）。**投影片／學習單／小考／動畫維持進 `output/<單元>/`**（它們不是可部署 app、不需要）。
 
+## 0b. 產出位置（明確版）
+
+- 互動教材（sim）產出放**套件同層的獨立資料夾**（如桌面 `solow-sim/`），**不放 `output/`**——因為它要能單獨 zip 交付或 git init 成獨立 Pages repo（§6b）。教材類（quiz/slides/worksheet）才放 `output/`。
+- 註：範例包早期版本曾把 sim 範例放 `output/`，以本節為準。
+- 本 skill 的「迷你規格」＝ SDD 流程中的 `proposal.md`（Why／教學意圖／範圍／驗收準則的精簡版）：**寫完 proposal.md 就是老師核可點**，核可後才往 spec/tasks/實作走。
+
 ## 1. 選互動形式（讀課程脈絡 + 對照表）
 
 到 `course-context/`（套件根的工作區，或助教資料夾內的 `lecture-notes/`——以實際放講義的那份為準） 確認要教的概念，用下表把「概念」對到「互動形式」。
