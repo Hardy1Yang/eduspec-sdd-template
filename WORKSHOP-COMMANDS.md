@@ -36,7 +36,7 @@ mkdir -p ~/Desktop/rawcourse
 **Windows**（貼終端機）：
 
 ```powershell
-mkdir "$env:USERPROFILE\Desktop\roll"
+mkdir "$env:USERPROFILE\Desktop\rawcourse"
 ```
 
 ---
@@ -49,9 +49,9 @@ mkdir "$env:USERPROFILE\Desktop\roll"
 用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。
 ```
 
-（`<資料夾>` 填你桌面 `roll` 的完整路徑。）
+（`<資料夾>` 填你桌面 `rawcourse` 的完整路徑。）
 
-> 路徑怎麼拿？在檔案總管/Finder 對 `roll` 按右鍵複製路徑；Mac 通常是 `/Users/你的名字/Desktop/roll`，Windows 是 `C:\Users\你的名字\Desktop\roll`。
+> 路徑怎麼拿？在檔案總管/Finder 對 `rawcourse` 按右鍵複製路徑；Mac 通常是 `/Users/你的名字/Desktop/rawcourse`，Windows 是 `C:\Users\你的名字\Desktop\rawcourse`。
 > 按下去會跑十幾分鐘——正常。讓它跑，去休息，回來先看 `INITIALIZATION-REPORT.md` 第 0 節。
 
 ---
