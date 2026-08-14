@@ -23,7 +23,7 @@ if command -v claude >/dev/null 2>&1 || command -v codex >/dev/null 2>&1; then
 else
   say_miss "Claude Code 或 Codex" "見 https://code.claude.com/docs"
 fi
-check_req "git" git "https://git-scm.com"
+check_opt "git（課後 GitHub 發布才需要，選用）" git "https://git-scm.com"
 # VS Code：先找 code 指令，找不到再看 macOS 應用程式資料夾（沒把 code 加入 PATH 的情況）
 if command -v code >/dev/null 2>&1; then
   say_ok "VS Code（code）"
@@ -32,7 +32,7 @@ elif [ -d "/Applications/Visual Studio Code.app" ] || [ -d "$HOME/Applications/V
 else
   say_miss "VS Code" "https://code.visualstudio.com"
 fi
-check_req "Spectra CLI" spectra "見 https://kaochenlong.com/spectra-app-2（互動教材完整 SDD 需要）"
+check_opt "Spectra CLI（大型迭代專案的圖形介面，選用）" spectra "見 https://kaochenlong.com/spectra-app-2"
 
 [ "$ESSENTIAL" -eq 0 ] && echo "[選用]"
 check_opt "pandoc（讀 .docx 講義，選用）" pandoc "brew install pandoc / apt install pandoc"

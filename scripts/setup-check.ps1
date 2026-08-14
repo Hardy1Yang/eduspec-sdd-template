@@ -35,7 +35,6 @@ if ((Has-Cmd "claude") -or (Has-Cmd "codex")) {
 } else {
     Say-Miss "Claude Code 或 Codex" "見 https://code.claude.com/docs"
 }
-if (Has-Cmd "git") { Say-Ok "git（git）" } else { Say-Miss "git" "https://git-scm.com（下載 Windows 安裝器）" }
 # VS Code：先找 code 指令，找不到再看預設安裝路徑（安裝時未勾 PATH 的情況）
 if (Has-Cmd "code") {
     Say-Ok "VS Code（code）"
@@ -44,7 +43,6 @@ if (Has-Cmd "code") {
 } else {
     Say-Miss "VS Code" "https://code.visualstudio.com"
 }
-if (Has-Cmd "spectra") { Say-Ok "Spectra CLI（spectra）" } else { Say-Miss "Spectra CLI" "見 https://kaochenlong.com/spectra-app-2（互動教材完整 SDD 需要）" }
 
 function Say-OptOk([string]$name) {
     if ($Essential) { return }   # 工作坊模式：選用項一律摺疊，不逐項列
@@ -52,6 +50,8 @@ function Say-OptOk([string]$name) {
 }
 
 if (-not $Essential) { Write-Host "[選用]" }
+if (Has-Cmd "git") { Say-OptOk "git（課後 GitHub 發布才需要，選用）" } else { Say-Opt "git（課後 GitHub 發布才需要）" "https://git-scm.com（下載 Windows 安裝器）" }
+if (Has-Cmd "spectra") { Say-OptOk "Spectra CLI（大型迭代專案的圖形介面，選用）" } else { Say-Opt "Spectra CLI（大型迭代專案的圖形介面）" "見 https://kaochenlong.com/spectra-app-2" }
 if (Has-Cmd "pandoc") { Say-OptOk "pandoc（讀 .docx 講義，選用）" } else { Say-Opt "pandoc（讀 .docx 講義）" "winget install --id JohnMacFarlane.Pandoc" }
 if (Has-Cmd "ffmpeg") { Say-OptOk "ffmpeg（teach-animation render 動畫，選用）" } else { Say-Opt "ffmpeg（teach-animation render 動畫）" "winget install --id Gyan.FFmpeg" }
 if (Has-Cmd "pdftotext") { Say-OptOk "pdftotext（Codex 讀 PDF 講義，選用）" } else { Say-Opt "pdftotext（Codex 讀 PDF 講義；Claude Code 內建可略）" "winget install --id oschwartz10612.Poppler" }
