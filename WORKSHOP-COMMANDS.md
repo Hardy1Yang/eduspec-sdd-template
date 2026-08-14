@@ -23,14 +23,14 @@ powershell -ExecutionPolicy Bypass -File scripts\setup-check.ps1 -Essential
 
 ---
 
-## 1. 在桌面建教材資料夾 `roll`
+## 1. 在桌面建教材資料夾 `rawcourse`
 
-最簡單：到**桌面**按右鍵 → 新增資料夾 → 命名 `roll` → 把**前三週**的課綱/講義/作業/考題檔案拖進去（.tex/PDF/Word/MD 都可以，**不要放解答**）。
+最簡單：到**桌面**按右鍵 → 新增資料夾 → 命名 `rawcourse` → 把**前三週**的課綱/講義/作業/考題檔案拖進去（.tex/PDF/Word/MD 都可以，**不要放解答**）。
 
 用指令建也行——**Mac**（貼終端機）：
 
 ```bash
-mkdir -p ~/Desktop/roll
+mkdir -p ~/Desktop/rawcourse
 ```
 
 **Windows**（貼終端機）：
