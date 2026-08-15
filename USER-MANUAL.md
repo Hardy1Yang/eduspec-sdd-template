@@ -24,7 +24,7 @@
 | `example/`（發布版） | 迷你格式示範（填好的迷你助教＋一份投影片） |
 | `example-full/`（發布版） | 真實課程實測全套範例：助教＋w2 教材＋SDD 歸檔＋操作走查（見其 README 對照表） |
 
-> **講義放哪**：套件根 `course-context/` 僅供**材料 skill**（投影片/學習單/小考等）當工作區讀取；助教資料夾的 `lecture-notes/` 由 `teach-agent` 從其 `source-materials/` 生成——**兩邊是兩條獨立的線，沒有同步機制**。助教的講義要更新，是把新原始檔丟進助教 repo 的 `source-materials/` 再重跑初始化或增量生成（見其 `INSTRUCTOR-MANUAL.md` §14）。只做助教不生教材，可不用 `course-context/`。
+> **講義放哪**：套件根 `course-context/` 供**材料 skill**（投影片/學習單/小考等）當工作區讀取；助教資料夾的 `lecture-notes/` 由 `teach-agent` 從其 `source-materials/` 生成。**初始化收尾會自動把 `lecture-notes/*.md` 回寫到套件根 `course-context/`**（從套件 clone 觸發時；找不到套件就略過，結果記在初始化報告），所以做完助教通常不用再手動搬講義。助教的講義要更新，是把新原始檔丟進助教 repo 的 `source-materials/` 再重跑初始化或增量生成（見其 `INSTRUCTOR-MANUAL.md` §14）——重跑後會再次回寫。只做助教不生教材，可不用 `course-context/`。
 
 ## 二、心法：先寫規格再生成（隨複雜度分級）
 

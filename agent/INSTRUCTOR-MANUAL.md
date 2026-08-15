@@ -36,7 +36,7 @@
 
 ## 5. 初始化會生成什麼
 
-依序：`syllabus.md` → `lecture-notes/*.md`（每單元一檔；有對應 slides 會一併參考）→ `homework/hwXX.md`（每份獨立）→ `exams.md`（僅當有考古題教材；單檔、無解答）→ `cases/caseXX.md`（僅當有 case 教材）→ `prerequisites.md`（含自我檢測題）→ `knowledge-graph.md` → 學生版 `README.md` → 填實 `AGENT.md` → `INITIALIZATION-REPORT.md` → 驗收測試 → `git init`＋初始 commit（產出即為可發布的獨立 repo，發布見第 12 節）。
+依序：`syllabus.md` → `lecture-notes/*.md`（每單元一檔；有對應 slides 會一併參考）→ `homework/hwXX.md`（每份獨立）→ `exams.md`（僅當有考古題教材；單檔、無解答）→ `cases/caseXX.md`（僅當有 case 教材）→ `prerequisites.md`（含自我檢測題）→ `knowledge-graph.md` → 學生版 `README.md` → 填實 `AGENT.md` → `INITIALIZATION-REPORT.md` → 驗收測試 → **回寫套件工作區**（若是從 EduSpec 套件 clone 觸發，會把 `lecture-notes/*.md` 複製回套件根的 `course-context/`——之後在套件內生投影片／小考時講義已就緒；找不到套件就略過，結果記在初始化報告）→ `git init`＋初始 commit（產出即為可發布的獨立 repo，發布見第 12 節）。
 
 ## 6. 審查 INITIALIZATION-REPORT.md
 

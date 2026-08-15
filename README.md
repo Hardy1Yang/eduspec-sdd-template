@@ -95,8 +95,8 @@
 ## 怎麼開始（四步）
 
 1. **裝好工具**：**必裝**＝Claude Code 或 Codex（終端機 AI）＋ git ＋ Spectra CLI；**選裝**＝pandoc（讀 .docx 講義）、manim＋ffmpeg（做動畫）。逐項安裝/驗證見 [SETUP.md](SETUP.md)，或跑 `bash scripts/setup-check.sh` 一鍵檢查。
-2. **放講義**：丟進 `course-context/`（懶得整理可用 `teach-context` 把原始檔分類蒸餾，見上表）。
-   > **講義放哪**：套件根 `course-context/` 僅供**材料 skill**（投影片/學習單/小考等）當工作區；助教資料夾的 `lecture-notes/` 由 `teach-agent` 從其 `source-materials/` 生成——**兩條獨立的線，沒有同步機制**。助教講義要更新，是把新原始檔丟進助教 repo 的 `source-materials/` 再重跑初始化或增量生成（見助教 `INSTRUCTOR-MANUAL.md` §14）。只做助教不生教材，可不用 `course-context/`。
+2. **放講義**：丟進 `course-context/`（懶得整理可用 `teach-context` 把原始檔分類蒸餾，見上表）。**做過助教初始化的話這裡通常已自動有講義**——`teach-agent` 收尾會把蒸餾好的 `lecture-notes/*.md` 回寫進來。
+   > **講義放哪**：套件根 `course-context/` 供**材料 skill**（投影片/學習單/小考等）當工作區；助教資料夾的 `lecture-notes/` 由 `teach-agent` 從其 `source-materials/` 生成，初始化收尾會回寫一份到套件根 `course-context/`（找不到套件就略過，結果記在初始化報告）。助教講義要更新，是把新原始檔丟進助教 repo 的 `source-materials/` 再重跑初始化或增量生成（見助教 `INSTRUCTOR-MANUAL.md` §14）——重跑後會再次回寫。只做助教不生教材，可不用 `course-context/`。
 3. **生教材**：`用「teach-slides」這個 skill，單元：____，對象：____。`（其他 skill 同型）。
 4. **做助教**：貼觸發句 `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`——它會複製骨架 `agent/` 成 `<課程代碼>-ta/`、把你指定資料夾的教材匯入其 `source-materials/`、檔案偵測式生成、最後 git init 成可發布 repo；再用產出資料夾內的 `ACCEPTANCE-CHECKLIST.md` 驗收（老師手冊見其 `INSTRUCTOR-MANUAL.md`）。
 
