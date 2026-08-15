@@ -42,9 +42,11 @@ metadata:
 
 ## 2. 規格（Spec）→ 計畫（Plan）→ 任務（Tasks）
 
-走 **Spectra**（`/spectra-propose`）或 **Spec Kit**（`/speckit.*`）。規格只寫「要什麼、成功長什麼樣」：目的、輸入、輸出、**是否需要看全班結果**、可打勾的驗收清單。**規格裡不寫程式碼。**
+**主路徑（不需要任何工具）**：AI 直接照 **OpenSpec 格式**手寫規格三件套——`proposal.md`／`specs/`／`tasks.md`——到 `<單元>-sim/sdd-archive/<日期>-<名稱>/`（格式同 `example-full/`（發布版附）的歸檔），**不呼叫任何 slash 指令**。規格只寫「要什麼、成功長什麼樣」：目的、輸入、輸出、**是否需要看全班結果**、可打勾的驗收清單。**規格裡不寫程式碼。**
 
-> 規格三件套最終落在 sibling 的 `<單元>-sim/sdd-archive/<日期>-<名稱>/`（`proposal.md`／`specs/`／`tasks.md`），**不要留在套件 clone 的 `openspec/` 汙染它**；沒跑 Spectra 工具就直接照這格式寫進去（同 example-full 的歸檔）。
+> **選用加速器**：裝了 **Spectra CLI**（`/spectra-propose`）或 **Spec Kit**（`/speckit.*`）的使用者，可改用對應指令跑同一套流程，多得機器驗證（格式退件、一致性分析、自動歸檔）。**未裝 Spectra CLI 時不要嘗試呼叫任何 `/spectra-*` 指令**——直接走上面的手寫主路徑。
+>
+> 規格三件套一律落在 sibling 的 `<單元>-sim/sdd-archive/`，**不要留在套件 clone 的 `openspec/` 汙染它**。
 
 **規格開頭先寫教學意圖**（依 [`../teaching-dna.md`](../teaching-dna.md)，讓互動不只是「能拉的玩具」）：
 - **這互動要破除／建立哪個直覺或迷思？**（問題先行）
@@ -57,7 +59,7 @@ metadata:
 
 ## 4. 實作（Implement）——網路版為主
 
-`/spectra-apply` 依任務做出互動教材，**直接寫進套件同層的 `<單元>-sim/` 資料夾、檔名 `index.html`**（不進 `output/`）。**預設網路版**：
+依 tasks 逐項實作互動教材（裝了 Spectra 者可用 `/spectra-apply`），**直接寫進套件同層的 `<單元>-sim/` 資料夾、檔名 `index.html`**（不進 `output/`）。**預設網路版**：
 
 - 單一 HTML（HTML＋CSS＋JS 內嵌），**預期部署到 GitHub Pages**（見 `../../PUBLISH-GITHUB-IO.md`，發布版附）。
 - **互動紀錄**：每筆互動先存瀏覽器 localStorage；若老師開啟**共享模式**，透過 **GitHub API** 把紀錄 append 到**班級紀錄 repo**（**與發布網頁的 Pages repo 分開的另一個 repo**）的 `logs/<單元>.csv`（token 存學生本機），老師端可彙整**看全班結果**。
@@ -84,7 +86,7 @@ metadata:
 
 ## 6b. git 收尾（讓資料夾成為可推的 repo）
 
-在 **`<單元>-sim/` 這個資料夾**（它已在套件同層，不在 clone 內——不會巢狀）執行 **`git init -b main`**（分支用 `main`，對齊 Pages 發布步驟）並做初始 commit（訊息如 `publish: <單元> 互動教材`）。首次用 git 的老師若 commit 失敗，先設 `git config user.name`／`user.email`。至此整個資料夾即為**可直接推送的獨立 Pages repo**：
+**先檢查系統有沒有 git**（`command -v git`）：沒有就**跳過本步**、在 `使用手冊-sim.md` 註明「未建 git repo——本機預覽與 zip 交付不受影響；要走 Pages 發布，裝好 git 後在本資料夾跑 git init -b main 即可」。有 git 時，在 **`<單元>-sim/` 這個資料夾**（它已在套件同層，不在 clone 內——不會巢狀）執行 **`git init -b main`**（分支用 `main`，對齊 Pages 發布步驟）並做初始 commit（訊息如 `publish: <單元> 互動教材`）。首次用 git 的老師若 commit 失敗，先設 `git config user.name`／`user.email`。至此整個資料夾即為**可直接推送的獨立 Pages repo**：
 
 - **本機預覽**：直接開 `index.html`（或用本機 HTTP server）。
 - **發布**：建 GitHub repo → push → 開 Pages（見 [`../../PUBLISH-GITHUB-IO.md`](../../PUBLISH-GITHUB-IO.md)（發布版附）；含共享模式的最小權限 token）。共享模式的班級紀錄 repo 由老師**一次性手動建、整學期重用**（靜態網頁不自動建 repo——那需要過大權限）。

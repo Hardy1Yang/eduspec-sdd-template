@@ -17,7 +17,7 @@
 | `templates/` | 迷你規格、驗收清單、rubric 空白範本 |
 | `agent/` | 空白助教骨架（老師熟悉的分類：`AGENT.md`、根 `syllabus.md`/`exams.md`、`lecture-notes/`、`homework/`、`cases/`（選用）、`source-materials/`、`INSTRUCTOR-MANUAL.md`）＋`.claude/`＋`.codex/` 轉接頭；完整樹見其 `INSTRUCTOR-MANUAL.md` §2 |
 | `scripts/` | `setup-check.sh` 依賴一鍵檢查 |
-| `openspec/` | Spectra／SDD 設定（互動教材走完整 SDD 時用） |
+| `openspec/` | OpenSpec／SDD 設定（裝了 Spectra 等工具走完整 SDD 時用；不裝不影響） |
 | `GETTING-STARTED.md` / `USER-MANUAL.md` | 從零上手 / 完整手冊 |
 | `生成手冊.md` | 按目標的日常生成教學（觸發句→過程→產出→驗收→發布） |
 | `SETUP.md` | 依賴清單與安裝/驗證指引（搭配 `scripts/setup-check.sh`） |
@@ -31,7 +31,7 @@
 | 教材 | 流程 |
 |------|------|
 | 投影片 / 學習單 / 小考 | 迷你規格（目的＋驗收清單）→ 生成 → 自查 |
-| 互動教材（程式） | 完整 SDD：`/spectra-propose` → 審 → `/spectra-apply` → 開瀏覽器驗 → `/spectra-archive` |
+| 互動教材（程式） | 完整 SDD：寫規格 → 審 → 實作 → 開瀏覽器驗 → 歸檔（AI 直接照 OpenSpec 格式手寫規格檔；裝了 Spectra／Spec Kit 可改用其指令跑同一流程） |
 
 ## 三、九個 skill（餵最小輸入就生成；教材類各附一份 `使用手冊-<類型>.md`（如 `使用手冊-slides.md`），`teach-context` 為蒸餾器、不另產手冊）
 
@@ -39,7 +39,7 @@
 |-------|------|------|
 | `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾或檔案路徑>。` | 把整個課程資料夾**分類蒸餾**（有檔才生成）：講義→`lecture-notes/`、課綱→根 `syllabus.md`、作業→`homework/`、考古題→根 `exams.md`、案例→`cases/` |
 | `teach-prereq` | `用「teach-prereq」這個 skill，課名：____，對象：____。` | 課前先備知識清單（外部/假設先備）＋學生課前自我檢測；寫回知識圖供助教診斷 |
-| `teach-agent` | `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` | 一整個 24h 助教資料夾 `<課程代碼>-ta/`（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表，已 git init 可發布） |
+| `teach-agent` | `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` | 一整個 24h 助教資料夾 `<課程代碼>-ta/`（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表，有 git 時已 git init 可發布） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：____，對象：____。` | 投影片（每張標題＋3 要點＋建議視覺）＋使用手冊 |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性 3 題附迷思／總結性先藍圖）＋使用手冊 |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程＋使用手冊 |
@@ -53,7 +53,7 @@
 
 ## 四、助教（agent）
 
-- **建立**：貼 `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`——它會複製骨架 `agent/` 成 `<課程代碼>-ta/`、把你指定資料夾的教材複製進其 `source-materials/`、檔案偵測式初始化（有檔才生成）、最後 `git init`＋初始 commit 成可發布的獨立 repo（手動流程見助教的 `INSTRUCTOR-MANUAL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
+- **建立**：貼 `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`——它會複製骨架 `agent/` 成 `<課程代碼>-ta/`、把你指定資料夾的教材複製進其 `source-materials/`、檔案偵測式初始化（有檔才生成）、最後（系統有 git 時）`git init`＋初始 commit 成可發布的獨立 repo（手動流程見助教的 `INSTRUCTOR-MANUAL.md`）。生成物含**教學框架**（`references/teaching-style.md` 教學 DNA、`references/first-person-calibration.md` 老師校準·優先級最高）與**雙工具轉接頭**（`.claude/` ＋ `.codex/`，皆委派 `AGENT.md`）。
 - **接地不只講義**：課綱（根 `syllabus.md`）、作業（`homework/`）、考古題（根 `exams.md`）、案例（`cases/`，選用）都是助教的來源，依 `AGENT.md` 行為規則回應——課務據實答（變動性標「以公告為準」）、作業/考試**只給提示**（多輪也拼不出完整解）、考古題帶複習。**從零最省事**：觸發句指定原始教材資料夾，`teach-agent` 一次生成全部。
 - **驗收**：用 `agent/ACCEPTANCE-CHECKLIST.md`（四層框架、可影印）。
 - **用指令呼叫**：把助教資料夾當專案打開 →
@@ -67,7 +67,7 @@
 
 ## 五、互動教材與「看全班結果」
 
-- **產出＝可直接推的資料夾**：sim 生成為**套件同層的 `<單元>-sim/`**（`index.html`＋手冊＋sdd-archive＋README，已 git init，不進 `output/`——與 teach-agent 的獨立資料夾對稱）。本機開 `index.html` 預覽；發布就建 GitHub repo → push → 開 Pages，照套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附），給學生連結。
+- **產出＝可直接推的資料夾**：sim 生成為**套件同層的 `<單元>-sim/`**（`index.html`＋手冊＋sdd-archive＋README，有 git 時已 git init，不進 `output/`——與 teach-agent 的獨立資料夾對稱）。本機開 `index.html` 預覽；發布就建 GitHub repo → push → 開 Pages，照套件根 [PUBLISH-GITHUB-IO.md](PUBLISH-GITHUB-IO.md)（發布版附），給學生連結。
 - **紀錄預設離線**：互動紀錄存學生**自己瀏覽器**（localStorage）、可**匯出 CSV**——不連網、不含個資，一般課堂這樣就夠。
 - **共享紀錄（選用・進階）**：紀錄放**另一個與 Pages 分開的班級紀錄 repo**（分開的理由：token 無法只鎖 `logs/`，同 repo 會讓寫入 token 能改發布頁）。老師產**一把 fine-grained、只授權該紀錄 repo 的**共享 token（fine-grained token 無法讓學生各自產寫你 repo 的 token，故老師產一把、活動時公布給全班），學生貼上後互動 append 到 `logs/<單元>.csv`，老師端**彙整看全班結果**。用**代號、不放個資**；沒 token 時自動退回離線。共享回來的資料視為不可信輸入、已內建淨化。**端到端六步（建 repo→發 token→設定→學生貼→寫入→彙整）見 PUBLISH-GITHUB-IO Part D**。
 

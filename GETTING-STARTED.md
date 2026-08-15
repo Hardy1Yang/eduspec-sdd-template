@@ -46,11 +46,11 @@ macOS 或 Windows 都可以。
   > 用 Codex 的話，改打 `codex`，用 ChatGPT 帳號登入。
 - **裝不起來？** 這一步是最容易卡的地方，工作坊現場有助教幫你；或洽學校教務處。
 
-### ④ 註冊 **GitHub** 帳號
-1. 到 **<https://github.com/signup>**，用 email 註冊、記住帳號密碼。
-2. 之後要把成品「放上網給學生」時會用到。
+### ④ 註冊 **GitHub** 帳號（選用）
+1. **之後想走 GitHub 發布才需要——zip 分享全程不用**，可以先跳過。
+2. 要用時到 **<https://github.com/signup>**，用 email 註冊、記住帳號密碼。
 
-> ✅ **這四樣裝好後，以後每次用都不必再裝。**
+> ✅ **前三樣裝好後，以後每次用都不必再裝**（④ 等要發布時再補即可）。
 > 想確認都裝好了？在套件根目錄跑環境檢查（見 [SETUP.md](SETUP.md)），它會逐項回報「就緒／缺少（附安裝指引）」，缺件不會靜默：
 > - **Mac**：`bash scripts/setup-check.sh`
 > - **Windows**：`powershell -ExecutionPolicy Bypass -File scripts\setup-check.ps1`
@@ -121,7 +121,7 @@ git clone <套件的 repo 網址>
    ```
    用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。
    ```
-3. **你會看到** AI 一步步幫你：複製空白骨架 `agent/` 成 `<課程代碼>-ta/` → 把你指定資料夾的教材複製進其 `source-materials/` → **有檔才生成**課綱、講義、作業、考古題、先備檢測、知識圖、學生版 README、雙轉接頭（完整清單見 [生成手冊.md](生成手冊.md) §1）→ 產出 `INITIALIZATION-REPORT.md`（集中列出需要你檢查的地方）→ 最後 `git init`＋初始 commit，讓它成為可直接發布的獨立 repo。
+3. **你會看到** AI 一步步幫你：複製空白骨架 `agent/` 成 `<課程代碼>-ta/` → 把你指定資料夾的教材複製進其 `source-materials/` → **有檔才生成**課綱、講義、作業、考古題、先備檢測、知識圖、學生版 README、雙轉接頭（完整清單見 [生成手冊.md](生成手冊.md) §1）→ 產出 `INITIALIZATION-REPORT.md`（集中列出需要你檢查的地方）→ 最後（系統有 git 時）`git init`＋初始 commit，讓它成為可直接發布的獨立 repo（沒 git 就跳過，zip 交付不受影響）。
 4. 完成後，它會告訴你助教資料夾在哪。**用 Cursor 把 `<課程代碼>-ta/` 另外開起來**（File → Open Folder…選它）。
 5. **驗收**：用助教資料夾裡的 `ACCEPTANCE-CHECKLIST.md` 逐項打勾（尤其「作業題只給提示、不編造」必過）；發布給學生見其 `INSTRUCTOR-MANUAL.md` 發布節。
 

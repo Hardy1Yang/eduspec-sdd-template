@@ -10,7 +10,7 @@
 
 1. **下載本套件**：`git clone <本套件 repo 網址>`（或 Download ZIP 解壓）。
 2. **準備一個原始教材資料夾**：課綱、講義、作業、考古題放進同一個資料夾即可（.tex/PDF/DOCX/MD 格式不拘）。
-3. **用 Claude Code 或 Codex 打開本套件，貼**：`用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` → 產出 `<課程代碼>-ta/`（已 git init），即為可發布的學生 repo；驗收用其中的 `ACCEPTANCE-CHECKLIST.md`（骨架 `agent/` 附）。
+3. **用 Claude Code 或 Codex 打開本套件，貼**：`用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` → 產出 `<課程代碼>-ta/`（有 git 時已 git init），即為可發布的學生 repo；驗收用其中的 `ACCEPTANCE-CHECKLIST.md`（骨架 `agent/` 附）。
 
 ## 📚 文件地圖（先知道要翻哪本）
 
@@ -44,7 +44,7 @@
 ├── course-context/              ← 放你的講義（AI 據此作答，降低幻覺）
 ├── templates/                   ← 迷你規格、驗收清單、rubric 範本
 ├── scripts/                     ← setup-check.sh（依賴一鍵檢查）
-├── openspec/                    ← Spectra／SDD 設定（互動教材走完整 SDD 時用）
+├── openspec/                    ← OpenSpec／SDD 設定（裝了 Spectra 等工具才用；不裝不影響）
 ├── example/ ＋ example-full/    ← 迷你格式示範 ＋ 真實課程實測全套（發布版附）
 └── agent/                       ← 空白「24h 助教」骨架（含教學框架與雙工具轉接頭）
     ├── AGENT.md / knowledge-graph.md / INSTRUCTOR-MANUAL.md
@@ -67,7 +67,7 @@
 |-------|------|------|
 | `teach-context` | `用「teach-context」這個 skill，講義在：<資料夾或檔案路徑>。` | 把整個課程資料夾**分類蒸餾**（有檔才生成）：講義→`lecture-notes/`、課綱→`syllabus.md`、作業→`homework/`、考古題→`exams.md`、案例→`cases/` |
 | `teach-prereq` | `用「teach-prereq」這個 skill，課名：____，對象：____。` | 課前先備知識清單（課裡常提到、卻假設你以前就會的）＋學生自我檢測 |
-| `teach-agent` | `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` | 一整個 24h 助教資料夾 `<課程代碼>-ta/`（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表，已 git init 可發布） |
+| `teach-agent` | `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。` | 一整個 24h 助教資料夾 `<課程代碼>-ta/`（大腦＋知識圖＋教學框架＋Claude/Codex 轉接頭＋驗收表，有 git 時已 git init 可發布） |
 | `teach-slides` | `用「teach-slides」這個 skill，單元：____，對象：____。` | 投影片（標題＋3 要點＋建議視覺） |
 | `teach-worksheet` | `用「teach-worksheet」…` | 學習單（形成性／總結性） |
 | `teach-quiz` | `用「teach-quiz」…` | 小考＋四級 rubric＋人工複核流程 |
@@ -94,17 +94,17 @@
 
 ## 怎麼開始（四步）
 
-1. **裝好工具**：**必裝**＝Claude Code 或 Codex（終端機 AI）＋ git ＋ Spectra CLI；**選裝**＝pandoc（讀 .docx 講義）、manim＋ffmpeg（做動畫）。逐項安裝/驗證見 [SETUP.md](SETUP.md)，或跑 `bash scripts/setup-check.sh` 一鍵檢查。
+1. **裝好工具**：**必裝**＝Claude Code 或 Codex（終端機 AI）；**選裝**＝git（要發布 GitHub 才用）、Spectra CLI（要機器驗證的完整工具鏈才用）、pandoc（讀 .docx 講義）、manim＋ffmpeg（做動畫）。逐項安裝/驗證見 [SETUP.md](SETUP.md)，或跑 `bash scripts/setup-check.sh` 一鍵檢查。
 2. **放講義**：丟進 `course-context/`（懶得整理可用 `teach-context` 把原始檔分類蒸餾，見上表）。**做過助教初始化的話這裡通常已自動有講義**——`teach-agent` 收尾會把蒸餾好的 `lecture-notes/*.md` 回寫進來。
    > **講義放哪**：套件根 `course-context/` 供**材料 skill**（投影片/學習單/小考等）當工作區；助教資料夾的 `lecture-notes/` 由 `teach-agent` 從其 `source-materials/` 生成，初始化收尾會回寫一份到套件根 `course-context/`（找不到套件就略過，結果記在初始化報告）。助教講義要更新，是把新原始檔丟進助教 repo 的 `source-materials/` 再重跑初始化或增量生成（見助教 `INSTRUCTOR-MANUAL.md` §14）——重跑後會再次回寫。只做助教不生教材，可不用 `course-context/`。
 3. **生教材**：`用「teach-slides」這個 skill，單元：____，對象：____。`（其他 skill 同型）。
-4. **做助教**：貼觸發句 `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`——它會複製骨架 `agent/` 成 `<課程代碼>-ta/`、把你指定資料夾的教材匯入其 `source-materials/`、檔案偵測式生成、最後 git init 成可發布 repo；再用產出資料夾內的 `ACCEPTANCE-CHECKLIST.md` 驗收（老師手冊見其 `INSTRUCTOR-MANUAL.md`）。
+4. **做助教**：貼觸發句 `用「teach-agent」這個 skill，課名：____，授課教師：____，對象：____，原始教材在：<資料夾>。`——它會複製骨架 `agent/` 成 `<課程代碼>-ta/`、把你指定資料夾的教材匯入其 `source-materials/`、檔案偵測式生成、最後（系統有 git 時）git init 成可發布 repo；再用產出資料夾內的 `ACCEPTANCE-CHECKLIST.md` 驗收（老師手冊見其 `INSTRUCTOR-MANUAL.md`）。
 
 > **想先看成品長什麼樣**：開 `example-full/`（發布版附；真實課程實測全套——助教＋教材＋SDD 歸檔），其 README 有「輸入→一句話→產出」對照表；迷你格式示範另見 `example/`。
 
 ## 三個工具怎麼對應（不綁單一工具）
 
-9 個 skill 都是**純 `SKILL.md`**，Spectra、Spec Kit、Cursor、Claude Code、Codex 都讀得懂。互動網頁的完整 SDD 流程對照：
+9 個 skill 都是**純 `SKILL.md`**，Spectra、Spec Kit、Cursor、Claude Code、Codex 都讀得懂。互動網頁的完整 SDD 流程對照（**以下為選用工具鏈**——不裝也能走同一套流程，AI 會直接照 OpenSpec 格式手寫規格）：
 
 | 心法四步 | Spectra（主推·中文·免裝 Node·有 GUI） | GitHub Spec Kit（官方標準） |
 |---------|------------------------------------------|------------------------------|

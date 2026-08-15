@@ -10,8 +10,6 @@
 | 依賴 | 為何需要 | 怎麼裝 | 怎麼驗 |
 |------|----------|--------|--------|
 | **Claude Code 或 Codex** | 跑 skill、助教、`/ta` 指令 | 以官方為準 <https://code.claude.com/docs>（Codex 見 OpenAI 文件） | 終端機打 `claude`（或 `codex`）能啟動 |
-| **git** | 下載套件、發布到 GitHub（選 zip 分享可不用） | <https://git-scm.com> | `git --version` |
-| **Spectra CLI** | 互動教材走完整 SDD（`teach-sim`）；GUI 版見官網 | <https://kaochenlong.com/spectra-app-2>；⚠️ **首次啟動會做初始設置（含向量模型下載），需數分鐘——建議課前完成** | `spectra --version` |
 
 > **模型選哪個？** 教學與初次生成用 **light 或 medium** 就夠：high 更耗額度、對這類文件生成感受差異不大；額度有限時尤其別開 high。模型在 AI 對話框的模型選單切換。
 
@@ -19,6 +17,8 @@
 
 | 依賴 | 為何需要 | 怎麼裝 | 怎麼驗 |
 |------|----------|--------|--------|
+| **git** | 發布到 GitHub 時才需要（**zip 下載＋zip 分享全程不用**；助教初始化偵測到沒 git 會自動跳過 git 步驟） | <https://git-scm.com> | `git --version` |
+| **Spectra CLI** | `teach-sim` 的完整 SDD **不裝也能跑**——AI 會直接照 OpenSpec 格式手寫規格三件套；裝了才有 `/spectra-*` 指令與**機器驗證**（格式退件、一致性分析、自動歸檔），適合長期迭代的大專案。GUI 版見官網 | <https://kaochenlong.com/spectra-app-2>；首次啟動的初始設置（含**向量模型**下載，需數分鐘）**也是選用**——不下載只影響語意搜尋（`spectra search`），教材生成主流程不受影響 | `spectra --version` |
 | **pandoc** | `teach-context` 讀 **.docx** 講義（.tex/.pdf 不需要） | `brew install pandoc`（Mac）/ `apt install pandoc`（Linux） | `pandoc --version` |
 | **manim** | `teach-animation` 做**動畫影片**（互動網頁不需要） | `pip install manim`（見 <https://docs.manim.community>） | `python3 -c "import manim"` |
 | **ffmpeg** | `teach-animation` render 動畫成 mp4（配 manim） | `brew install ffmpeg`（Mac）/ `apt install ffmpeg`（Linux） | `ffmpeg -version` |
