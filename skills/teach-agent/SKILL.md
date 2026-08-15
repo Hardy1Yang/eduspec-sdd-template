@@ -22,7 +22,7 @@ metadata:
 
 ## 0. 準備（單一正典流程）
 
-1. 把套件內的空白骨架 `agent/` 複製成 `<課程代碼>-ta/`（放在與套件同層、或老師指定的位置；**資料夾與轉接頭名一律小寫**，如 `test-101-ta`）。骨架已含：`AGENT.md`（通用行為規則）、`INSTRUCTOR-MANUAL.md`、`README.md`（學生版模板）、`knowledge-graph.md`／`prerequisites.md` 模板、根 `syllabus.md`／`exams.md` 佔位、`lecture-notes/`／`homework/`／`cases/`、`references/`（教學風格＋老師校準）、`ACCEPTANCE-CHECKLIST.md`、`INITIALIZATION-REPORT.md` 模板、`.claude/`＋`.codex/` 轉接頭、`source-materials/` 收件夾（完整樹見骨架 `INSTRUCTOR-MANUAL.md` §2）。
+1. 把套件內的空白骨架 `agent/` 複製成 `<課程代碼>-ta/`（放在**與套件同層**＝套件資料夾的上一層目錄（`../<課程代碼>-ta/`）、或老師指定的位置；**絕對不可生成在套件 clone 內部**——套件本身是 git repo，塞進去會巢狀。**建立前先驗證**：目標路徑不在套件資料夾底下，錯了就改到上一層。**資料夾與轉接頭名一律小寫、字段用連字號分隔**，如 `test-101-ta`、`econ-5166-ta`）。骨架已含：`AGENT.md`（通用行為規則）、`INSTRUCTOR-MANUAL.md`、`README.md`（學生版模板）、`knowledge-graph.md`／`prerequisites.md` 模板、根 `syllabus.md`／`exams.md` 佔位、`lecture-notes/`／`homework/`／`cases/`、`references/`（教學風格＋老師校準）、`ACCEPTANCE-CHECKLIST.md`、`INITIALIZATION-REPORT.md` 模板、`.claude/`＋`.codex/` 轉接頭、`source-materials/` 收件夾（完整樹見骨架 `INSTRUCTOR-MANUAL.md` §2）。
 2. 把觸發句「原始教材在：<資料夾>」指定資料夾內的原始教材**複製**進 `<課程代碼>-ta/source-materials/` 對應子夾（`syllabus`／`lecture-notes`／`slides`／`homework`／`exams`／`cases`；一律用子夾分類；格式不拘 .tex/PDF/DOCX/MD）；**分不出類的原樣放入 `source-materials/` 根層待分類**，不硬塞。
 3. 之後所有掃描與生成**全部在 `<課程代碼>-ta/` 內進行**；老師的原始資料夾不動。
 
