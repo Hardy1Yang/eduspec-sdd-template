@@ -1,7 +1,7 @@
 ---
 name: teach-sim
 description: 給定要教的概念，走完整 SDD（規格→計畫→任務→實作→歸檔）產出互動教材。部署預設網路版（GitHub Pages 託管）；互動紀錄預設離線（localStorage、可匯出 CSV），全班共享為選用模式（需 token）。做互動教材、賽局遊戲、需要看全班結果的模擬時使用。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "2.0"

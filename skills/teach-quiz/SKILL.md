@@ -1,7 +1,7 @@
 ---
 name: teach-quiz
 description: 給定「單元＋對象」，產出依認知層次標記的小考題，附四級 rubric（優異/良好/及格/待加強，概念與表達分開計分）與人工複核流程。出考卷、做評量時使用。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "1.0"

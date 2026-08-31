@@ -1,7 +1,7 @@
 ---
 name: teach-prereq
 description: 盤點課程的「課外地基」——學生進入課程前預期具備的能力（不含課內會教的），產出 `prerequisites.md`：必要/建議先備能力表（說明要做到什麼、用在哪、是否複習）＋自動生成的十分鐘快速檢測與各概念檢測題（含摺疊答案、判讀、補強路線），並寫回知識圖。備課/寫課綱/開學前自評時使用。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "2.0"

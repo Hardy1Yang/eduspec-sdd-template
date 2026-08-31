@@ -1,7 +1,7 @@
 ---
 name: teach-refine
 description: TA 迭代技能——把上線後收到的回饋（老師意見、學生問答紀錄、驗收探針失敗項）收斂成逐條可裁決項，經老師確認後最小修改對應層（AGENT.md 規則／週蒸餾／知識圖譜／某 skill），重跑相關驗收探針並在 REFINE-LOG.md 留痕。TA 做完想讓它越用越好、或驗收沒過要修時使用。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "1.0"

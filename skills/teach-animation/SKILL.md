@@ -1,7 +1,7 @@
 ---
 name: teach-animation
 description: 用 manim（3Blue1Brown 的數學動畫引擎）製作數學/經濟教學動畫——走 SDD（規格→manim scene→render 出影片）。要做「動畫影片」（如中央極限定理、曲線位移、幾何證明）時使用。互動網頁請改用 teach-sim。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "1.0"

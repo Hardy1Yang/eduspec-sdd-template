@@ -1,7 +1,7 @@
 ---
 name: teach-agent
 description: 課程 TA 初始化技能——老師在觸發句指定原始教材資料夾，本 skill 複製骨架成 <課程代碼>-ta/、把教材匯入其 source-materials/，再依「有檔案才生成」原則掃描並生成整個學生端 TA（syllabus/lecture-notes/homework/cases/prerequisites/knowledge-graph/學生版 README/AGENT.md），集中回報需要人工檢查的檔案（INITIALIZATION-REPORT.md），最後（系統有 git 時）git init 成可發布的獨立 repo。要做課程助教時使用。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "2.0"

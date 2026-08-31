@@ -1,7 +1,7 @@
 ---
 name: teach-slides
 description: 給定「單元＋對象」，先寫迷你規格、再產出投影片大綱（每張＝標題＋≤3 要點，建議視覺寫進註解/講者備註、不外露，含台灣案例）。備課要做上課投影片時使用。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "1.0"

@@ -1,7 +1,7 @@
 ---
 name: teach-context
 description: 初始化的蒸餾引擎——把原始教材（source-materials/ 或任一資料夾，.tex/PDF/Word）分類蒸餾到老師熟悉的結構：syllabus→根 syllabus.md、講義→lecture-notes/（14 節統一結構、slides 為輔助來源）、作業→homework/hwXX.md 逐份、考試→根 exams.md、case→cases/（有檔才生）。高保真、僅排除解答；歧義集中 INITIALIZATION-REPORT.md。要把原始課程檔案變成 TA 可用教材時使用。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "2.0"

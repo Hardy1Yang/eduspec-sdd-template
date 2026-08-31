@@ -1,7 +1,7 @@
 ---
 name: teach-worksheet
 description: 給定「單元＋對象」，先分形成性／總結性，再產出學習單（形成性三題附測的迷思與正解要點；總結性先出命題藍圖）。每個 AI 欄位後附老師審核欄。備課出題時使用。
-license: MIT
+license: CC-BY-NC-SA-4.0
 metadata:
   author: EduSpec
   version: "1.0"

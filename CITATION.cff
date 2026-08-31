@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use or adapt EduSpec SDD Template, please cite both authors and identify your changes."
+title: "EduSpec SDD Template"
+type: software
+authors:
+  - family-names: Chen
+    given-names: Yu-Chang
+  - family-names: Yang
+    given-names: Hau-Hung
+repository-code: "https://github.com/Hardy1Yang/eduspec-sdd-template"
+license: CC-BY-NC-SA-4.0
+date-released: "2026-08-31"

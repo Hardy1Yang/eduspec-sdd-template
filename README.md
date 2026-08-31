@@ -135,4 +135,33 @@
 
 ---
 
+## 授權
+
+Copyright © 2026 陳由常 (Yu-Chang Chen) and 楊昊紘 (Hau-Hung Yang).
+
+本套件中由上述作者擁有權利的教學文件、prompts、skills、templates、examples 與隨附套件材料，採用 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International（CC BY-NC-SA 4.0）](https://creativecommons.org/licenses/by-nc-sa/4.0/) 授權；完整且未修改的官方條款見 [LICENSE](LICENSE)。
+
+你可以進行**非商業分享與修改**，但必須：
+
+1. 同時署名兩位作者：陳由常（Yu-Chang Chen）與楊昊紘（Hau-Hung Yang）。
+2. 指出原始來源：[Hardy1Yang/eduspec-sdd-template](https://github.com/Hardy1Yang/eduspec-sdd-template)。
+3. 連結 CC BY-NC-SA 4.0，並註明修改內容。
+4. 分享修改版時，採用相同的 CC BY-NC-SA 4.0 授權。
+
+商業使用必須事前取得兩位作者的書面同意；CC BY-NC-SA 4.0 本身不授予商業使用權。這段白話說明不取代或修改 [LICENSE](LICENSE)，也不限制合理使用或其他法定例外。
+
+建議修改版保留以下說明：
+
+> EduSpec SDD Template，作者：陳由常（Yu-Chang Chen）、楊昊紘（Hau-Hung Yang）。
+>
+> Source: <https://github.com/Hardy1Yang/eduspec-sdd-template>
+>
+> Licensed under CC BY-NC-SA 4.0.
+>
+> Changes: Modified `skills/teach-quiz/SKILL.md` for a noncommercial workshop.
+
+授權只涵蓋兩位作者有權授權的內容，不涵蓋 AI-course 的 Quarto 課程投影片、其他 repositories，或另有權利人的第三方材料。第三方與僅供參考的上游工具見 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)，各自條款仍然有效。
+
+---
+
 *EduSpec · 台灣經濟學會 AI 教學應用工作坊 · 版本 2026-07*
